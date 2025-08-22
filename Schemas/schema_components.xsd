@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:element name="Component">
+        <xs:complexType>
+          
+            <xs:all>
+                <xs:element name="UID" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                            Unique name of the component in the Kit.
+                            For example "MyKit.Button"
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="Family" type="xs:string" minOccurs="0"/>
+                <xs:element name="Allows" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                            List of accepted children using their UID. Values must be separated by ';'.
+                            If the component accepts any kind of children, use "*".
+                            Examples:
+                            <Allows>*</Allows>
+                            <Allows>MyKit.Button;MyKit.Heading1</Allows>
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Denies" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                            List of refused children using their UID. Values must be separated by ';'.
+                            If the component accepts any kind of children, use "*". 
+                            Examples:
+                            <Denies>*</Denies>
+                            <Denies>MyKit.Button;MyKit.Heading1</Denies>
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Slots" type="xs:string" nillable="true" minOccurs="0"/>
+                <xs:element name="Template" type="xs:string" />
+                
+                <xs:element name="Features" minOccurs="0" nillable="true">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="InlineEdit" minOccurs="0"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                        
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
