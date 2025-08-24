@@ -1,0 +1,13 @@
+.idea
+ExpressiveWeb/bin
+ExpressiveWeb/obj
+.run
+ExpressiveWeb.Common/obj
+ExpressiveWeb.Common/bin
+ExpressiveWeb.Designer/obj
+ExpressiveWeb.Designer/bin
+ExpressiveWeb.UI.Shell/obj
+ExpressiveWeb.UI.Shell/bin
+TestProject/obj
+TestProject/bin
+

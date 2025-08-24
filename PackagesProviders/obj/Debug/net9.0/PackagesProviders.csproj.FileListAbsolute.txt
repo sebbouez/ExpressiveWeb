@@ -1,0 +1,16 @@
+D:\Sources\ExpressiveWeb\PackagesProviders\bin\Debug\net9.0\PackagesProviders.deps.json
+D:\Sources\ExpressiveWeb\PackagesProviders\bin\Debug\net9.0\PackagesProviders.dll
+D:\Sources\ExpressiveWeb\PackagesProviders\bin\Debug\net9.0\PackagesProviders.pdb
+D:\Sources\ExpressiveWeb\PackagesProviders\bin\Debug\net9.0\ExpressiveWeb.Common.dll
+D:\Sources\ExpressiveWeb\PackagesProviders\bin\Debug\net9.0\ExpressiveWeb.Common.pdb
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.csproj.AssemblyReference.cache
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.AssemblyInfoInputs.cache
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.AssemblyInfo.cs
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.csproj.CoreCompileInputs.cache
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.sourcelink.json
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\Packages.012B20F7.Up2Date
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.dll
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\refint\PackagesProviders.dll
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\PackagesProviders.pdb
+D:\Sources\ExpressiveWeb\PackagesProviders\obj\Debug\net9.0\ref\PackagesProviders.dll

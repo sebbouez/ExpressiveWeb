@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_components.xsd">
+
+    <UID>bootstrap.Card</UID>
+    <Name>Card</Name>
+
+    <Slots>.card-body</Slots>
+    <Variants>
+        <Variant name="Card model 1" className="card1"/>
+    </Variants>
+    
+    <Features>
+        <ContextualBoxStyle EnableBorderSettings="true" EnableBackgroundSettings="true" />
+    </Features>
+    
+    <Allows>*</Allows>
+    <Denies>bootstrap.Card</Denies>
+
+    <Template>
+        <![CDATA[
+        <div class="card">
+            <slot/>
+        </div>
+        ]]>
+    </Template>
+    
+</Component>

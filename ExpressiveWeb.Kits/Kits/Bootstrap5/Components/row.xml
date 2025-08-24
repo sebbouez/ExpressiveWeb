@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_components.xsd">
+
+    <UID>bootstrap.Row</UID>
+    <Name>Row</Name>
+
+    <Actions>
+        <Action Header="Add column" Command="AppendChild" OfType="bootstrap.Col"/>
+    </Actions>
+    
+    <Allows>bootstrap.Col</Allows>
+
+
+    <Template>
+        <![CDATA[
+        <div class="row">
+            <slot/>
+        </div>
+        ]]>
+    </Template>
+    
+</Component>

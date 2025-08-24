@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_components.xsd">
+
+    <UID>bootstrap.container</UID>
+    <Name>Container</Name>
+
+    <Allows>*</Allows>
+    
+    <Template>
+        <![CDATA[
+        <div class="container">
+            <slot/>
+        </div>
+        ]]>
+    </Template>
+
+</Component>

@@ -1,0 +1,61 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localization="clr-namespace:ExpressiveWeb.Localization;assembly=ExpressiveWeb.Localization"
+        xmlns:buttons="clr-namespace:ExpressiveWeb.Presentation.Buttons;assembly=ExpressiveWeb.UI.Internal"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ExpressiveWeb.Modules.Common.AboutDialog"
+        Title="{x:Static localization:Resources.MenuAbout}"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Focusable="True"
+        CanResize="False"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaToDecorationsHint="True"
+        KeyboardNavigation.TabNavigation="Cycle"
+        KeyboardNavigation.IsTabStop="True"
+        Height="350" Width="400">
+
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="1" Grid.Column="0" Fill="MediumPurple" Width="64" Height="64"
+                   Margin="0,2,0,0"
+                   VerticalAlignment="Top" />
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+
+            <TextBlock FontSize="30" FontWeight="SemiBold">Expressive Web</TextBlock>
+            <TextBlock x:Name="TbVersion">Version 0</TextBlock>
+
+            <Rectangle Height="1" Fill="Transparent" Opacity="0.5" Margin="0,8"></Rectangle>
+            <TextBlock>Made in France with ❤️.</TextBlock>
+            <TextBlock>Created by Sébastien Bouez.</TextBlock>
+            <TextBlock>Thank you to the contributors.</TextBlock>
+            <TextBlock>Copyright 2025.</TextBlock>
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+
+            <buttons:EWButton x:Name="BtnOk" Focusable="True" KeyboardNavigation.IsTabStop="True"
+                              Click="BtnOk_Click" MinWidth="75" Margin="8,0,0,0"
+                              Text="{x:Static localization:Resources.ButtonOk}" />
+
+        </StackPanel>
+
+
+    </Grid>
+
+
+</Window>

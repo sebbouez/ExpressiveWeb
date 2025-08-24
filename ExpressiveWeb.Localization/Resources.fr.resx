@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="MenuEdit" xml:space="preserve">
+        <value>Edition</value>
+    </data>
+    <data name="MenuFile" xml:space="preserve">
+        <value>Fichier</value>
+    </data>
+    <data name="MenuOpen" xml:space="preserve">
+        <value>Ouvrir...</value>
+    </data>
+    <data name="MenuHelp" xml:space="preserve">
+        <value>Aide</value>
+    </data>
+    <data name="MenuNew" xml:space="preserve">
+        <value>Nouveau...</value>
+    </data>
+    <data name="ExitApplication" xml:space="preserve">
+        <value>Quitter</value>
+    </data>
+    <data name="CloseTab" xml:space="preserve">
+        <value>Fermer</value>
+    </data>
+    <data name="StatusReady" xml:space="preserve">
+        <value>Prêt.</value>
+    </data>
+    <data name="ButtonYes" xml:space="preserve">
+        <value>Oui</value>
+    </data>
+    <data name="ButtonCancel" xml:space="preserve">
+        <value>Annuler</value>
+    </data>
+    <data name="ButtonNo" xml:space="preserve">
+        <value>Non</value>
+    </data>
+    <data name="ButtonOk" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="MenuFormat" xml:space="preserve">
+        <value>Format</value>
+    </data>
+    <data name="MenuInsert" xml:space="preserve">
+        <value>Insertion</value>
+    </data>
+    <data name="MenuView" xml:space="preserve">
+        <value>Fenêtre</value>
+    </data>
+    <data name="DuplicateElement" xml:space="preserve">
+        <value>Dupliquer</value>
+    </data>
+    <data name="OpenProject" xml:space="preserve">
+        <value>Projet</value>
+    </data>
+    <data name="Copy" xml:space="preserve">
+        <value>Copier</value>
+    </data>
+    <data name="Cut" xml:space="preserve">
+        <value>Couper</value>
+    </data>
+    <data name="Paste" xml:space="preserve">
+        <value>Coller</value>
+    </data>
+    <data name="Redo" xml:space="preserve">
+        <value>Refaire</value>
+    </data>
+    <data name="Undo" xml:space="preserve">
+        <value>Annuler</value>
+    </data>
+    <data name="MenuSave" xml:space="preserve">
+        <value>Enregistrer</value>
+    </data>
+    <data name="WatermarkFilterCommands" xml:space="preserve">
+        <value>Rechercher une commande...</value>
+    </data>
+    <data name="CommunityAskQuestion" xml:space="preserve">
+        <value>Poser une question...</value>
+    </data>
+    <data name="CommunityDevCenter" xml:space="preserve">
+        <value>Centre des développeurs</value>
+    </data>
+    <data name="CommunitySendFeedback" xml:space="preserve">
+        <value>Envoyer un avis...</value>
+    </data>
+    <data name="MenuCommunity" xml:space="preserve">
+        <value>Communauté</value>
+    </data>
+    <data name="VariableDurationActionMessage" xml:space="preserve">
+        <value>L'action prend plus de temps, veuillez patienter...</value>
+    </data>
+    <data name="StatusSaving" xml:space="preserve">
+        <value>Enregistrement en cours...</value>
+    </data>
+    <data name="StatusSaved" xml:space="preserve">
+        <value>Enregistré</value>
+    </data>
+    <data name="FormatHeading1" xml:space="preserve">
+        <value>Titre 1</value>
+    </data>
+    <data name="FormatHeading2" xml:space="preserve">
+        <value>Titre 2</value>
+    </data>
+    <data name="FormatHeading3" xml:space="preserve">
+        <value>Titre 3</value>
+    </data>
+    <data name="FormatHeading4" xml:space="preserve">
+        <value>Titre 4</value>
+    </data>
+    <data name="FormatHeading5" xml:space="preserve">
+        <value>Titre 5</value>
+    </data>
+    <data name="FormatHeading6" xml:space="preserve">
+        <value>Titre 6</value>
+    </data>
+    <data name="FormatParagraph" xml:space="preserve">
+        <value>Paragraphe</value>
+    </data>
+    <data name="OnlineStatus" xml:space="preserve">
+        <value>Statut de connexion</value>
+    </data>
+    <data name="OnlineStatusDescription" xml:space="preserve">
+        <value>Votre site web peut avoir besoin de ressources distantes pour s'afficher correctement. Vous pouvez cependant demander à ce que l'application ne télécharge aucun élément distant pendant que vous travaillez.</value>
+    </data>
+    <data name="OnlineStatusOfflineRequired" xml:space="preserve">
+        <value>Travailler hors ligne</value>
+    </data>
+    <data name="SelectAll" xml:space="preserve">
+        <value>Sélectionner tout</value>
+    </data>
+    <data name="Library" xml:space="preserve">
+        <value>Bibliothèque</value>
+    </data>
+    <data name="LibraryImages" xml:space="preserve">
+        <value>Images</value>
+    </data>
+    <data name="LibraryPalettes" xml:space="preserve">
+        <value>Palettes</value>
+    </data>
+    <data name="LibraryStyles" xml:space="preserve">
+        <value>Styles</value>
+    </data>
+    <data name="TitleCreateProject" xml:space="preserve">
+        <value>Créer un nouveau projet...</value>
+    </data>
+    <data name="MenuNewProject" xml:space="preserve">
+        <value>Projet...</value>
+    </data>
+    <data name="NewProjectFilePath" xml:space="preserve">
+        <value>Fichier projet cible:</value>
+    </data>
+    <data name="NewProjectKit" xml:space="preserve">
+        <value>Utiliser le Kit:</value>
+    </data>
+    <data name="NewFolder" xml:space="preserve">
+        <value>Dossier...</value>
+    </data>
+    <data name="IsConnected" xml:space="preserve">
+        <value>Connecté</value>
+    </data>
+    <data name="IsDisconnected" xml:space="preserve">
+        <value>Hors ligne</value>
+    </data>
+    <data name="TitleCreatePage" xml:space="preserve">
+        <value>Créer une nouvelle page...</value>
+    </data>
+    <data name="NewPage" xml:space="preserve">
+        <value>Page...</value>
+    </data>
+    <data name="PageTemplate" xml:space="preserve">
+        <value>Modèle de page</value>
+    </data>
+    <data name="PageFileName" xml:space="preserve">
+        <value>Nom de fichier</value>
+    </data>
+    <data name="MenuAbout" xml:space="preserve">
+        <value>A propos d'Expressive Web...</value>
+    </data>
+</root>

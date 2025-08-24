@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:toolbox="clr-namespace:ExpressiveWeb.Modules.Toolbox">
+
+
+    <ControlTheme TargetType="toolbox:ToolboxControl" x:Key="{x:Type toolbox:ToolboxControl}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <ListBox x:Name="PART_ListBox">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="toolbox:ToolboxItem">
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

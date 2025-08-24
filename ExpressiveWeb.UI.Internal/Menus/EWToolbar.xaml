@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:ExpressiveWeb.Presentation.Menus"
+                    x:ClassModifier="internal">
+
+
+    <ControlTheme x:Key="{x:Type controls:EWToolbar}" TargetType="controls:EWToolbar">
+
+        <Setter Property="Background" Value="{DynamicResource ThemeControlBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+        <Setter Property="BorderThickness" Value="0.55" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="Padding" Value="12,0" />
+        <Setter Property="Template">
+
+            <ControlTemplate>
+
+                <Border Name="ContentRootBorder"
+                        ClipToBounds="True"
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}">
+
+                    <Grid VerticalAlignment="Center">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <ItemsControl Name="PART_MainItemsControl" Grid.Column="0">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
+                        <ToggleButton Name="PART_OverflowButton"
+                                      Width="30"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Center">
+                            ...
+                            <FlyoutBase.AttachedFlyout>
+                                <Flyout>
+                                    
+                                    <Border Background="{DynamicResource ThemeBackgroundBrush}"
+                                            BorderBrush="{DynamicResource ThemeBorderBrush}"
+                                            BorderThickness="1" CornerRadius="6" Padding="4">
+
+                                        <ItemsControl Name="PART_OverflowItemsControl">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </Border>
+                                </Flyout>
+                            </FlyoutBase.AttachedFlyout>
+                        </ToggleButton>
+
+                    </Grid>
+                </Border>
+
+
+            </ControlTemplate>
+
+        </Setter>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

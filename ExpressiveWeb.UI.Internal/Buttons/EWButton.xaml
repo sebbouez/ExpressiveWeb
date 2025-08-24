@@ -1,0 +1,73 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:ExpressiveWeb.Presentation.Buttons"
+                    x:ClassModifier="internal">
+
+
+    <ControlTheme x:Key="{x:Type controls:EWButton}" TargetType="controls:EWButton">
+
+        <Setter Property="Background" Value="{DynamicResource ThemeControlBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="BorderThickness" Value="0.55" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="MinWidth" Value="70" />
+        <Setter Property="Padding" Value="12,0" />
+        <Setter Property="FocusAdorner">
+            <FocusAdornerTemplate>
+                <Rectangle Margin="1"
+                           Stroke="Black"
+                           StrokeDashArray="1,2"
+                           StrokeThickness="1" />
+            </FocusAdornerTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+
+                <Border x:Name="PART_Container"
+                        UseLayoutRounding="True"
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        HorizontalAlignment="Stretch">
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+
+                        <Rectangle Fill="{TemplateBinding IconBrush}"
+                                   Width="18" Height="18"
+                                   x:Name="PART_Icon"
+                                   IsVisible="False"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,6,0" />
+
+                        <TextBlock x:Name="TbText"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Text="{TemplateBinding Text}" />
+
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#PART_Container">
+            <Setter Property="Background" Value="{DynamicResource ThemeHoverBrush}" />
+        </Style>
+        <Style Selector="^:pressed  /template/ Border#PART_Container">
+            <Setter Property="Background" Value="{DynamicResource ThemeActiveBrush}" />
+        </Style>
+        <Style Selector="^:hasIcon  /template/ Rectangle#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

@@ -1,0 +1,19 @@
+﻿<Styles x:Class="ExpressiveWeb.UI.Shell.ExpressiveWebTheme"
+         xmlns="https://github.com/avaloniaui"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceInclude Source="/Palette.axaml" />
+                
+                <!-- <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ScrollViewer.axaml" /> -->
+                <!-- <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/MenuItems.axaml" /> -->
+                <!-- <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Menus.axaml" /> -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
+  
+    <StyleInclude Source="/SimpleControls.xaml" />
+</Styles>

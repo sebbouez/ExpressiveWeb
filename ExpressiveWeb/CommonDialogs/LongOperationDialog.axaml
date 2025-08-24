@@ -1,0 +1,28 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localization="clr-namespace:ExpressiveWeb.Localization;assembly=ExpressiveWeb.Localization"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ExpressiveWeb.CommonDialogs.LongOperationDialog"
+        WindowStartupLocation="CenterOwner"
+        Title=""
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        Focusable="True"
+        CanResize="False"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaToDecorationsHint="True"
+        Width="450" Height="150">
+
+
+    <StackPanel VerticalAlignment="Center" Margin="15">
+
+        <TextBlock Text="{x:Static localization:Resources.VariableDurationActionMessage}" TextWrapping="Wrap" />
+
+        <ProgressBar IsIndeterminate="True" Height="4" Margin="0,10,0,0"></ProgressBar>
+
+    </StackPanel>
+
+
+</Window>

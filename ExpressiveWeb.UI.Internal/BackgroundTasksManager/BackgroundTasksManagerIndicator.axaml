@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:backgroundTasksManager="clr-namespace:ExpressiveWeb.Presentation.BackgroundTasksManager">
+
+
+    <ControlTheme TargetType="backgroundTasksManager:BackgroundTasksManagerIndicator"
+                  x:Key="{x:Type backgroundTasksManager:BackgroundTasksManagerIndicator}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel Background="Transparent">
+                    <ToggleButton x:Name="PART_Btn" Padding="0"
+                                  HorizontalAlignment="Left" BorderBrush="Transparent"
+                                  BorderThickness="0"
+                                  Background="Transparent">
+                        <DockPanel Margin="6,0">
+                            <TextBlock x:Name="PART_Text">aa</TextBlock>
+                            <ProgressBar x:Name="PART_Progress" IsIndeterminate="True"></ProgressBar>
+                        </DockPanel>
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout>
+                                <Border BorderBrush="{DynamicResource ThemeBorderBrush}"
+                                        Background="{DynamicResource ThemeBackgroundBrush}"
+                                        BorderThickness="0.55" Width="280" Padding="10">
+                                    <StackPanel>
+                                        <TextBlock Text="Red Rectangle Flyout." />
+                                        <TextBlock Text="Red Rectangle Flyout." />
+                                        <TextBlock Text="Red Rectangle Flyout." />
+                                        <TextBlock Text="Red Rectangle Flyout." />
+                                        <TextBlock Text="Red Rectangle Flyout." />
+                                        <TextBlock Text="Red Rectangle Flyout." />
+                                    </StackPanel>
+                                </Border>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </ToggleButton>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

@@ -46,11 +46,54 @@
                 </xs:element>
                 <xs:element name="Slots" type="xs:string" nillable="true" minOccurs="0"/>
                 <xs:element name="Template" type="xs:string" />
-                
+
+
+                <xs:element name="Actions" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                            This sections allows to specify the contextual actions that appear when the user selects the component in the designer.
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Action" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="Header" type="xs:string" use="required"/>
+                                    <xs:attribute name="Command" type="xs:string" use="required"/>
+                                    <xs:attribute name="Params" type="xs:string" use="optional"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+
+
                 <xs:element name="Features" minOccurs="0" nillable="true">
                     <xs:complexType>
                         <xs:all>
                             <xs:element name="InlineEdit" minOccurs="0"/>
+                            <xs:element name="SwapTextTag" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        <![CDATA[
+                                        This feature allows the user to transform the text tag (headings and paragraphs) into another text tag (headings and paragraphs).
+                                        For example:
+                                        The user selects a P tag and then selects "Change to Heading 1".
+                                        ]]>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                            <xs:element name="ContextualBoxStyle" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="EnableBorderSettings" type="xs:boolean" use="optional" default="false"/>
+                                    <xs:attribute name="EnableBackgroundSettings" type="xs:boolean" use="optional" default="false"/>
+                                </xs:complexType>
+                            </xs:element>
+
                         </xs:all>
                     </xs:complexType>
                 </xs:element>

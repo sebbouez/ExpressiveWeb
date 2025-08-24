@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:backgroundTasksManager="clr-namespace:ExpressiveWeb.Presentation.BackgroundTasksManager"
+                    xmlns:statusBarPopupButton="clr-namespace:ExpressiveWeb.Presentation.StatusBarPopupButton">
+
+
+    <ControlTheme TargetType="statusBarPopupButton:StatusBarPopupButton"
+                  x:Key="{x:Type statusBarPopupButton:StatusBarPopupButton}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel Background="Transparent">
+                    <ToggleButton x:Name="PART_Btn" Padding="0"
+                                  HorizontalAlignment="Left" BorderBrush="Transparent"
+                                  BorderThickness="0"
+                                  Background="Transparent">
+                        <DockPanel Margin="6,0">
+                            <Rectangle Width="16" Height="16" Margin="0,0,6,0" Fill="{TemplateBinding IconBrush}" />
+                            <TextBlock Text="{TemplateBinding Text}"></TextBlock>
+                        </DockPanel>
+                        <FlyoutBase.AttachedFlyout>
+                            <Flyout>
+                                <Border BorderBrush="{DynamicResource ThemeBorderBrush}"
+                                        Background="{DynamicResource ThemeBackgroundBrush}"
+                                        BorderThickness="1" Width="280"
+                                        Padding="8"
+                                        CornerRadius="6">
+                                <ContentPresenter Content="{TemplateBinding PopupContent}" Background="Transparent" />
+                                </Border>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </ToggleButton>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

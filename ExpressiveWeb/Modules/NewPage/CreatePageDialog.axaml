@@ -1,0 +1,50 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:buttons="clr-namespace:ExpressiveWeb.Presentation.Buttons;assembly=ExpressiveWeb.UI.Internal"
+        xmlns:localization="clr-namespace:ExpressiveWeb.Localization;assembly=ExpressiveWeb.Localization"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ExpressiveWeb.Modules.NewPage.CreatePageDialog"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaToDecorationsHint="True"
+        KeyboardNavigation.TabNavigation="Cycle"
+        KeyboardNavigation.IsTabStop="True"
+        Title="CreatePageDialog" Width="480" Height="350">
+
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Row="0" Classes="DialogTitle" Text="{x:Static localization:Resources.TitleCreatePage}"></TextBlock>
+
+        <StackPanel Grid.Row="1" Margin="0,8">
+
+            <TextBlock Text="{x:Static localization:Resources.PageTemplate}" />
+            <ComboBox x:Name="ComboTemplates"></ComboBox>
+
+            <TextBlock Text="{x:Static localization:Resources.PageFileName}" Margin="0,10,0,0" />
+            <TextBox x:Name="TbFileName" TextChanged="TbFileName_OnTextChanged" />
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <buttons:EWButton Margin="8,0,0,0" x:Name="BtnOk" Click="BtnOk_OnClick" IsEnabled="False"
+                              Text="{x:Static localization:Resources.ButtonOk}" />
+
+            <buttons:EWButton Margin="8,0,0,0" Click="BtnCancel_OnClick"
+                              Text="{x:Static localization:Resources.ButtonCancel}" />
+        </StackPanel>
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": true,
+    "lib": [ "ES2015", "ES2015.Collection", "ES2015.Iterable", "ES2019", "es6", "dom", "webworker", "DOM.Iterable" ],
+    "sourceMap": true,
+    "target": "es6",
+    "skipLibCheck": true
+  },
+  "typeRoots": [
+    "types"
+  ],
+  "compileOnSave": true,
+  "include": [
+    "Resources/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ]
+}

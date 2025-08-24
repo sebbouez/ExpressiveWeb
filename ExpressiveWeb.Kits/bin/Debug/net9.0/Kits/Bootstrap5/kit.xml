@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Kit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_kits.xsd">
+
+    <Name>Bootstrap 5</Name>
+    <Version>1.0.0.0</Version>
+
+    <DefaultPackages>
+        <PackageReference Name="bootstrap" Version="5.3.7" Provider="JsDeliver"/>
+    </DefaultPackages>
+
+    <Templates>
+        <Template Name="Editor demo page" File="Default.html" />
+    </Templates>
+    
+    <BuildActions>
+
+
+    </BuildActions>
+
+</Kit>

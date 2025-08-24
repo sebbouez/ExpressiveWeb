@@ -1,0 +1,102 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "ExpressiveWeb.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/ExpressiveWeb.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ExpressiveWeb.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ExpressiveWeb.Common/1.0.0": {
+      "type": "project",
+      "path": "../ExpressiveWeb.Common/ExpressiveWeb.Common.csproj",
+      "msbuildProject": "../ExpressiveWeb.Common/ExpressiveWeb.Common.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "ExpressiveWeb.Common >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\sebbo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Sources\\ExpressiveWeb\\PackagesProviders\\PackagesProviders.csproj",
+      "projectName": "PackagesProviders",
+      "projectPath": "D:\\Sources\\ExpressiveWeb\\PackagesProviders\\PackagesProviders.csproj",
+      "packagesPath": "C:\\Users\\sebbo\\.nuget\\packages\\",
+      "outputPath": "D:\\Sources\\ExpressiveWeb\\PackagesProviders\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\sebbo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "D:\\Sources\\ExpressiveWeb\\ExpressiveWeb.Common\\ExpressiveWeb.Common.csproj": {
+              "projectPath": "D:\\Sources\\ExpressiveWeb\\ExpressiveWeb.Common\\ExpressiveWeb.Common.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

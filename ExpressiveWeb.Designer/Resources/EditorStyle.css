@@ -1,0 +1,133 @@
+
+::selection {
+    background: #0d6efd;
+    text-shadow: none;
+}
+
+editor-area {
+    display: block !important;
+}
+
+[contenteditable] {
+    outline: none;
+}
+
+div#decorators-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+adorner-decorator {
+    display: block;
+    position: absolute;
+    border: 1.55px dashed #ccc;
+    opacity: 0;
+}
+
+adorner-decorator.slot-decorator {
+    border: none !important;
+}
+
+adorner-decorator:hover {
+    opacity: 1;
+}
+
+
+adorner-decorator.state-active {
+    border-width: 1.55px;
+    border-style: solid;
+    border-color: #2880E6;
+    opacity: 1;
+}
+
+adorner-decorator.state-active > button.actions-menu-button {
+    display: block;
+}
+
+adorner-decorator.state-drag-inside {
+    background: #2F959922;
+    border: 2px solid #2F9599 !important;
+    opacity: 1 !important;
+}
+
+
+adorner-decorator.state-drag-after {
+    opacity: 1 !important;
+}
+
+adorner-decorator.state-drag-after::after {
+    content: "";
+    display: block;
+    height: 3px;
+    margin-left: -4px;
+    margin-right: -4px;
+    margin-top: 3px;
+    background: #2F9599;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+}
+
+adorner-decorator.state-drag-before {
+    opacity: 1 !important;
+}
+
+adorner-decorator.state-drag-before::before {
+    content: "";
+    display: block;
+    height: 3px;
+    margin-left: -4px;
+    margin-right: -4px;
+    margin-bottom: 3px;
+    background: #2F9599;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+}
+
+adorner-decorator > button.actions-menu-button {
+    z-index: 10;
+    display: none;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    right: -24px;
+    top: -1px;
+    background: #cccccc;
+    border: 1px solid #656565;
+}
+
+adorner-decorator > button.actions-menu-button:hover {
+    background: #ababab;
+    border: 1px solid #000;
+}
+
+
+.adorner-margin-decoration {
+    pointer-events: none;
+    position: absolute;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><defs><pattern id='pattern-1' patternUnits='userSpaceOnUse' width='4' height='4'><path d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' stroke='%23DE6C00' stroke-width='0.5'/></pattern></defs><rect width='4' height='4' fill='url(%23pattern-1)'/></svg>");
+
+}
+
+.adorner-padding-decoration {
+    pointer-events: none;
+    position: absolute;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><defs><pattern id='pattern-1' patternUnits='userSpaceOnUse' width='4' height='4'><path d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' stroke='%238affb8' stroke-width='0.5'/></pattern></defs><rect width='4' height='4' fill='url(%23pattern-1)'/></svg>");
+}
+
+adorner-decorator.state-text-editing {
+    pointer-events: none !important;
+    opacity: 1 !important;
+}
+
+.adorner-editing-border-decoration {
+    pointer-events: none;
+    position: absolute;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='4'><defs><pattern id='pattern-1' patternUnits='userSpaceOnUse' width='4' height='4'><path d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' stroke='%23000000' stroke-width='1'/></pattern></defs><rect width='4' height='4' fill='url(%23pattern-1)'/></svg>");
+}
