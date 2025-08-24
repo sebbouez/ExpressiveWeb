@@ -67,6 +67,14 @@ class DomHelper {
             this.insertElementAtPosition(element, newParentElement, index);
         }
     }
+    setElementCssClass(elementInternalId, newClass) {
+        const element = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementInnerHtml: Element not found');
+            return;
+        }
+        element.className = newClass;
+    }
     setElementInnerHtml(elementInternalId, content) {
         const element = this.parentEditor.getElementByInternalId(elementInternalId);
         if (!element) {

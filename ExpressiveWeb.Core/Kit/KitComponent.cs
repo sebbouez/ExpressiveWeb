@@ -99,4 +99,25 @@ public class KitComponent
     {
         get;
     } = new();
+    
+    
+    public List<ComponentVariant> Variants
+    {
+        get;
+    } = new();
+}
+
+public class ComponentVariant
+{
+    public string Name
+    {
+        get;
+        set;
+    }
+    
+    public string CssClass
+    {
+        get;
+        set;
+    }
 }

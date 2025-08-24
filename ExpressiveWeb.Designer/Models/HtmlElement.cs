@@ -29,6 +29,11 @@ public sealed class HtmlElement
         set;
     } = string.Empty;
 
+    public bool HasCssClass(string cssClass)
+    {
+        return CssClass.Trim().Split(' ').Contains(cssClass, StringComparer.Ordinal);
+    }
+
     public List<HtmlElementAttribute> Attributes
     {
         get;

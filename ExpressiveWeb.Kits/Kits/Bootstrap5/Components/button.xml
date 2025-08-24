@@ -4,10 +4,18 @@
 
     <UID>bootstrap.Button</UID>
     <Name>Button</Name>
-    
-    <Actions>
-        
-    </Actions>
+
+    <Variants>
+        <Variant Name="Primary" ClassName="btn-primary"/>
+        <Variant Name="Secondary" ClassName="btn-secondary"/>
+        <Variant Name="Success" ClassName="btn-success"/>
+        <Variant Name="Danger" ClassName="btn-danger"/>
+        <Variant Name="Warning" ClassName="btn-warning"/>
+        <Variant Name="Info" ClassName="btn-info"/>
+        <Variant Name="Light" ClassName="btn-light"/>
+        <Variant Name="Dark" ClassName="btn-dark"/>
+        <Variant Name="Link" ClassName="btn-link"/>
+    </Variants>
 
     <Allows>text</Allows>
 

@@ -305,21 +305,35 @@ public class KitService : IKitService
             }
 
             XmlNodeList? actions = root.SelectNodes("//Actions/Action");
-            if (actions == null)
+            if (actions != null)
             {
-                return component;
+                foreach (XmlNode actionNode in actions)
+                {
+                    QuickAction action = new()
+                    {
+                        Header = actionNode.Attributes?["Header"]?.Value ?? string.Empty,
+                        Command = actionNode.Attributes?["Command"]?.Value ?? string.Empty,
+                        Params = actionNode.Attributes?["Params"]?.Value ?? string.Empty
+                    };
+                    component.ActionList.Add(action);
+                }
             }
 
-            foreach (XmlNode actionNode in actions)
+
+            XmlNodeList? variants = root.SelectNodes("//Variants/Variant");
+            if (variants != null)
             {
-                QuickAction action = new()
+                foreach (XmlNode variantNode in variants)
                 {
-                    Header = actionNode.Attributes?["Header"]?.Value ?? string.Empty,
-                    Command = actionNode.Attributes?["Command"]?.Value ?? string.Empty,
-                    Params = actionNode.Attributes?["Params"]?.Value ?? string.Empty
-                };
-                component.ActionList.Add(action);
+                    ComponentVariant variant = new()
+                    {
+                        Name = variantNode.Attributes?["Name"]?.Value ?? string.Empty,
+                        CssClass = variantNode.Attributes?["ClassName"]?.Value ?? string.Empty,
+                    };
+                    component.Variants.Add(variant);
+                }
             }
+
 
             return component;
         }

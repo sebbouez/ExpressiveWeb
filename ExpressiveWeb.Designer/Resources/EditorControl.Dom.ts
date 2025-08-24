@@ -59,7 +59,7 @@ class DomHelper {
         }, 500);
     }
 
-    
+
     public changeTagName(elementInternalId: string, tagName: string): void {
 
         const element: HTMLElement = this.parentEditor.getElementByInternalId(elementInternalId);
@@ -102,6 +102,17 @@ class DomHelper {
         if (newParentElement) {
             this.insertElementAtPosition(element, newParentElement, index);
         }
+    }
+
+    public setElementCssClass(elementInternalId: string, newClass: string): void {
+        
+        const element: HTMLElement = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementInnerHtml: Element not found');
+            return;
+        }
+
+        element.className = newClass;
     }
 
 

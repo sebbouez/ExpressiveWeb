@@ -2,15 +2,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:styles="clr-namespace:ExpressiveWeb.Panels.Styles"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ExpressiveWeb.Panels.Styles.StylePanel">
+
+    <UserControl.Resources>
+        <styles:StyleItemIconConverter x:Key="StyleItemIconConverter" />
+    </UserControl.Resources>
 
     <Panel Margin="8">
 
         <StackPanel>
 
-            <ComboBox x:Name="CbStylesList">
-                <ComboBoxItem>Default</ComboBoxItem>
+            <ComboBox x:Name="CbStylesList" SelectionChanged="CbStylesList_OnSelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="styles:StyleItemModel">
+                        <StackPanel>
+                            <Border Height="1" Background="Gray" Margin="2"
+                                    IsVisible="{Binding IsSeparator}" />
+
+                            <DockPanel LastChildFill="True" IsVisible="{Binding IsSelectable}">
+                                <Rectangle Width="12" Height="12" DockPanel.Dock="Right"
+                                           Fill="{Binding Source, Converter={StaticResource StyleItemIconConverter}}" />
+
+                                <TextBlock Text="{Binding Name}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
 
         </StackPanel>

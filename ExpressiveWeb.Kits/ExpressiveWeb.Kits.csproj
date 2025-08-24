@@ -106,7 +106,6 @@
       <None Update="Kits\Bootstrap5\kit.xml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Remove="schema_kits.xsd" />
       <None Update="Kits\Bootstrap5\Templates\Default.html">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

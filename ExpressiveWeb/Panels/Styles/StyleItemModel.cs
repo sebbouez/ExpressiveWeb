@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb ApplicationSharedEvents.cs
+// ExpressiveWeb StyleItemModel.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,25 +12,52 @@
 // 
 // *********************************************************
 
-using System;
-using ExpressiveWeb.Core.Project;
-using ExpressiveWeb.Designer.Models;
+namespace ExpressiveWeb.Panels.Styles;
 
-namespace ExpressiveWeb;
-
-public static class ApplicationSharedEvents
+public class StyleItemModel
 {
-    public static event EventHandler<Project>? ProjectLoaded;
-
-    public static void InvokeProjectLoaded(Project project)
+    public string Name
     {
-        ProjectLoaded?.Invoke(null, project);
+        get;
+        set;
     }
-    
-    public static event EventHandler<HtmlElement?>? SelectedElementChanged;
-    
-    public static void InvokeSelectedElementChanged(HtmlElement? element)
+
+    public bool IsSeparator
     {
-        SelectedElementChanged?.Invoke(null, element);
+        get;
+        set;
+    }
+
+    public bool IsSelectable
+    {
+        get
+        {
+            return !IsSeparator;
+        }
+    }
+
+    public string CssClass
+    {
+        get;
+        set;
+    }
+
+    public StyleItemSource Source
+    {
+        get;
+        set;
+    } = StyleItemSource.None;
+
+    public string SecondaryText
+    {
+        get;
+        set;
+    }
+
+    public enum StyleItemSource
+    {
+        None,
+        Kit,
+        User,
     }
 }

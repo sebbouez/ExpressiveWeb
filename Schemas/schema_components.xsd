@@ -4,7 +4,7 @@
 
     <xs:element name="Component">
         <xs:complexType>
-          
+
             <xs:all>
                 <xs:element name="UID" type="xs:string">
                     <xs:annotation>
@@ -45,7 +45,7 @@
                     </xs:annotation>
                 </xs:element>
                 <xs:element name="Slots" type="xs:string" nillable="true" minOccurs="0"/>
-                <xs:element name="Template" type="xs:string" />
+                <xs:element name="Template" type="xs:string"/>
 
 
                 <xs:element name="Actions" minOccurs="0">
@@ -70,6 +70,14 @@
                 </xs:element>
 
 
+                <xs:element name="Variants">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Variant" type="VariantType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
 
                 <xs:element name="Features" minOccurs="0" nillable="true">
                     <xs:complexType>
@@ -89,17 +97,42 @@
 
                             <xs:element name="ContextualBoxStyle" minOccurs="0">
                                 <xs:complexType>
-                                    <xs:attribute name="EnableBorderSettings" type="xs:boolean" use="optional" default="false"/>
-                                    <xs:attribute name="EnableBackgroundSettings" type="xs:boolean" use="optional" default="false"/>
+                                    <xs:attribute name="EnableBorderSettings" type="xs:boolean" use="optional"
+                                                  default="false"/>
+                                    <xs:attribute name="EnableBackgroundSettings" type="xs:boolean" use="optional"
+                                                  default="false"/>
                                 </xs:complexType>
                             </xs:element>
 
                         </xs:all>
                     </xs:complexType>
                 </xs:element>
-                        
+
             </xs:all>
         </xs:complexType>
     </xs:element>
+
+
+    <xs:complexType name="VariantType">
+        <xs:attribute name="Name" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[
+                    The name of the variant that is displayed in the UI.
+                    ]]>
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ClassName" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[
+                    The name of the CSS Class to use.
+                    ]]>
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
 
 </xs:schema>
