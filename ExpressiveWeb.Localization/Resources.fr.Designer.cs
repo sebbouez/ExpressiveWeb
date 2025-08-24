@@ -537,6 +537,15 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cliquez une fois sur les objets pour les sélectionner..
+        /// </summary>
+        public static string StatusSelectMessage {
+            get {
+                return ResourceManager.GetString("StatusSelectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Créer une nouvelle page....
         /// </summary>
         public static string TitleCreatePage {

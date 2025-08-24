@@ -76,7 +76,10 @@ public class InternalJavascriptBridge
         if (_editor.IsTextEditing)
         {
             _ = _editor.EndTextEditing();
+            return;
         }
+
+        _editor.InvokeSelectionChanged(elementInfo);
     }
 
     public void RaiseElementDblClick(string json)

@@ -300,7 +300,7 @@ public class HtmlEditor : Border, IDisposable
 
     internal void InvokeSelectionChanged(HtmlElementInfo? info)
     {
-        if (info == null)
+        if (info == null || string.IsNullOrEmpty(info.ComponentUid))
         {
             SelectedElement = null;
             SelectionChanged?.Invoke(this, null);
@@ -308,7 +308,6 @@ public class HtmlEditor : Border, IDisposable
         }
 
         SelectedElement = ConvertElementInfoToHtmlElement(info);
-
         SelectionChanged?.Invoke(this, SelectedElement);
     }
 

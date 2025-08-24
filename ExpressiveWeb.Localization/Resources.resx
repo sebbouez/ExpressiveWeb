@@ -192,4 +192,7 @@
     <data name="MenuAbout" xml:space="preserve">
         <value>About Expressive Web...</value>
     </data>
+    <data name="StatusSelectMessage" xml:space="preserve">
+        <value>Click once on objects to select.</value>
+    </data>
 </root>

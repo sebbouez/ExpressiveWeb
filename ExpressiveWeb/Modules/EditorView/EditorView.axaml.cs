@@ -128,6 +128,7 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
         }
         else
         {
+            AppState.Instance.AppWindow.SetStatusMessage(Localization.Resources.StatusSelectMessage);
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(false);
         }
 

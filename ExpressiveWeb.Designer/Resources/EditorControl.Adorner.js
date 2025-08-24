@@ -11,9 +11,6 @@ class AdornerManager extends HTMLElement {
         shadow.innerHTML = "<link rel='stylesheet' href='pfinternal://f/editorstyle.css'>";
         this._adornerContainer = document.createElement("div");
         this._adornerContainer.id = "decorators-container";
-        this._adornerContainer.style.position = "absolute";
-        this._adornerContainer.style.width = "100%";
-        this._adornerContainer.style.height = "100%";
         this._adornerContainer.style.zIndex = "1000";
         shadow.appendChild(this._adornerContainer);
         this.setUpMouseEvents();
@@ -254,6 +251,7 @@ class AdornerManager extends HTMLElement {
                 return;
             }
         }
+        this.unSelectAll();
         const info = owner.parentEditor.getElementInfo(this._mouseDownElement);
         $HOST_INTEROP.raiseElementClick(JSON.stringify(info));
     }
@@ -274,6 +272,7 @@ class AdornerManager extends HTMLElement {
                     sourceElement = this.parentEditor.getClosestComponentAsHtmlElement(sourceElement);
                 }
                 this.parentEditor.handleSelection(sourceElement);
+                event.preventDefault();
             }
         }
     }
@@ -304,6 +303,11 @@ class AdornerManager extends HTMLElement {
         document.addEventListener("click", function (e) {
             if (e.target != self._mouseDownElement) {
                 return;
+            }
+            if (e.target instanceof HTMLElement) {
+                if (e.target.tagName.toLowerCase() == "adorner-layer") {
+                    return;
+                }
             }
             self.handleMouseClick(self, e);
         });
