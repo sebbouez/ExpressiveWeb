@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "PackagesProviders/1.0.0": {
+        "dependencies": {
+          "ExpressiveWeb.Common": "1.0.0"
+        },
+        "runtime": {
+          "PackagesProviders.dll": {}
+        }
+      },
+      "ExpressiveWeb.Common/1.0.0": {
+        "runtime": {
+          "ExpressiveWeb.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PackagesProviders/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ExpressiveWeb.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:project="clr-namespace:ExpressiveWeb.Core.Project;assembly=ExpressiveWeb.Core"
+                    xmlns:explorer1="clr-namespace:ExpressiveWeb.Modules.Explorer"
+                    xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus;assembly=ExpressiveWeb.UI.Internal"
+                    xmlns:buttons="clr-namespace:ExpressiveWeb.Presentation.Buttons;assembly=ExpressiveWeb.UI.Internal">
+
+    <explorer1:ExplorerIconConverter x:Key="ExplorerIconConverter" />
+
+    <ControlTheme TargetType="explorer1:ExplorerControl" x:Key="{x:Type explorer1:ExplorerControl}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel Background="Transparent">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <menus:EWToolbar Grid.Row="0">
+                            <menus:EWToolbar.Items>
+                              
+                            </menus:EWToolbar.Items>
+                        </menus:EWToolbar>
+
+                        <TreeView Grid.Row="1" x:Name="PART_TreeView"
+                                  Background="{DynamicResource ThemeWorkspaceBrush}">
+                            <TreeView.ItemTemplate>
+                                <TreeDataTemplate ItemsSource="{Binding Children}" DataType="project:ProjectItem">
+                                    <DockPanel LastChildFill="True" x:Name="rootPanel" Background="Transparent">
+
+                                        <Rectangle Width="18" Height="18" DockPanel.Dock="Left" Margin="0,0,4,0"
+                                                   Fill="{Binding ItemType, Converter={StaticResource ExplorerIconConverter}}" />
+
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DockPanel>
+
+                                </TreeDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
+                    </Grid>
+
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

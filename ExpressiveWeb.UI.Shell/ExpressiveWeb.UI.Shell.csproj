@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      
+        <AvaloniaResource Include="**/*.xaml" />
+      
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.4" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.4" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\ExpressiveWeb.Localization\ExpressiveWeb.Localization.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Reference Include="Dock.Avalonia">
+        <HintPath>C:\Users\sebbo\.nuget\packages\dock.avalonia\11.3.2.2\lib\net8.0\Dock.Avalonia.dll</HintPath>
+      </Reference>
+      <Reference Include="Dock.Controls.Recycling">
+        <HintPath>C:\Users\sebbo\.nuget\packages\dock.controls.recycling\11.3.2.2\lib\net8.0\Dock.Controls.Recycling.dll</HintPath>
+      </Reference>
+      <Reference Include="Dock.Model">
+        <HintPath>C:\Users\sebbo\.nuget\packages\dock.model\11.3.2.2\lib\net8.0\Dock.Model.dll</HintPath>
+      </Reference>
+      <Reference Include="Dock.Settings">
+        <HintPath>C:\Users\sebbo\.nuget\packages\dock.settings\11.3.2.2\lib\net8.0\Dock.Settings.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Controls\" />
+    </ItemGroup>
+    
+    
+    
+</Project>

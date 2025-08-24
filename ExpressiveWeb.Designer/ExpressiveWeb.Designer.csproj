@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>ExpressiveWeb.Designer</RootNamespace>
+        <AssemblyName>ExpressiveWeb.Designer</AssemblyName>
+
+
+        <PublishAot>true</PublishAot>
+        <BuiltInComInteropSupport>false</BuiltInComInteropSupport>
+        <TrimMode>link</TrimMode>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.4" />
+        <PackageReference Include="CefGlue.Avalonia" Version="120.6099.211" />
+        <PackageReference Include="HtmlAgilityPack" Version="1.12.2" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Scripts\EditorBase.js" />
+        <None Remove="Scripts\EditorStyle.css" />
+        <EmbeddedResource Include="Resources\EditorStyle.css" />
+        <None Remove="Scripts\EditorControl.js" />
+        <EmbeddedResource Include="Resources\EditorControl.js" />
+        <None Remove="Scripts\EditorControl.Adorner.js" />
+        <None Remove="Scripts\Main.js" />
+        <EmbeddedResource Include="Resources\Main.js" />
+        <None Remove="Resources\EditorControl.Dom.js" />
+        <EmbeddedResource Include="Resources\EditorControl.Dom.js" />
+        <None Remove="Resources\EditorControl.Adorner.Decorator.js" />
+        <EmbeddedResource Include="Resources\EditorControl.Adorner.Decorator.js" />
+        <None Remove="Resources\EditorControl.Text.js" />
+        <EmbeddedResource Include="Resources\EditorControl.Text.js" />
+    
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ExpressiveWeb.Core\ExpressiveWeb.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\EditorControl.Adorner.js" />
+    </ItemGroup>
+    
+
+</Project>

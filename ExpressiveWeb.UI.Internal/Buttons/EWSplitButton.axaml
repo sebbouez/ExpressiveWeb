@@ -1,0 +1,96 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:buttons="clr-namespace:ExpressiveWeb.Presentation.Buttons">
+    
+    
+     <ControlTheme x:Key="{x:Type buttons:EWSplitButton}" TargetType="buttons:EWSplitButton">
+         
+         <Setter Property="Background" Value="{DynamicResource ThemeControlBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderBrush}" />
+        <Setter Property="BorderThickness" Value="0.55" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="True" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="PART_PrimaryButton"
+                            Grid.Column="0"
+                            Theme="{StaticResource SimpleSplitButtonComponent}"
+                            MinWidth="{DynamicResource SplitButtonPrimaryButtonSize}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness, Converter={StaticResource PrimaryButtonBorderMultiplier}}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Command="{TemplateBinding Command}"
+                            CommandParameter="{TemplateBinding CommandParameter}"
+                            CornerRadius="4,0,0,4"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Padding="{TemplateBinding Padding}"
+                            Focusable="False"
+                            KeyboardNavigation.IsTabStop="False" />
+
+                    <Border x:Name="SeparatorBorder"
+                            Grid.Column="1"
+                            Background="Transparent"
+                            Width="{DynamicResource SplitButtonSeparatorWidth}"
+                            BorderThickness="{TemplateBinding BorderThickness, Converter={StaticResource SeparatorBorderMultiplier}}"
+                            BorderBrush="{TemplateBinding BorderBrush}" />
+
+                    <Button x:Name="PART_SecondaryButton"
+                            Grid.Column="2"
+                            Theme="{StaticResource SimpleSplitButtonComponent}"
+                            MinWidth="{DynamicResource SplitButtonSecondaryButtonSize}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness, Converter={StaticResource SecondaryButtonBorderMultiplier}}"
+                            CornerRadius="0,4,4,0"
+                            Padding="0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Focusable="False"
+                            KeyboardNavigation.IsTabStop="False">
+                        <PathIcon Height="12" Width="12"
+                                  Data="M1939 486L2029 576L1024 1581L19 576L109 486L1024 1401L1939 486Z" />
+                    </Button>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:flyout-open /template/ Button">
+            <Setter Property="Tag" Value="flyout-open" />
+        </Style>
+
+        <Style Selector="^:checked /template/ Button">
+            <Setter Property="Tag" Value="checked" />
+        </Style>
+
+        <Style Selector="^:checked:flyout-open /template/ Button">
+            <Setter Property="Tag" Value="checked-flyout-open" />
+        </Style>
+    </ControlTheme>
+    
+</ResourceDictionary>

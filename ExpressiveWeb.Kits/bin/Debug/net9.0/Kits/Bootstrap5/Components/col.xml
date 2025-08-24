@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_components.xsd">
+
+    <UID>bootstrap.Col</UID>
+    <Name>Col</Name>
+
+    <Actions>
+        <Action Header="Add card" Command="AppendChild" Params="bootstrap.Card"/>
+        <Action Header="Add row bellow" Command="AppendChild" Params="bootstrap.Card"/>
+    </Actions>
+    
+    <Allows>bootstrap.Card;paragraphs;headings</Allows>
+
+    <Template>
+        <![CDATA[
+        <div class="col">
+            <slot/>
+        </div>
+        ]]>
+    </Template>
+    
+</Component>

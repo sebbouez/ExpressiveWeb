@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus">
+
+
+    <ControlTheme TargetType="menus:FilterableContextMenu"
+                  x:Key="{x:Type menus:FilterableContextMenu}">
+
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="TextBlock.FontSize" Value="{DynamicResource FontSizeNormal}" />
+        <Setter Property="TextBlock.FontWeight" Value="Normal" />
+
+        <Setter Property="Template">
+            <ControlTemplate>
+
+                <Border Background="{DynamicResource ThemeBackgroundBrush}"
+                        BorderBrush="{DynamicResource ThemeBorderBrush}"
+                        BorderThickness="1" CornerRadius="6" Padding="4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBox Grid.Row="0" x:Name="PART_FilterTextBox" Margin="0,0,0,4"></TextBox>
+
+                        <ScrollViewer Grid.Row="1" Theme="{StaticResource SimpleMenuScrollViewer}">
+
+                            <ItemsPresenter Name="PART_ItemsPresenter"
+                                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                                            KeyboardNavigation.TabNavigation="Continue" />
+                        </ScrollViewer>
+
+                    </Grid>
+
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

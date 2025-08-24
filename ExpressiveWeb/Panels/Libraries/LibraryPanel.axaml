@@ -1,0 +1,88 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:libraries="clr-namespace:ExpressiveWeb.Panels.Libraries"
+             xmlns:libraries1="clr-namespace:ExpressiveWeb.Core.Libraries;assembly=ExpressiveWeb.Core"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ExpressiveWeb.Panels.Libraries.LibraryPanel">
+
+    <Grid Margin="8">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="160" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,4">
+            <TextBox Watermark="Filtrer..."></TextBox>
+        </Border>
+
+        <TreeView Grid.Row="1" Grid.Column="0" x:Name="TvCategories">
+            <TreeView.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}" x:DataType="libraries:CategoryNodeModel">
+                    <TextBlock Text="{Binding DisplayText}" />
+                </TreeDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" ResizeDirection="Columns" Background="Transparent" />
+
+        <ListBox Grid.Row="1" Grid.Column="2" BorderThickness="1,0,0,0" x:Name="LstItems">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBox.DataTemplates>
+                <!-- Template pour LibraryStyleItem -->
+                <DataTemplate DataType="libraries1:LibraryStyleItem">
+                    <StackPanel Orientation="Vertical" Margin="4">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding CssClassName}" FontSize="12" Foreground="Gray" />
+                        <Border Background="LightBlue" CornerRadius="3" Padding="2" Margin="0,2,0,0">
+                            <TextBlock Text="Style CSS" FontSize="10" />
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+
+                <!-- Template pour LibraryImageItem -->
+                <DataTemplate DataType="libraries1:LibraryImageItem">
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <Border Background="LightGreen" CornerRadius="3" Padding="4" Margin="0,0,8,0">
+                            <TextBlock Text="IMG" FontSize="10" Foreground="White" FontWeight="Bold" />
+                        </Border>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding FileName}" FontSize="12" Foreground="Gray" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+
+                <!-- Template pour LibraryPaletteItem (à adapter selon votre classe) -->
+                <DataTemplate DataType="libraries1:LibraryPaletteItem">
+                    <StackPanel Orientation="Horizontal" Margin="4">
+                        <Border Background="Orange" CornerRadius="3" Padding="4" Margin="0,0,8,0">
+                            <TextBlock Text="PAL" FontSize="10" Foreground="White" FontWeight="Bold" />
+                        </Border>
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" VerticalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+
+                <!-- Template par défaut pour LibraryItemBase -->
+                <DataTemplate DataType="libraries1:LibraryItemBase">
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.DataTemplates>
+        </ListBox>
+
+    </Grid>
+
+</UserControl>

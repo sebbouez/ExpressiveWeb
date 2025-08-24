@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources.fr.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="obj\Debug\net9.0\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
+    </ItemGroup>
+
+</Project>

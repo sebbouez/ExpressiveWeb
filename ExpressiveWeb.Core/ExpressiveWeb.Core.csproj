@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="11.3.4" />
+      <PackageReference Include="ExCSS" Version="4.3.1" />
+      <PackageReference Include="HtmlAgilityPack" Version="1.12.2" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.8" />
+      <PackageReference Include="Serilog" Version="4.3.0" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+      <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+      <PackageReference Include="TypeScriptAST" Version="1.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ExpressiveWeb.Common\ExpressiveWeb.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Extensibility\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Avalonia.Base">
+        <HintPath>..\ExpressiveWeb\bin\Debug\net9.0\Avalonia.Base.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+
+</Project>

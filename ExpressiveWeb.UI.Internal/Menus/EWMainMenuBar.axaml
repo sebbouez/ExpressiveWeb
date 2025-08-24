@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus">
+
+
+    <ControlTheme TargetType="menus:EWMainMenuBar"
+                  x:Key="{x:Type menus:EWMainMenuBar}">
+        <Setter Property="Template">
+            <ControlTemplate>
+
+                <DockPanel LastChildFill="True">
+                    <Rectangle Width="16" Height="16" DockPanel.Dock="Left" Margin="0,0,8,0" Fill="BlueViolet" />
+                    <Menu x:Name="PART_MainMenu" />
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

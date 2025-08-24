@@ -1,0 +1,53 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localization="clr-namespace:ExpressiveWeb.Localization;assembly=ExpressiveWeb.Localization"
+        xmlns:kit="clr-namespace:ExpressiveWeb.Core.Kit;assembly=ExpressiveWeb.Core"
+        xmlns:buttons="clr-namespace:ExpressiveWeb.Presentation.Buttons;assembly=ExpressiveWeb.UI.Internal"
+        mc:Ignorable="d"
+        CanResize="False"
+        ShowInTaskbar="False"
+        x:Class="ExpressiveWeb.Modules.NewProject.CreateProjectDialog"
+        WindowStartupLocation="CenterOwner"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaToDecorationsHint="True"
+        KeyboardNavigation.TabNavigation="Cycle"
+        KeyboardNavigation.IsTabStop="True"
+        Title="CreateProjectDialog" Width="400" Height="350"
+        >
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Classes="DialogTitle" Text="{x:Static localization:Resources.TitleCreateProject}"></TextBlock>
+
+        <StackPanel Grid.Row="1" Margin="0,8">
+
+            <TextBlock Text="{x:Static localization:Resources.NewProjectKit}" />
+            <ComboBox x:Name="ComboKits"></ComboBox>
+
+            <TextBlock Text="{x:Static localization:Resources.NewProjectFilePath}" Margin="0,10,0,0" />
+            <DockPanel LastChildFill="True">
+                <Button DockPanel.Dock="Right" x:Name="BtnBrowse" Click="BtnBrowse_OnClick">...</Button>
+                <TextBox x:Name="TbFilePath" TextChanged="TbFilePath_OnTextChanged" IsReadOnly="True" />
+            </DockPanel>
+            
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <buttons:EWButton Margin="8,0,0,0" x:Name="BtnOk" Click="BtnOk_OnClick" IsEnabled="False"
+                               Text="{x:Static localization:Resources.ButtonOk}" />
+
+            <buttons:EWButton Margin="8,0,0,0" Click="BtnCancel_OnClick"
+                              Text="{x:Static localization:Resources.ButtonCancel}" />
+        </StackPanel>
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,77 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:ExpressiveWeb.Localization;assembly=ExpressiveWeb.Localization"
+        xmlns:buttons="clr-namespace:ExpressiveWeb.Presentation.Buttons"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ExpressiveWeb.Presentation.MessageBox.InputBoxDialog"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        Focusable="True"
+        CanResize="False"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaToDecorationsHint="True"
+        KeyboardNavigation.TabNavigation="Cycle"
+        KeyboardNavigation.IsTabStop="True"
+        Title="" Height="150" Width="450" MinWidth="450" MaxWidth="580">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="60" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="Images" VerticalAlignment="Top" Margin="0,18,10,0">
+                <Rectangle x:Name="RectDialogImage" IsVisible="False" Fill="Transparent"
+                           Height="18" Width="18" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Top">
+                <TextBlock Text="placeholder" x:Name="TbTitle" FontSize="16" FontWeight="SemiBold"
+                           VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,15,0,15" />
+                <TextBlock Text="placeholder" x:Name="TbMessage" VerticalAlignment="Center" TextWrapping="Wrap" />
+
+                <TextBox x:Name="TbValue" Margin="0,15"></TextBox>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1"
+                Background="{DynamicResource ThemeBackgroundBrush}"
+                Padding="15" Margin="-15,0,-15,-15"
+                BorderThickness="0,0.55,0,0"
+                UseLayoutRounding="True"
+                BorderBrush="{DynamicResource ThemeBorderBrush}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+
+                    <buttons:EWButton x:Name="BtnOk" Focusable="True" KeyboardNavigation.IsTabStop="True"
+                                      Click="BtnOk_Click" MinWidth="75" Margin="8,0,0,0"
+                                      Text="{x:Static p:Resources.ButtonOk}" />
+                    <buttons:EWButton x:Name="BtnCancel" Focusable="True" KeyboardNavigation.IsTabStop="True"
+                                      Click="BtnCancel_Click" MinWidth="75" Margin="8,0,0,0"
+                                      Text="{x:Static p:Resources.ButtonCancel}" />
+                </StackPanel>
+            </Grid>
+
+
+        </Border>
+
+    </Grid>
+
+</Window>

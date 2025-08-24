@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+  
+            <ResourceDictionary.MergedDictionaries>
+                <MergeResourceInclude Source="/StatusBarPopupButton/StatusBarPopupButton.axaml" />
+                <MergeResourceInclude Source="/BackgroundTasksManager/BackgroundTasksManagerIndicator.axaml" />
+              
+                <MergeResourceInclude Source="/Buttons/EWSplitButton.axaml" />
+                <MergeResourceInclude Source="/Buttons/EWButton.xaml" />
+                
+                <MergeResourceInclude Source="/Menus/EWMainMenuBar.axaml" />
+                <MergeResourceInclude Source="/Menus/EWMenuItem.xaml" />
+                <MergeResourceInclude Source="/Menus/FilterableContextMenu.axaml" />
+                <MergeResourceInclude Source="/Menus/EWToolbar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+       
+    
+
+</ResourceDictionary>

@@ -1,0 +1,91 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:ClassModifier="internal">
+
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/AdornerLayer.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Button.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/RadioButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Expander.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/RepeatButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ToggleSwitch.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ButtonSpinner.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ToggleButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/DropDownButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/PathIcon.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/CheckBox.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ToolTip.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Label.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ComboBoxItem.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ComboBox.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Window.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Carousel.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/CaptionButtons.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TitleBar.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TextBox.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/AutoCompleteBox.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/DataValidationErrors.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/FlyoutPresenter.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/MenuFlyoutPresenter.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/GridSplitter.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/HyperlinkButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ItemsControl.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ListBoxItem.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ListBox.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ScrollBar.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ScrollViewer.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TabStrip.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TabStripItem.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TabControl.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TabItem.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/PopupRoot.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/OverlayPopupHost.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/WindowNotificationManager.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/EmbeddableControlRoot.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TransitioningContentControl.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TreeView.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TreeViewItem.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ProgressBar.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Separator.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Menu.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/MenuItem.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ContextMenu.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/CalendarButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/CalendarDayButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/CalendarItem.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Calendar.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/CalendarDatePicker.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/Slider.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/NotificationCard.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/NumericUpDown.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/DateTimePickerShared.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/DatePicker.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TimePicker.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/SplitView.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ManagedFileChooser.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/SplitButton.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/SelectableTextBlock.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/RefreshContainer.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/RefreshVisualizer.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/ThemeVariantScope.xaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/HeaderedContentControl.xaml"/>
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/Styles/TextSelectionHandle.xaml" />
+        
+        
+        
+        
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/DocumentControl.axaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/DocumentTabStrip.axaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/DocumentTabStripItem.axaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/ToolControl.axaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/ToolTabStrip.axaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/ToolDockControl.axaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/ToolChromeControl.axaml" />
+        <MergeResourceInclude Source="avares://ExpressiveWeb.UI.Shell/DockStyles/ToolTabStripItem.axaml" />
+        
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+</Styles>

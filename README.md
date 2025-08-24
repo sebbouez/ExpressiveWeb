@@ -17,7 +17,8 @@ Differences with PageFabric are:
 
 * No proprietary page format : use only pure HTML so you can edit them with another application if needed
 * Not tied to one framework : use default one, Bootstrap,...
-* Web references (aka packages in PageFabric) are no longer stored on proprietary servers, we now use JsDeliver, so you can download any package and use it already
+* Web references (aka packages in PageFabric) are no longer stored on proprietary servers, we now use JsDeliver, so you
+  can download any package and use it already
 
 The goal is to be able to work with several **kits** (Bootstrap,...).  
 The user can use the visual designer to place predefined constructions or unit components.
@@ -26,7 +27,7 @@ The user can use the visual designer to place predefined constructions or unit c
 
 | Feature                 | Status   | Comment                                        |
 |-------------------------|----------|------------------------------------------------|
-| Create new project      |          |                                                |
+| Create new project      | On going |                                                |
 | Open existing project   | Done     |                                                |
 | Save file               | Done     |                                                |
 | Work online/offline     | Done     |                                                |
@@ -46,34 +47,34 @@ The user can use the visual designer to place predefined constructions or unit c
 
 ### Designer features
 
-| Feature                                    | Status | Comment                                                                           |
-|--------------------------------------------|--------|-----------------------------------------------------------------------------------|
-| Undo/Redo process                          | Done   |                                                                                   |
-| Adorner and decorations                    | Done   |                                                                                   |
-| Basic DOM operations                       | Done   |                                                                                   |
-| Move elements by drag drop                 | Done   |                                                                                   |
-| Insert new html element                    | Done   |                                                                                   |
-| Remove html element                        | Done   |                                                                                   |
-| Basic text inline editing                  | Done   |                                                                                   |
-| Filter html                                | Done   | Clean html when loading and saving files                                          |
-| Page preview                               |        |                                                                                   |
-| Page properties                            |        |                                                                                   |
-| Menus management                           |        |                                                                                   |
-| MasterPage/Partial pages                   |        |                                                                                   |
-| Custom library of constructions            |        | Use your own constructions at several places (aka UserControl in many frameworks) |
-| Styling per component                      |        |                                                                                   |
-| Styling using styles library               |        | use CSS parser                                                                    |
-| Javascript editor                          |        | + intellisense, link events to buttons...                                         |
-| Tables editing                             |        |                                                                                   |
-| Support components features                |        | The foundation is here, need to work on the use cases                             |
-| Quick actions in designer                  |        | The foundation is here, need to work on the use cases                             |
-| Custom components designer renderers       |        |                                                                                   |
-| Load kit resources dynamically             |        |                                                                                   |
-| Advanced text inline editing               |        | I plan to use ProseMirror for rich text editing                                   |
-| Spell checking with multi linguage support |        | Need to port PageFabric code                                                      |
-| Dictionary, synonyms                       |        | Need to port PageFabric code                                                      |
-| Forms                                      |        |                                                                                   |
-| Data binding using APIs                    |        |                                                                                   |
+| Feature                                    | Status   | Comment                                                                           |
+|--------------------------------------------|----------|-----------------------------------------------------------------------------------|
+| Undo/Redo process                          | Done     |                                                                                   |
+| Adorner and decorations                    | Done     |                                                                                   |
+| Basic DOM operations                       | Done     |                                                                                   |
+| Move elements by drag drop                 | Done     |                                                                                   |
+| Insert new html element                    | Done     |                                                                                   |
+| Remove html element                        | Done     |                                                                                   |
+| Basic text inline editing                  | Done     |                                                                                   |
+| Filter html                                | Done     | Clean html when loading and saving files                                          |
+| Page preview                               |          |                                                                                   |
+| Page properties                            |          |                                                                                   |
+| Menus management                           |          |                                                                                   |
+| MasterPage/Partial pages                   |          |                                                                                   |
+| Custom library of constructions            |          | Use your own constructions at several places (aka UserControl in many frameworks) |
+| Styling per component                      |          |                                                                                   |
+| Styling using styles library               |          | use CSS parser                                                                    |
+| Javascript editor                          |          | + intellisense, link events to buttons...                                         |
+| Tables editing                             |          |                                                                                   |
+| Support components features                | On going | The foundation is here, need to work on the use cases                             |
+| Quick actions in designer                  | On going | The foundation is here, need to work on the use cases                             |
+| Custom components designer renderers       |          |                                                                                   |
+| Load kit resources dynamically             |          |                                                                                   |
+| Advanced text inline editing               |          | I plan to use ProseMirror for rich text editing                                   |
+| Spell checking with multi linguage support |          | Need to port PageFabric code                                                      |
+| Dictionary, synonyms                       |          | Need to port PageFabric code                                                      |
+| Forms                                      |          |                                                                                   |
+| Data binding using APIs                    |          |                                                                                   |
 
 ### Kits
 

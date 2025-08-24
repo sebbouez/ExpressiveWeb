@@ -1,0 +1,83 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ExpressiveWeb.MainWindow"
+        FontFamily="Inter"
+        FontSize="{DynamicResource FontSizeNormal}"
+        ExtendClientAreaToDecorationsHint="True"
+        xmlns:backgroundTasksManager="clr-namespace:ExpressiveWeb.Presentation.BackgroundTasksManager;assembly=ExpressiveWeb.UI.Internal"
+        xmlns:workspace1="clr-namespace:ExpressiveWeb.Workspace"
+        xmlns:panels="clr-namespace:ExpressiveWeb.Panels"
+        xmlns:styles="clr-namespace:ExpressiveWeb.Panels.Styles"
+        xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus;assembly=ExpressiveWeb.UI.Internal"
+        xmlns:statusBarPopupButton="clr-namespace:ExpressiveWeb.Presentation.StatusBarPopupButton;assembly=ExpressiveWeb.UI.Internal"
+        Background="{DynamicResource ThemeBackgroundColor}"
+        Title="Expressive Web">
+
+
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="28" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Margin="6">
+            <menus:EWMainMenuBar x:Name="MainMenuBarControl" />
+        </Border>
+
+
+        <Border Grid.Row="1" Height="32" Background="{DynamicResource ThemeWorkspaceBrush}">
+
+        </Border>
+
+        <Border Grid.Row="2" x:Name="DockContainer">
+            <workspace1:ApplicationWorkspace x:Name="ApplicationWorkspaceControl" />
+        </Border>
+
+        <Border Grid.Row="3" Padding="8,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" x:Name="TbStatus" VerticalAlignment="Center" />
+
+                <backgroundTasksManager:BackgroundTasksManagerIndicator x:Name="TasksManagerIndicator" Grid.Column="2"
+                                                                        IsVisible="False" />
+
+
+                <statusBarPopupButton:StatusBarPopupButton Grid.Column="3" x:Name="BtnStatusDisplaySettings"
+                                                             IconBrush="{DynamicResource IconAppSettings}"
+                                                             Text="Display settings" Margin="0,0,8,0">
+                    <statusBarPopupButton:StatusBarPopupButton.PopupContent>
+
+                        <StackPanel>
+                            <TextBlock FontWeight="SemiBold">Display settings</TextBlock>
+                            <TextBlock TextWrapping="Wrap">When you are offline, some resource may be not be accessible.</TextBlock>
+
+                            <ToggleSwitch>Force offline mode</ToggleSwitch>
+                        </StackPanel>
+
+                    </statusBarPopupButton:StatusBarPopupButton.PopupContent>
+                </statusBarPopupButton:StatusBarPopupButton>
+
+                <statusBarPopupButton:StatusBarPopupButton Grid.Column="4" x:Name="BtnStatusOnline" Margin="0,0,8,0">
+                    <statusBarPopupButton:StatusBarPopupButton.PopupContent>
+                        <panels:OnlineStatusPanel />
+                    </statusBarPopupButton:StatusBarPopupButton.PopupContent>
+                </statusBarPopupButton:StatusBarPopupButton>
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_components.xsd">
+
+    <UID>bootstrap.Hyperlink</UID>
+    <Name>Hyperlink</Name>
+
+    <Actions>
+    </Actions>
+
+    <Features>
+        <InlineEdit/>
+    </Features>
+    
+    <Allows>text</Allows>
+
+
+    <Template>
+        <![CDATA[
+        <a>
+        </a>
+        ]]>
+    </Template>
+    
+</Component>

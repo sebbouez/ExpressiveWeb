@@ -1,0 +1,84 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+
+
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+
+        <!--
+         
+        DO NOT USE AOT FOR THE MOMENT: CEFGLUE WON'T WORK CORRECTLY
+        
+        Using RegisterJavascriptObject + AOT won't work
+        https://github.com/OutSystems/CefGlue/issues/219
+         
+        <PublishAot>true</PublishAot>
+        <BuiltInComInteropSupport>false</BuiltInComInteropSupport
+        <TrimMode>link</TrimMode>
+        
+        -->
+
+        <AssemblyName>ExpressiveWeb</AssemblyName>
+        <RootNamespace>ExpressiveWeb</RootNamespace>
+        <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Add specific Avalonia controls you're using -->
+        <TrimmerRootAssembly Include="Avalonia.Controls"/>
+        <TrimmerRootAssembly Include="Avalonia.Themes.Default"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.4" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.4" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.4" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.4">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Dock.Avalonia" Version="11.3.2.2" />
+        <PackageReference Include="Dock.Avalonia.Themes.Simple" Version="11.3.2.2" />
+        <PackageReference Include="Dock.Model.Avalonia" Version="11.3.2.2" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ExpressiveWeb.Core\ExpressiveWeb.Core.csproj"/>
+        <ProjectReference Include="..\ExpressiveWeb.Designer\ExpressiveWeb.Designer.csproj" />
+        <ProjectReference Include="..\ExpressiveWeb.Kits\ExpressiveWeb.Kits.csproj" />
+        <ProjectReference Include="..\ExpressiveWeb.Localization\ExpressiveWeb.Localization.csproj"/>
+        <ProjectReference Include="..\ExpressiveWeb.UI.Internal\ExpressiveWeb.UI.Internal.csproj" />
+        <ProjectReference Include="..\ExpressiveWeb.UI.Icons\ExpressiveWeb.UI.Icons.csproj"/>
+        <ProjectReference Include="..\ExpressiveWeb.UI.Shell\ExpressiveWeb.UI.Shell.csproj" />
+        <ProjectReference Include="..\PackagesProviders\PackagesProviders.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="TypeScript\Models\"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Update="Panels\Styles\StylePanel.axaml.cs">
+        <DependentUpon>StylePanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Panels\Pages\PagePropertiesPanel.axaml.cs">
+        <DependentUpon>PagePropertiesControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <AdditionalFiles Include="Modules\Explorer\ExplorerControl.axaml" />
+      <AdditionalFiles Include="Modules\Toolbox\ToolboxControl.axaml" />
+    </ItemGroup>
+    
+</Project>
