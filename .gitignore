@@ -1,6 +1,8 @@
 .idea
 ExpressiveWeb/bin
 ExpressiveWeb/obj
+ExpressiveWeb.Kits/obj
+ExpressiveWeb.Kits/bin
 .run
 ExpressiveWeb.Common/obj
 ExpressiveWeb.Common/bin

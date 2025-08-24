@@ -396,6 +396,25 @@ public class HtmlEditor : Border, IDisposable
 
     #region Public Commands
 
+    public void SetElementCssClass(string newCssClass)
+    {
+        ArgumentNullException.ThrowIfNull(SelectedElement, "No element selected");
+
+        HtmlElementInfo info = SelectedElement.DataContext.Freeze();
+
+        if (string.Equals(info.CssClass.Trim(), newCssClass.Trim(), StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        EditElementCssClassCommand cmd = new EditElementCssClassCommand(this)
+        {
+            InitialElementInfo = info,
+            NewCssClass = newCssClass
+        };
+        CommandManager.ExecuteCommand(cmd);
+    }
+
     public void DuplicateElement()
     {
         ArgumentNullException.ThrowIfNull(SelectedElement, "No element selected");

@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Threading;
 using ExpressiveWeb.Commands;
 using ExpressiveWeb.Core;
 using ExpressiveWeb.Core.ApplicationCommands;
@@ -134,6 +135,12 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(false);
             _applicationCommandsService.SetCommandState<DeleteElementCommand>(false);
         }
+
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            ApplicationSharedEvents.InvokeSelectedElementChanged(e as HtmlElement);
+            
+        });
 
         UpdateTextTagsCommands();
     }
