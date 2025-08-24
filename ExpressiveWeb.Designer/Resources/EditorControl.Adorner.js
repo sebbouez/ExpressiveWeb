@@ -272,7 +272,6 @@ class AdornerManager extends HTMLElement {
                     sourceElement = this.parentEditor.getClosestComponentAsHtmlElement(sourceElement);
                 }
                 this.parentEditor.handleSelection(sourceElement);
-                event.preventDefault();
             }
         }
     }

@@ -537,7 +537,7 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click once on objects to select..
+        ///   Looks up a localized string similar to **Click once** on objects to select. **Double click** to edit compatible objects..
         /// </summary>
         public static string StatusSelectMessage {
             get {

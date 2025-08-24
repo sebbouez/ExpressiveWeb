@@ -193,6 +193,6 @@
         <value>A propos d'Expressive Web...</value>
     </data>
     <data name="StatusSelectMessage" xml:space="preserve">
-        <value>Cliquez une fois sur les objets pour les sélectionner.</value>
+        <value>**Cliquez une fois** sur les objets pour les sélectionner. **Cliquez deux fois** pour éditer les objets compatibles.</value>
     </data>
 </root>

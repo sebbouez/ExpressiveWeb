@@ -472,8 +472,6 @@ class AdornerManager extends HTMLElement {
                 }
 
                 this.parentEditor.handleSelection(sourceElement as HTMLElement);
-
-                event.preventDefault();
             }
 
         }
