@@ -25,7 +25,7 @@ class AdornerManager extends HTMLElement {
     constructor(owner: EditorComponent) {
 
         super();
-        
+
         this.parentEditor = owner;
 
         const shadow = this.attachShadow({mode: 'open'});
@@ -34,9 +34,6 @@ class AdornerManager extends HTMLElement {
 
         this._adornerContainer = document.createElement("div");
         this._adornerContainer.id = "decorators-container";
-        this._adornerContainer.style.position = "absolute";
-        this._adornerContainer.style.width = "100%";
-        this._adornerContainer.style.height = "100%";
         this._adornerContainer.style.zIndex = "1000";
 
         shadow.appendChild(this._adornerContainer);
@@ -337,7 +334,6 @@ class AdornerManager extends HTMLElement {
 
         const allDecorators = this._adornerContainer.querySelectorAll("adorner-decorator.state-active");
         allDecorators.forEach(decorator => {
-
             (decorator as AdornerDecorator).unSelect();
         })
     }
@@ -432,7 +428,7 @@ class AdornerManager extends HTMLElement {
         if (e.defaultPrevented) {
             return;
         }
-        
+
         if (e.target instanceof HTMLElement) {
 
             // when clicking inside an element that is in text edit mode
@@ -443,14 +439,11 @@ class AdornerManager extends HTMLElement {
             }
 
         }
-
+        
+        this.unSelectAll();
+        
         const info: ElementInfo = owner.parentEditor.getElementInfo(this._mouseDownElement);
-
         $HOST_INTEROP.raiseElementClick(JSON.stringify(info));
-
-        // if (this._textEditingDecorator) {
-        //     this.exitTextEditMode();
-        // }
     }
 
     private handleMouseDown(event: MouseEvent): void {
@@ -539,6 +532,13 @@ class AdornerManager extends HTMLElement {
             if (e.target != self._mouseDownElement) {
                 return;
             }
+
+            if (e.target instanceof HTMLElement) {
+                if (e.target.tagName.toLowerCase() == "adorner-layer") {
+                    return;
+                }
+            }
+
             self.handleMouseClick(self, e);
         })
 

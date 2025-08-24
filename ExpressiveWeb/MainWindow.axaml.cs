@@ -15,17 +15,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text.RegularExpressions;
 using Avalonia.Controls;
+using Avalonia.Controls.Documents;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using ExpressiveWeb.Commands;
 using ExpressiveWeb.Core;
 using ExpressiveWeb.Core.ApplicationCommands;
 using ExpressiveWeb.Core.BackgroundServices;
-using ExpressiveWeb.Core.Kit;
 using ExpressiveWeb.Core.Network;
 using ExpressiveWeb.Core.Project;
 using ExpressiveWeb.Designer;
@@ -43,10 +42,10 @@ namespace ExpressiveWeb;
 
 public partial class MainWindow : Window
 {
+    private IApplicationCommandsService _applicationCommandsService;
     private HtmlEditor _ed;
 
     private ExplorerControl _explorerControl;
-    private IApplicationCommandsService _applicationCommandsService;
 
     public MainWindow()
     {
@@ -86,6 +85,49 @@ public partial class MainWindow : Window
         }
     }
 
+    private void FormatStatusText(TextBlock textBlock, string text)
+    {
+        textBlock.Inlines?.Clear();
+
+        Regex regex = new(@"\*\*(.*?)\*\*");
+        MatchCollection matches = regex.Matches(text);
+
+        int lastIndex = 0;
+
+        foreach (Match match in matches)
+        {
+            if (match.Index > lastIndex)
+            {
+                string normalText = text.Substring(lastIndex, match.Index - lastIndex);
+                if (!string.IsNullOrEmpty(normalText))
+                {
+                    textBlock.Inlines?.Add(new Run(normalText));
+                }
+            }
+
+            string boldText = match.Groups[1].Value;
+            if (!string.IsNullOrEmpty(boldText))
+            {
+                Run boldRun = new(boldText)
+                {
+                    FontWeight = FontWeight.SemiBold
+                };
+                textBlock.Inlines?.Add(boldRun);
+            }
+
+            lastIndex = match.Index + match.Length;
+        }
+
+        if (lastIndex < text.Length)
+        {
+            string remainingText = text.Substring(lastIndex);
+            if (!string.IsNullOrEmpty(remainingText))
+            {
+                textBlock.Inlines?.Add(new Run(remainingText));
+            }
+        }
+    }
+
     private List<ApplicationCommandBase> GetCommunityCommands()
     {
         List<ApplicationCommandBase> result = new()
@@ -110,8 +152,13 @@ public partial class MainWindow : Window
             new CopyCommand(),
             new PasteCommand(),
             new SeparatorCommand(),
+            new DeleteElementCommand(),
             new DuplicateElementCommand(),
+
+#if DEBUG
+            new SeparatorCommand(),
             new DevToolsCommand()
+#endif
         };
 
         return result;
@@ -142,7 +189,7 @@ public partial class MainWindow : Window
             new FormatHeading3Command(),
             new FormatHeading4Command(),
             new FormatHeading5Command(),
-            new FormatHeading6Command(),
+            new FormatHeading6Command()
         };
 
         return result;
@@ -152,7 +199,7 @@ public partial class MainWindow : Window
     {
         List<ApplicationCommandBase> result = new()
         {
-            new AboutApplicationCommand(),
+            new AboutApplicationCommand()
         };
 
         return result;
@@ -221,7 +268,7 @@ public partial class MainWindow : Window
     {
         Dispatcher.UIThread.Post(() =>
         {
-            TbStatus.Text = message;
+            FormatStatusText(TbStatus, message);
         });
     }
 }

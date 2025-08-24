@@ -36,6 +36,7 @@ internal class RemoveElementCommand : IBusinessCommand
     {
         _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.removeElementJson"), SourceElementInfo);
         _editor.UpdateDecorators();
+        _editor.UnselectAll();
     }
 
     public void Undo()

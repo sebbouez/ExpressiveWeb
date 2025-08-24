@@ -109,6 +109,7 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
         menu.AppendCommand<CopyCommand>();
         menu.AppendCommand<PasteCommand>();
         menu.AppendCommand<SeparatorCommand>();
+        menu.AppendCommand<DeleteElementCommand>();
         menu.AppendCommand<DuplicateElementCommand>();
         Editor.ContextMenu = menu;
     }
@@ -125,10 +126,13 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
         {
             AppState.Instance.AppWindow.SetStatusMessage(element.KitComponent?.Name ?? element.TagName);
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(element.KitComponent != null);
+            _applicationCommandsService.SetCommandState<DeleteElementCommand>(element.KitComponent != null);
         }
         else
         {
+            AppState.Instance.AppWindow.SetStatusMessage(Localization.Resources.StatusSelectMessage);
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(false);
+            _applicationCommandsService.SetCommandState<DeleteElementCommand>(false);
         }
 
         UpdateTextTagsCommands();

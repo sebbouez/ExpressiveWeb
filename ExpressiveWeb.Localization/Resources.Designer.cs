@@ -150,6 +150,15 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteElement {
+            get {
+                return ResourceManager.GetString("DeleteElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string DuplicateElement {
@@ -533,6 +542,15 @@ namespace ExpressiveWeb.Localization {
         public static string StatusSaving {
             get {
                 return ResourceManager.GetString("StatusSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to **Click once** on objects to select. **Double click** to edit compatible objects..
+        /// </summary>
+        public static string StatusSelectMessage {
+            get {
+                return ResourceManager.GetString("StatusSelectMessage", resourceCulture);
             }
         }
         
