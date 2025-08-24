@@ -152,8 +152,13 @@ public partial class MainWindow : Window
             new CopyCommand(),
             new PasteCommand(),
             new SeparatorCommand(),
+            new DeleteElementCommand(),
             new DuplicateElementCommand(),
+
+#if DEBUG
+            new SeparatorCommand(),
             new DevToolsCommand()
+#endif
         };
 
         return result;

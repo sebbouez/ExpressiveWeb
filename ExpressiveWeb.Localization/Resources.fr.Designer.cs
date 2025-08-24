@@ -150,6 +150,15 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Supprimer.
+        /// </summary>
+        public static string DeleteElement {
+            get {
+                return ResourceManager.GetString("DeleteElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dupliquer.
         /// </summary>
         public static string DuplicateElement {

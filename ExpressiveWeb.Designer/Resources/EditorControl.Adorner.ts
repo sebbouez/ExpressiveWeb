@@ -334,7 +334,6 @@ class AdornerManager extends HTMLElement {
 
         const allDecorators = this._adornerContainer.querySelectorAll("adorner-decorator.state-active");
         allDecorators.forEach(decorator => {
-
             (decorator as AdornerDecorator).unSelect();
         })
     }

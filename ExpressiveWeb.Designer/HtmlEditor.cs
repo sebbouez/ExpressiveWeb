@@ -368,6 +368,16 @@ public class HtmlEditor : Border, IDisposable
         }
     }
 
+    /// <summary>
+    /// Unselect all elements in the editor.
+    /// </summary>
+    public void UnselectAll()
+    {
+        InternalExecuteBrowserScript(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".unSelectAll()"));
+        SelectedElement = null;
+        SelectionChanged?.Invoke(this, null);
+    }
+
     public void ShowDevTools()
     {
         _browser.ShowDeveloperTools();
@@ -375,8 +385,6 @@ public class HtmlEditor : Border, IDisposable
 
     internal void StartTextEditing(HtmlElementInfo info)
     {
-        // garder l'info au départ
-
         _textEditor = new TextEditor(this, info);
         _textEditor.Start();
     }
@@ -410,7 +418,6 @@ public class HtmlEditor : Border, IDisposable
     public void DeleteElement()
     {
         ArgumentNullException.ThrowIfNull(SelectedElement, "No element selected");
-
         HtmlElementInfo info = SelectedElement.DataContext.Freeze();
 
         RemoveElementCommand cmd = new(this)

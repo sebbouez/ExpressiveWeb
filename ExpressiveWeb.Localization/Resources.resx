@@ -195,4 +195,7 @@
     <data name="StatusSelectMessage" xml:space="preserve">
         <value>**Click once** on objects to select. **Double click** to edit compatible objects.</value>
     </data>
+    <data name="DeleteElement" xml:space="preserve">
+        <value>Delete</value>
+    </data>
 </root>
