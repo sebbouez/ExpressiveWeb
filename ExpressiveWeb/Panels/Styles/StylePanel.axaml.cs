@@ -37,9 +37,7 @@ public partial class StylePanel : UserControl
     {
         InitializeComponent();
         _styleService = AppServices.ServicesFactory.GetService<IStyleService>();
-
-        ApplicationSharedEvents.SelectedElementChanged += ApplicationSharedEventsOnSelectedElementChanged;
-
+        
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
@@ -136,6 +134,7 @@ public partial class StylePanel : UserControl
 
     private void OnLoaded(object? sender, RoutedEventArgs e)
     {
+        ApplicationSharedEvents.SelectedElementChanged += ApplicationSharedEventsOnSelectedElementChanged;
     }
 
     private void OnUnloaded(object? sender, RoutedEventArgs e)

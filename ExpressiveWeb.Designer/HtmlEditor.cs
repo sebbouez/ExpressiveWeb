@@ -363,7 +363,6 @@ public class HtmlEditor : Border, IDisposable
         }
         else
         {
-            //string script = string.Format(CultureInfo.InvariantCulture, "selectElementByInternalId('{0}')", internalId);
             InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".selectElementByInternalId"), internalId);
         }
     }
@@ -392,6 +391,16 @@ public class HtmlEditor : Border, IDisposable
     internal void UpdateDecorators()
     {
         InternalExecuteBrowserScript(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".adornerManager.updateDecorators();"));
+    }
+
+    public void SelectParentElement()
+    {
+        if (SelectedElement == null)
+        {
+            return;
+        }
+
+        InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".selectParentElement"), SelectedElement.InternalId);
     }
 
     #region Public Commands

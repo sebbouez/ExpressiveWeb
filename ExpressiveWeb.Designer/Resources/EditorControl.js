@@ -58,6 +58,16 @@ class EditorComponent {
         }
         return foundElement;
     }
+    selectParentElement(internalId) {
+        this.unSelectAll();
+        const element = this.getElementByInternalId(internalId);
+        const foundElement = element.parentElement.closest($EDITOR_KIT_DATA.KNOWN_COMPONENTS_SELECTOR);
+        if (foundElement == null) {
+            return null;
+        }
+        let parentInternalId = this.getElementInternalId(foundElement);
+        this.selectElementByInternalId(parentInternalId);
+    }
     getClosestComponentInfoFromHtmlElement(htmlElement) {
         const foundElement = htmlElement.parentElement.closest($EDITOR_KIT_DATA.KNOWN_COMPONENTS_SELECTOR);
         if (foundElement == null) {
@@ -166,6 +176,7 @@ class EditorComponent {
     }
     unSelectAll() {
         this.adornerManager.unSelectAll();
+        $HOST_INTEROP.raiseSelectedElementChanged("{}");
     }
     handleSelection(element) {
         if (!element) {
