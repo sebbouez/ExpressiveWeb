@@ -128,12 +128,14 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
             AppState.Instance.AppWindow.SetStatusMessage(element.KitComponent?.Name ?? element.TagName);
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(element.KitComponent != null);
             _applicationCommandsService.SetCommandState<DeleteElementCommand>(element.KitComponent != null);
+            _applicationCommandsService.SetCommandState<SelectParentElementCommand>(element.KitComponent != null);
         }
         else
         {
             AppState.Instance.AppWindow.SetStatusMessage(Localization.Resources.StatusSelectMessage);
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(false);
             _applicationCommandsService.SetCommandState<DeleteElementCommand>(false);
+            _applicationCommandsService.SetCommandState<SelectParentElementCommand>(false);
         }
 
         Dispatcher.UIThread.Invoke(() =>

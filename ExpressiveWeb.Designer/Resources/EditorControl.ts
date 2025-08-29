@@ -118,6 +118,21 @@ class EditorComponent {
         return (foundElement as HTMLElement);
     }
 
+    public selectParentElement(internalId:string): void {
+
+        this.unSelectAll();
+        
+        const element = this.getElementByInternalId(internalId);
+        const foundElement: HTMLElement = element.parentElement.closest($EDITOR_KIT_DATA.KNOWN_COMPONENTS_SELECTOR);
+
+        if (foundElement == null) {
+            return null;
+        }
+
+        let parentInternalId = this.getElementInternalId(foundElement);
+        this.selectElementByInternalId(parentInternalId);
+    }
+
     public getClosestComponentInfoFromHtmlElement(htmlElement: HTMLElement): KitComponent | null {
 
         const foundElement = htmlElement.parentElement.closest($EDITOR_KIT_DATA.KNOWN_COMPONENTS_SELECTOR);
@@ -268,7 +283,8 @@ class EditorComponent {
     }
 
     public unSelectAll(): void {
-        this.adornerManager.unSelectAll();
+        this.adornerManager.unSelectAll(); 
+        $HOST_INTEROP.raiseSelectedElementChanged("{}");
     }
 
 
@@ -298,9 +314,9 @@ class EditorComponent {
             }
 
         }, false);
-        
+
         window.addEventListener("scroll", function (e) {
-           $HOST_INTEROP.raiseScroll(); 
+            $HOST_INTEROP.raiseScroll();
         });
     }
 

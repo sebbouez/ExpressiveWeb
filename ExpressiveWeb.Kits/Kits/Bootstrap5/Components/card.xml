@@ -7,22 +7,26 @@
 
     <Slots>.card-body</Slots>
     <Variants>
-        <Variant name="Card model 1" className="card1"/>
+        <Variant Name="Card model 1" ClassName="card1"/>
     </Variants>
-    
+
     <Features>
-        <ContextualBoxStyle EnableBorderSettings="true" EnableBackgroundSettings="true" />
+        <ContextualBoxStyle EnableBorderSettings="true" EnableBackgroundSettings="true"/>
     </Features>
-    
+
     <Allows>*</Allows>
     <Denies>bootstrap.Card</Denies>
 
     <Template>
         <![CDATA[
-        <div class="card">
-            <slot/>
+         <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Card text.</p>
+                <a href="#" class="btn btn-primary">Card button</a>
+            </div>
         </div>
         ]]>
     </Template>
-    
+
 </Component>

@@ -108,10 +108,44 @@ public class DynamicResourcesRouter
         {
             string js = BuildEditorScript();
             result.Content = Encoding.UTF8.GetBytes(js);
+            result.MimeType = "text/javascript";
+        }
+        else if (path.EndsWith("kit-editorstyles.css", StringComparison.OrdinalIgnoreCase))
+        {
+            string css = BuildOverrideEditorStyles();
+            result.Content = Encoding.UTF8.GetBytes(css);
+            result.MimeType = "text/css";
         }
 
-        result.MimeType = "text/javascript";
         return result;
+    }
+
+    private string BuildOverrideEditorStyles()
+    {
+        StringBuilder sb = new();
+
+        foreach (KitComponent component in HtmlEditor.Kit.Components)
+        {
+            if (!string.IsNullOrEmpty(component.Accepts))
+            {
+                sb.AppendLine(string.Concat(component.GetSelector(), ":empty {"));
+                sb.AppendLine("min-height: 60px;");
+                sb.AppendLine("}");
+
+                if (!string.IsNullOrEmpty(component.Slots))
+                {
+                    string[] slots = component.Slots.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string slot in slots)
+                    {
+                        sb.AppendLine(string.Concat(component.GetSelector(), " ", slot, ":empty {"));
+                        sb.AppendLine("min-height: 60px;");
+                        sb.AppendLine("}");
+                    }
+                }
+            }
+        }
+
+        return sb.ToString();
     }
 
     private void GetComponentsInFamily(string value, StringBuilder sb)

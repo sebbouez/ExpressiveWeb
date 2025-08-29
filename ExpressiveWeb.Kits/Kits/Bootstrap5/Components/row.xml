@@ -6,7 +6,7 @@
     <Name>Row</Name>
 
     <Actions>
-        <Action Header="Add column" Command="AppendChild" OfType="bootstrap.Col"/>
+        <Action Header="Add column" Command="AppendChild" Params="bootstrap.Col"/>
     </Actions>
     
     <Allows>bootstrap.Col</Allows>

@@ -198,4 +198,7 @@
     <data name="DeleteElement" xml:space="preserve">
         <value>Delete</value>
     </data>
+    <data name="SelectParentElement" xml:space="preserve">
+        <value>Select parent</value>
+    </data>
 </root>

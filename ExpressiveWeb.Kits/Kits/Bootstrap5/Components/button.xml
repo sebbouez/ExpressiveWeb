@@ -5,6 +5,10 @@
     <UID>bootstrap.Button</UID>
     <Name>Button</Name>
 
+    <Features>
+        <InlineEdit/>
+    </Features>
+
     <Variants>
         <Variant Name="Primary" ClassName="btn-primary"/>
         <Variant Name="Secondary" ClassName="btn-secondary"/>
@@ -19,11 +23,9 @@
 
     <Allows>text</Allows>
 
-
     <Template>
         <![CDATA[
-        <a class="btn">
-        </a>
+        <a class="btn">Button</a>
         ]]>
     </Template>
 

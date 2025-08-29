@@ -41,6 +41,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ExpressiveWeb.Core\ExpressiveWeb.Core.csproj" />
+      <ProjectReference Include="..\ExpressiveWeb.UI.Internal\ExpressiveWeb.UI.Internal.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -157,8 +157,11 @@ public partial class MainWindow : Window
 
 #if DEBUG
             new SeparatorCommand(),
-            new DevToolsCommand()
+            new DevToolsCommand(),
 #endif
+            new SeparatorCommand(),
+            new SelectParentElementCommand(),
+            
         };
 
         return result;

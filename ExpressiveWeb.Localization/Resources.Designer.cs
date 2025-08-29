@@ -519,6 +519,15 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select parent.
+        /// </summary>
+        public static string SelectParentElement {
+            get {
+                return ResourceManager.GetString("SelectParentElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         public static string StatusReady {
