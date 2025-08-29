@@ -57,29 +57,14 @@ internal class MoveElementCommand : IBusinessCommand
         _oldParentInternalId = SourceElementInfo.ParentInternalId;
 
         string script;
+        
+        int newIndex = HtmlEditor.GetElementIndex(SourceElementInfo, TargetElementInfo, RelativePosition);
+        
         switch (RelativePosition)
         {
             case -1:
-
-                int newIndex = TargetElementInfo.Index;
-                if (SourceElementInfo.ParentInternalId == TargetElementInfo.ParentInternalId
-                    && SourceElementInfo.Index < TargetElementInfo.Index)
-                {
-                    newIndex--;
-                }
-
-                script = string.Format(CultureInfo.InvariantCulture, ".domHelper.moveElement('{0}','{1}', {2})", SourceElementInfo.InternalId, TargetElementInfo.ParentInternalId, newIndex);
-                break;
             case 1:
-
-                int idx = TargetElementInfo.Index + 1;
-                if (SourceElementInfo.ParentInternalId == TargetElementInfo.ParentInternalId
-                    && SourceElementInfo.Index < TargetElementInfo.Index)
-                {
-                    idx--;
-                }
-
-                script = string.Format(CultureInfo.InvariantCulture, ".domHelper.moveElement('{0}','{1}', {2})", SourceElementInfo.InternalId, TargetElementInfo.ParentInternalId, idx);
+                script = string.Format(CultureInfo.InvariantCulture, ".domHelper.moveElement('{0}','{1}', {2})", SourceElementInfo.InternalId, TargetElementInfo.ParentInternalId, newIndex);
                 break;
             case 0:
                 script = string.Format(CultureInfo.InvariantCulture, ".domHelper.moveElement('{0}','{1}', {2})", SourceElementInfo.InternalId, TargetElementInfo.InternalId, 99);

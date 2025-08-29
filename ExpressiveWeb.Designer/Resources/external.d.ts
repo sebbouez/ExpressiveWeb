@@ -14,7 +14,7 @@ static class $HOST_INTEROP {
     static componentActionMenuOpening(x:number, y:number):void;
     static raiseSelectedElementChanged(json: string): void;
     static raiseTextSelected(text: string): void;
-    static dropElement(sourceElementInfoJson: string, targetElementInfoJson:string, position:number): void;
+    static dropElement(sourceElementInfoJson: string, targetElementInfoJson:string, position:number, ctrlPressed:boolean): void;
     static raiseElementDblClick(json:string): void;
     static raiseElementClick(json:string): void;
     static raiseScroll(): void;

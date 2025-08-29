@@ -246,14 +246,14 @@ class AdornerManager extends HTMLElement {
      * @param {any} e - The event argument containing details about the drop event.
      * @return {void} This method does not return a value.
      */
-    dropDecoratorHandler(owner: AdornerManager, e: any): void {
+    dropDecoratorHandler(owner: AdornerManager, e: DragEvent): void {
 
         if (this._dragInfo.sourceElement && this._dragInfo.targetElement) {
 
             const sourceElementInfo = this.parentEditor.getElementInfo(this._dragInfo.sourceElement);
             const targetElementInfo = this.parentEditor.getElementInfo(this._dragInfo.targetElement);
 
-            $HOST_INTEROP.dropElement(JSON.stringify(sourceElementInfo), JSON.stringify(targetElementInfo), this._dragInfo.desiredPosition);
+            $HOST_INTEROP.dropElement(JSON.stringify(sourceElementInfo), JSON.stringify(targetElementInfo), this._dragInfo.desiredPosition, e.ctrlKey);
 
             e.preventDefault();
         }
