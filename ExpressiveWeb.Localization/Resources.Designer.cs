@@ -528,6 +528,15 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press **ctrl key** during drag and drop to duplicate..
+        /// </summary>
+        public static string StatusPressCtrlToDropCopy {
+            get {
+                return ResourceManager.GetString("StatusPressCtrlToDropCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         public static string StatusReady {

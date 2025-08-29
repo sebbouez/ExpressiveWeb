@@ -13,6 +13,7 @@
 // *********************************************************
 
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -125,7 +126,7 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
     {
         if (e is HtmlElement element)
         {
-            AppState.Instance.AppWindow.SetStatusMessage(element.KitComponent?.Name ?? element.TagName);
+            AppState.Instance.AppWindow.SetStatusMessage(string.Format(CultureInfo.InvariantCulture, "{0}. {1}", element.KitComponent?.Name ?? element.TagName, Localization.Resources.StatusPressCtrlToDropCopy));
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(element.KitComponent != null);
             _applicationCommandsService.SetCommandState<DeleteElementCommand>(element.KitComponent != null);
             _applicationCommandsService.SetCommandState<SelectParentElementCommand>(element.KitComponent != null);
@@ -141,7 +142,6 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
         Dispatcher.UIThread.Invoke(() =>
         {
             ApplicationSharedEvents.InvokeSelectedElementChanged(e as HtmlElement);
-            
         });
 
         UpdateTextTagsCommands();

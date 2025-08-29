@@ -201,4 +201,7 @@
     <data name="SelectParentElement" xml:space="preserve">
         <value>Sélectionner le parent</value>
     </data>
+    <data name="StatusPressCtrlToDropCopy" xml:space="preserve">
+        <value>Appuyez sur la **touche ctrl** pour dupliquer l'objet lors du déplacement.</value>
+    </data>
 </root>

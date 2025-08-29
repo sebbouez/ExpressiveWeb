@@ -12,6 +12,7 @@
 // 
 // *********************************************************
 
+using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using Avalonia;
@@ -46,7 +47,6 @@ public class HtmlEditor : Border, IDisposable
 {
     internal const string JS_GLOBAL_EDITOR_OBJ_NAME = "window.$___CURRENT_EDITOR";
     private readonly AvaloniaCefBrowser _browser = new();
-    private readonly HtmlFilterService _htmlFilterService = new();
     private readonly ILogService _logService;
     private readonly INetworkService _networkService;
     private TextEditor? _textEditor;
@@ -57,6 +57,11 @@ public class HtmlEditor : Border, IDisposable
         new AppendChildQuickAction()
     };
 
+    internal HtmlFilterService HTMLFilterService
+    {
+        get;
+    } = new();
+
     public HtmlEditor(Kit kit)
     {
         Kit = kit;
@@ -65,9 +70,9 @@ public class HtmlEditor : Border, IDisposable
         _networkService = AppServices.ServicesFactory.GetService<INetworkService>();
 
         // Set up cleanup filters when exporting HTML from editor
-        _htmlFilterService.UseFilter<RemoveEditorInternalIdFilter>();
-        _htmlFilterService.UseFilter<RemoveEditorReferencesFilter>();
-        _htmlFilterService.UseFilter<RemoveEditorAdornerFilter>();
+        HTMLFilterService.UseFilter<RemoveEditorInternalIdFilter>();
+        HTMLFilterService.UseFilter<RemoveEditorReferencesFilter>();
+        HTMLFilterService.UseFilter<RemoveEditorAdornerFilter>();
 
         // Do not forget to unregister those events in DISPOSE to clear ref
         HtmlEditorCore.UserStylesheetChanged += HtmlEditorCoreOnUserStylesheetChanged;
@@ -195,7 +200,7 @@ public class HtmlEditor : Border, IDisposable
     public async Task<string> GetFilteredHtml()
     {
         string html = await _browser.EvaluateJavaScript<string>("return document.querySelector('html').outerHTML");
-        html = await _htmlFilterService.FilterAsync(html);
+        html = await HTMLFilterService.FilterAsync(html);
         return html;
     }
 
@@ -395,6 +400,40 @@ public class HtmlEditor : Border, IDisposable
         }
     }
 
+    internal static int GetElementIndex(HtmlElementInfo sourceElementInfo, HtmlElementInfo targetElementInfo, int relativePosition)
+    {
+        int newIndex = 0;
+
+        switch (relativePosition)
+        {
+            case -1:
+
+                newIndex = targetElementInfo.Index;
+                if (sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
+                    && sourceElementInfo.Index < targetElementInfo.Index)
+                {
+                    newIndex--;
+                }
+
+                break;
+            case 1:
+
+                newIndex = targetElementInfo.Index + 1;
+                if (sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
+                    && sourceElementInfo.Index < targetElementInfo.Index)
+                {
+                    newIndex--;
+                }
+
+                break;
+            case 0:
+                newIndex = 99;
+                break;
+        }
+
+        return newIndex;
+    }
+
     /// <summary>
     /// Unselect all elements in the editor.
     /// </summary>
@@ -462,7 +501,7 @@ public class HtmlEditor : Border, IDisposable
 
         // The selected element may contain a children tree with existing editor ids
         // we must clear them to ensure everything will be considered as new in Typescript side
-        info.InnerHtml = _htmlFilterService.FilterWith<RemoveEditorInternalIdFilter>(info.InnerHtml);
+        info.InnerHtml = HTMLFilterService.FilterWith<RemoveEditorInternalIdFilter>(info.InnerHtml);
 
         InsertElementCommand cmd = new(this)
         {

@@ -18,6 +18,7 @@ using ExpressiveWeb.Core.Kit;
 using ExpressiveWeb.Core.Kit.ComponentFeatures;
 using ExpressiveWeb.Core.Log;
 using ExpressiveWeb.Designer.Commands;
+using ExpressiveWeb.Designer.Filters;
 using ExpressiveWeb.Designer.Models;
 
 namespace ExpressiveWeb.Designer;
@@ -34,22 +35,17 @@ public class InternalJavascriptBridge
         _logService = logService;
     }
 
-    public void ContextMenuOpening(double x, double y)
-    {
-        _editor.InvokeContextMenuOpening(x, y);
-    } 
-    
     public void ComponentActionMenuOpening(double x, double y)
     {
         _editor.InvokeComponentActionMenuOpening(x, y);
     }
 
-    public void RaiseScroll()
+    public void ContextMenuOpening(double x, double y)
     {
-        _editor.InvokeComponentActionMenuClose();
+        _editor.InvokeContextMenuOpening(x, y);
     }
 
-    public void DropElement(string sourceElementInfoJson, string targetElementInfoJson, int relativePosition)
+    public void DropElement(string sourceElementInfoJson, string targetElementInfoJson, int relativePosition, bool ctrlPressed)
     {
         HtmlElementInfo? sourceElementInfo = JsonSerializer.Deserialize<HtmlElementInfo?>(sourceElementInfoJson);
         HtmlElementInfo? targetElementInfo = JsonSerializer.Deserialize<HtmlElementInfo?>(targetElementInfoJson);
@@ -60,13 +56,30 @@ public class InternalJavascriptBridge
             return;
         }
 
-        MoveElementCommand cmd = new(_editor)
+        if (ctrlPressed)
         {
-            SourceElementInfo = sourceElementInfo,
-            TargetElementInfo = targetElementInfo,
-            RelativePosition = relativePosition
-        };
-        _editor.CommandManager.ExecuteCommand(cmd);
+            HtmlElementInfo elementCopy = sourceElementInfo.Freeze();
+            elementCopy.InternalId = Guid.NewGuid().ToString();
+            elementCopy.ParentInternalId = targetElementInfo.ParentInternalId;
+            elementCopy.Index = HtmlEditor.GetElementIndex(sourceElementInfo, targetElementInfo, relativePosition);
+            elementCopy.InnerHtml = _editor.HTMLFilterService.FilterWith<RemoveEditorInternalIdFilter>(elementCopy.InnerHtml);
+
+            InsertElementCommand cmd = new(_editor)
+            {
+                SourceElementInfo = elementCopy
+            };
+            _editor.CommandManager.ExecuteCommand(cmd);
+        }
+        else
+        {
+            MoveElementCommand cmd = new(_editor)
+            {
+                SourceElementInfo = sourceElementInfo,
+                TargetElementInfo = targetElementInfo,
+                RelativePosition = relativePosition
+            };
+            _editor.CommandManager.ExecuteCommand(cmd);
+        }
     }
 
     public void RaiseElementClick(string json)
@@ -97,6 +110,11 @@ public class InternalJavascriptBridge
         {
             _editor.StartTextEditing(elementInfo);
         }
+    }
+
+    public void RaiseScroll()
+    {
+        _editor.InvokeComponentActionMenuClose();
     }
 
     public void RaiseSelectedElementChanged(string json)
