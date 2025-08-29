@@ -7,9 +7,12 @@
 
     <Actions>
         <Action Header="Add card" Command="AppendChild" Params="bootstrap.Card"/>
-        <Action Header="Add row bellow" Command="AppendChild" Params="bootstrap.Card"/>
+        <Action Header="Add heading 1" Command="AppendChild" Params="bootstrap.Heading1"/>
+        <Action Header="Add heading 2" Command="AppendChild" Params="bootstrap.Heading2"/>
+        <Action Header="Add heading 3" Command="AppendChild" Params="bootstrap.Heading3"/>
+        <Action Header="Add paragraph" Command="AppendChild" Params="bootstrap.Paragraph"/>
     </Actions>
-    
+
     <Allows>bootstrap.Card;paragraphs;headings</Allows>
 
     <Template>
@@ -19,5 +22,5 @@
         </div>
         ]]>
     </Template>
-    
+
 </Component>

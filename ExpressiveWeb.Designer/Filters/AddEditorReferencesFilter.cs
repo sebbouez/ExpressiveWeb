@@ -25,8 +25,10 @@ public class AddEditorReferencesFilter : HtmlFilterBase
         HtmlNode headNode = Document.DocumentNode.SelectSingleNode("//head");
 
         AddStyle(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/editorstyle.css");
-
+        
+        AddStyle(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://d/kit-editorstyles.css");
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://d/kit-utils.js");
+        
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/main.js");
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.Text.js");
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.Dom.js");

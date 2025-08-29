@@ -16,6 +16,7 @@ using System.Text;
 using System.Text.Json;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Primitives.PopupPositioning;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -28,9 +29,12 @@ using ExpressiveWeb.Core.Log;
 using ExpressiveWeb.Core.Network;
 using ExpressiveWeb.Designer.Cef;
 using ExpressiveWeb.Designer.Commands;
+using ExpressiveWeb.Designer.Exceptions;
 using ExpressiveWeb.Designer.Filters;
 using ExpressiveWeb.Designer.Models;
+using ExpressiveWeb.Designer.QuickActions;
 using ExpressiveWeb.Designer.Utils;
+using ExpressiveWeb.Presentation.MessageBox;
 using Microsoft.Extensions.DependencyInjection;
 using Xilium.CefGlue;
 using Xilium.CefGlue.Avalonia;
@@ -47,6 +51,11 @@ public class HtmlEditor : Border, IDisposable
     private readonly INetworkService _networkService;
     private TextEditor? _textEditor;
     private ContextMenu _componentActionsMenu = new();
+
+    private List<IEditorQuickAction> _supportedQuickActions = new()
+    {
+        new AppendChildQuickAction()
+    };
 
     public HtmlEditor(Kit kit)
     {
@@ -295,7 +304,26 @@ public class HtmlEditor : Border, IDisposable
 
     private void MenuItemOnClick(object? sender, RoutedEventArgs e)
     {
-        //((QuickAction) ((MenuItem) sender).Tag).Command
+        if (sender == null || sender is not MenuItem menuItem || menuItem.Tag is not QuickAction quickAction)
+        {
+            return;
+        }
+
+        IEditorQuickAction? foundAction = _supportedQuickActions.FirstOrDefault(x => x.CommandName.Equals(quickAction.Command, StringComparison.Ordinal));
+        try
+        {
+            foundAction?.Execute(this, quickAction.Params);
+        }
+        catch (InvalidQuickActionParameterException ex)
+        {
+            _ = EWMessageBox.Show(new MessageBoxData()
+            {
+                Owner = (Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow,
+                Buttons = MessageBoxButtons.Ok,
+                Message = string.Concat("Invalid action parameter: ", ex.Message),
+                Title = "Error"
+            });
+        }
     }
 
     internal void InvokeSelectionChanged(HtmlElementInfo? info)
