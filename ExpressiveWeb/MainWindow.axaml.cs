@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
@@ -27,6 +28,7 @@ using ExpressiveWeb.Core.ApplicationCommands;
 using ExpressiveWeb.Core.BackgroundServices;
 using ExpressiveWeb.Core.Network;
 using ExpressiveWeb.Core.Project;
+using ExpressiveWeb.Core.Settings;
 using ExpressiveWeb.Designer;
 using ExpressiveWeb.Modules.EditorView;
 using ExpressiveWeb.Modules.Explorer;
@@ -70,6 +72,20 @@ public partial class MainWindow : Window
         // MainMenuBarControl.AppendMenu(Localization.Resources.MenuView, GetFileCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuCommunity, GetCommunityCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuHelp, GetHelpCommands());
+    }
+
+    private void BuildToolBar()
+    {
+        ISettingsService settingsService = AppServices.ServicesFactory!.GetService<ISettingsService>()!;
+
+        List<ApplicationCommandBase?> leftCommands = settingsService.UserSettings.UISettings.MainToolbarLeftCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
+        MainToolbarControl.SetLeftToolbarItems(leftCommands);
+        
+        List<ApplicationCommandBase?> centerCommands = settingsService.UserSettings.UISettings.MainToolbarCenterCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
+        MainToolbarControl.SetCenterToolbarItems(centerCommands);
+        
+        List<ApplicationCommandBase?> rightCommands = settingsService.UserSettings.UISettings.MainToolbarRightCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
+        MainToolbarControl.SetRightToolbarItems(rightCommands);
     }
 
     private void Explorer_OnItemDoubleClicked(object? sender, ProjectItem e)
@@ -160,8 +176,7 @@ public partial class MainWindow : Window
             new DevToolsCommand(),
 #endif
             new SeparatorCommand(),
-            new SelectParentElementCommand(),
-            
+            new SelectParentElementCommand()
         };
 
         return result;
@@ -250,15 +265,15 @@ public partial class MainWindow : Window
         AppServices.ServicesFactory!.GetService<IBackgroundTaskManager>()!.StatusChanged += OnStatusChanged;
         TasksManagerIndicator.BindService(AppServices.ServicesFactory!.GetService<IBackgroundTaskManager>()!);
 
-
         _applicationCommandsService = AppServices.ServicesFactory!.GetService<IApplicationCommandsService>()!;
 
         networkService.ModeChanged += NetworkServiceOnModeChanged;
-
         ApplicationSharedEvents.ProjectLoaded += ApplicationSharedEventsOnProjectLoaded;
 
         NetworkServiceOnModeChanged(networkService, EventArgs.Empty);
+        
         BuildMenuBar();
+        BuildToolBar();
 
         InitToolsPanel();
     }

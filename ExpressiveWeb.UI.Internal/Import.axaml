@@ -11,6 +11,9 @@
                 <MergeResourceInclude Source="/Buttons/EWButton.xaml" />
                 
                 <MergeResourceInclude Source="/Menus/EWMainMenuBar.axaml" />
+                <MergeResourceInclude Source="/Menus/EWMainToolbar.axaml" />
+                <MergeResourceInclude Source="/Menus/EWToolbarButton.axaml" />
+                <MergeResourceInclude Source="/Menus/EWToolbarSeparator.axaml" />
                 <MergeResourceInclude Source="/Menus/EWMenuItem.xaml" />
                 <MergeResourceInclude Source="/Menus/FilterableContextMenu.axaml" />
                 <MergeResourceInclude Source="/Menus/EWToolbar.xaml" />

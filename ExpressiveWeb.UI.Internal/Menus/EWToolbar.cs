@@ -118,5 +118,7 @@ public class EWToolbar : TemplatedControl
                 _overflowItemsControl.Items.Add(control);
             }
         }
+
+        _overflowButton.IsVisible = _overflowItemsControl.Items.Count > 0;
     }
 }

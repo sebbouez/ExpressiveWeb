@@ -17,7 +17,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Threading;
 
-namespace ExpressiveWeb.Presentation.Buttons;
+namespace ExpressiveWeb.Presentation.Menus;
 
 public class EWMenuItem : MenuItem
 {

@@ -8,59 +8,54 @@
         <ResourceDictionary x:Key="Default">
 
             <Color x:Key="ThemeAccentColor">#2880E6</Color>
-            <SolidColorBrush x:Key="ThemeAccentBrush" Color="{StaticResource ThemeAccentColor}" />   
+            <SolidColorBrush x:Key="ThemeAccentBrush" Color="{StaticResource ThemeAccentColor}" />
 
-            
+
             <Color x:Key="ThemeBackgroundColor">#ffefefef</Color>
             <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{StaticResource ThemeBackgroundColor}" />
-            
+
             <Color x:Key="ThemeWorkspaceColor">#ffe8e8e8</Color>
-            <SolidColorBrush x:Key="ThemeWorkspaceBrush" Color="{StaticResource ThemeWorkspaceColor}" />  
-            
+            <SolidColorBrush x:Key="ThemeWorkspaceBrush" Color="{StaticResource ThemeWorkspaceColor}" />
+
             <Color x:Key="ThemeWorkspace2Color">#D6D6D6</Color>
             <SolidColorBrush x:Key="ThemeWorkspace2Brush" Color="{StaticResource ThemeWorkspace2Color}" />
 
             <Color x:Key="ThemeForegroundColor">#FF212121</Color>
             <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{StaticResource ThemeForegroundColor}" />
-            
+
             <Color x:Key="ThemeWorkspaceMidColor">#FFc6c6c6</Color>
             <SolidColorBrush x:Key="ThemeWorkspaceColorMidBrush" Color="{StaticResource ThemeWorkspaceMidColor}" />
-            
+
             <Color x:Key="ThemeMenuHoverColor">#2880E6</Color>
-            <SolidColorBrush x:Key="ThemeMenuHoverBrush" Color="{StaticResource ThemeMenuHoverColor}" />   
-            
-            
-            
+            <SolidColorBrush x:Key="ThemeMenuHoverBrush" Color="{StaticResource ThemeMenuHoverColor}" />
+
+
             <Color x:Key="ThemeHoverColor">#22444444</Color>
             <SolidColorBrush x:Key="ThemeHoverBrush" Color="{StaticResource ThemeHoverColor}" />
-            
+
             <Color x:Key="ThemeActiveColor">#33444444</Color>
             <SolidColorBrush x:Key="ThemeActiveBrush" Color="{StaticResource ThemeActiveColor}" />
-            
+
             <Color x:Key="ThemeIconStrokeColor">#757575</Color>
             <SolidColorBrush x:Key="ThemeIconStrokeBrush" Color="{StaticResource ThemeIconStrokeColor}" />
-            
+
             <Color x:Key="ThemeIconFillColor1">#dddddd</Color>
-            <SolidColorBrush x:Key="ThemeIconFillColor1Brush" Color="{StaticResource ThemeIconFillColor1}" />    
-            
+            <SolidColorBrush x:Key="ThemeIconFillColor1Brush" Color="{StaticResource ThemeIconFillColor1}" />
+
             <Color x:Key="ThemeIconFillColor2">#323332</Color>
             <SolidColorBrush x:Key="ThemeIconFillColor2Brush" Color="{StaticResource ThemeIconFillColor2}" />
-            
-            
-            
+
+
             <Color x:Key="ThemeBorderColor">#aaaaaa</Color>
             <SolidColorBrush x:Key="ThemeBorderBrush" Color="{StaticResource ThemeBorderColor}" />
-            
-               <Color x:Key="ThemeControlColor">#ffffff</Color>
+
+            <Color x:Key="ThemeControlColor">#ffffff</Color>
             <SolidColorBrush x:Key="ThemeControlBrush" Color="{StaticResource ThemeControlColor}" />
-            
-            
-            
-            
+
+
             <Color x:Key="ThemeHoverBackgroundColor">#FF119EDA</Color>
-            
-            
-         
+
+
             <Color x:Key="ThemeBorderLowColor">#FFAAAAAA</Color>
             <Color x:Key="ThemeBorderMidColor">#FF888888</Color>
             <Color x:Key="ThemeBorderHighColor">#FF333333</Color>
@@ -77,7 +72,7 @@
             <Color x:Key="HyperlinkVisitedColor">#FF681DA8</Color>
 
             <SolidColorBrush x:Key="ThemeHoverBackgroundBrush" Color="{StaticResource ThemeHoverBackgroundColor}" />
-            
+
             <SolidColorBrush x:Key="ThemeBorderLowBrush" Color="{StaticResource ThemeBorderLowColor}" />
             <SolidColorBrush x:Key="ThemeBorderMidBrush" Color="{StaticResource ThemeBorderMidColor}" />
             <SolidColorBrush x:Key="ThemeBorderHighBrush" Color="{StaticResource ThemeBorderHighColor}" />
@@ -107,31 +102,16 @@
 
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-            
+
             <Color x:Key="ThemeBackgroundColor">#FF282828</Color>
             <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{StaticResource ThemeBackgroundColor}" />
             <Color x:Key="ThemeWorkspaceColor">#ffe6e6e6</Color>
             <SolidColorBrush x:Key="ThemeWorkspaceBrush" Color="{StaticResource ThemeWorkspaceColor}" />
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+
             <Color x:Key="ThemeHoverBackground">#FFFEFEFE</Color>
-            
-            
+
+
             <Color x:Key="ThemeBorderLowColor">#FF505050</Color>
             <Color x:Key="ThemeBorderMidColor">#FF808080</Color>
             <Color x:Key="ThemeBorderHighColor">#FFA0A0A0</Color>
@@ -148,28 +128,7 @@
             <Color x:Key="HighlightColor2">#FF096085</Color>
             <Color x:Key="HyperlinkVisitedColor">#FFC58AF9</Color>
 
-           
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             <SolidColorBrush x:Key="ThemeBorderLowBrush" Color="{StaticResource ThemeBorderLowColor}" />
             <SolidColorBrush x:Key="ThemeBorderMidBrush" Color="{StaticResource ThemeBorderMidColor}" />
             <SolidColorBrush x:Key="ThemeBorderHighBrush" Color="{StaticResource ThemeBorderHighColor}" />
@@ -199,15 +158,13 @@
             <SolidColorBrush x:Key="CaptionButtonBorderBrush" Color="#ffcacaca" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-    
+
     <FontFamily x:Key="ContentControlThemeFontFamily">fonts:Inter#Inter, $Default</FontFamily>
-    
-    
-    
-    
+
+
     <Color x:Key="ThemeAccentColor">#2880E6</Color>
     <Color x:Key="ThemeAccentColor2">#99119EDA</Color>
-    
+
     <Color x:Key="ThemeAccentColor3">#66119EDA</Color>
     <Color x:Key="ThemeAccentColor4">#33119EDA</Color>
     <Color x:Key="ThemeForegroundLowColor">#FF808080</Color>
@@ -251,7 +208,7 @@
         x:Key="TimePickerFlyoutPresenterHighlightFill"
         Opacity="0.4"
         Color="{StaticResource ThemeAccentColor}" />
-    
+
     <Thickness x:Key="ThemeBorderThickness">1</Thickness>
     <system:Double x:Key="ThemeDisabledOpacity">0.5</system:Double>
 

@@ -40,6 +40,14 @@ public class NewPageCommand : ApplicationCommandBase
         }
     }
 
+    public override string IconResourceName
+    {
+        get
+        {
+            return "IconAddPage";
+        }
+    }
+
     public override async void Execute()
     {
         CreatePageDialog dlg = new();

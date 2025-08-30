@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.Core IApplicationCommandsService.cs
+// ExpressiveWeb.Core UserSettings.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,20 +12,13 @@
 // 
 // *********************************************************
 
-namespace ExpressiveWeb.Core.ApplicationCommands;
+namespace ExpressiveWeb.Core.Settings;
 
-public interface IApplicationCommandsService
+public class UserSettings
 {
-    List<ApplicationCommandBase> RegisteredCommands
+    public UISettings UISettings
     {
         get;
-    }
-
-    T? GetCommand<T>() where T : ApplicationCommandBase;
-
-    void RegisterCommands(List<ApplicationCommandBase> commands);
-
-    void SetCommandState<T>(bool state);
-    void RegisterCommand(ApplicationCommandBase command);
-    ApplicationCommandBase? GetCommand(string commandName);
+        set;
+    }= new();
 }

@@ -3,10 +3,13 @@
                     xmlns:conv="using:Avalonia.Controls.Converters"
                     xmlns:sys="using:System"
                     xmlns:controls="clr-namespace:ExpressiveWeb.Presentation.Buttons"
+                    xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus"
                     x:ClassModifier="internal">
 
-    <ControlTheme x:Key="{x:Type controls:EWMenuItem}"
-                  TargetType="controls:EWMenuItem">
+    <ControlTheme x:Key="{x:Type menus:EWMenuItem}"
+                  TargetType="menus:EWMenuItem">
+        <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}" />
         <Setter Property="MinWidth" Value="220" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />

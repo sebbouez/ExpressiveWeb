@@ -10,7 +10,6 @@
         xmlns:backgroundTasksManager="clr-namespace:ExpressiveWeb.Presentation.BackgroundTasksManager;assembly=ExpressiveWeb.UI.Internal"
         xmlns:workspace1="clr-namespace:ExpressiveWeb.Workspace"
         xmlns:panels="clr-namespace:ExpressiveWeb.Panels"
-        xmlns:styles="clr-namespace:ExpressiveWeb.Panels.Styles"
         xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus;assembly=ExpressiveWeb.UI.Internal"
         xmlns:statusBarPopupButton="clr-namespace:ExpressiveWeb.Presentation.StatusBarPopupButton;assembly=ExpressiveWeb.UI.Internal"
         Background="{DynamicResource ThemeBackgroundColor}"
@@ -30,8 +29,8 @@
         </Border>
 
 
-        <Border Grid.Row="1" Height="32" Background="{DynamicResource ThemeWorkspaceBrush}">
-
+        <Border Grid.Row="1"  Background="{DynamicResource ThemeWorkspaceBrush}">
+            <menus:EWMainToolbar x:Name="MainToolbarControl" />
         </Border>
 
         <Border Grid.Row="2" x:Name="DockContainer">
