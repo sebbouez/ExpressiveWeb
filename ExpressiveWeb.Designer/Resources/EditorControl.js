@@ -123,6 +123,7 @@ class EditorComponent {
         result.internalId = this.getElementInternalId(element);
         result.parentInternalId = this.getElementInternalId(element.parentElement);
         result.index = Array.from(element.parentElement.children).indexOf(element);
+        result.parentChildrenCount = element.parentElement.children.length;
         const component = this.getComponentInfoFromHtmlElement(element);
         if (component) {
             result.componentUid = component.uid;

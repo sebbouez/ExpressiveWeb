@@ -204,4 +204,16 @@
     <data name="StatusPressCtrlToDropCopy" xml:space="preserve">
         <value>Appuyez sur la **touche ctrl** pour dupliquer l'objet lors du déplacement.</value>
     </data>
+    <data name="MoveElementAfter" xml:space="preserve">
+        <value>Déplacer un cran après</value>
+    </data>
+    <data name="MoveElementBefore" xml:space="preserve">
+        <value>Déplacer un cran avant</value>
+    </data>
+    <data name="MoveElementFirst" xml:space="preserve">
+        <value>Déplacer au début</value>
+    </data>
+    <data name="MoveElementLast" xml:space="preserve">
+        <value>Déplacer à la fin</value>
+    </data>
 </root>

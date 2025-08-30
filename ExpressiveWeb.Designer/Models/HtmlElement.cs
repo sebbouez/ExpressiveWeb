@@ -1,4 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿// *********************************************************
+// 
+// ExpressiveWeb.Designer HtmlElement.cs
+// Copyright (c) Sébastien Bouez. All rights reserved.
+// THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+// THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// 
+// *********************************************************
+
 using ExpressiveWeb.Core.Kit;
 
 namespace ExpressiveWeb.Designer.Models;
@@ -29,9 +42,16 @@ public sealed class HtmlElement
         set;
     } = string.Empty;
 
-    public bool HasCssClass(string cssClass)
+    public int Index
     {
-        return CssClass.Trim().Split(' ').Contains(cssClass, StringComparer.Ordinal);
+        get;
+        set;
+    }
+
+    public int ParentChildrenCount
+    {
+        get;
+        internal set;
     }
 
     public List<HtmlElementAttribute> Attributes
@@ -39,10 +59,15 @@ public sealed class HtmlElement
         get;
         set;
     } = new();
-    
+
     internal HtmlElementInfo DataContext
     {
         get;
         set;
+    }
+
+    public bool HasCssClass(string cssClass)
+    {
+        return CssClass.Trim().Split(' ').Contains(cssClass, StringComparer.Ordinal);
     }
 }

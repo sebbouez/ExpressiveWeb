@@ -13,6 +13,7 @@
 // *********************************************************
 
 using ExpressiveWeb.Core.ApplicationCommands;
+using ExpressiveWeb.Localization;
 using ExpressiveWeb.Modules.EditorView;
 
 namespace ExpressiveWeb.Commands;
@@ -31,13 +32,21 @@ public class UndoCommand : ApplicationCommandBase
     {
         get
         {
-            return Localization.Resources.Undo;
+            return Resources.Undo;
+        }
+    }
+
+    public override string IconResourceName
+    {
+        get
+        {
+            return "IconUndo";
         }
     }
 
     public override void Execute()
     {
-        if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType<EditorView>(out EditorView? editorWorkspace))
+        if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
         {
             editorWorkspace.Undo();
         }

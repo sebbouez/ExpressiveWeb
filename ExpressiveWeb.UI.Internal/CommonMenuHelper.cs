@@ -18,11 +18,49 @@ using Avalonia.Input;
 using Avalonia.Media;
 using ExpressiveWeb.Core.ApplicationCommands;
 using ExpressiveWeb.Presentation.Buttons;
+using ExpressiveWeb.Presentation.Menus;
 
 namespace ExpressiveWeb.Presentation;
 
 internal static class CommonMenuHelper
 {
+    internal static object BuildToolbarItem(Control owner, ApplicationCommandBase cmd)
+    {
+        if (cmd.CommandName.Equals("-"))
+        {
+            EWToolbarSeparator sep = new();
+            return sep;
+        }
+        
+        EWToolbarButton result = new()
+        {
+            DataContext = cmd
+        };
+        
+        
+        result.Text = cmd.Title;
+
+        result.IconBrush = !string.IsNullOrEmpty(cmd.IconResourceName)
+            ? (Brush?) owner.FindResource(cmd.IconResourceName)
+            : Brushes.Transparent;
+
+        result.Bind(EWToolbarButton.IsEnabledProperty, new Binding(nameof(ApplicationCommandBase.IsEnabled)));
+        //result.Bind(EWButton.IsCheckedProperty, new Binding(nameof(ApplicationCommandBase.IsChecked)));
+        
+        result.Click += (_, _) =>
+        {
+            if (cmd.HasSubCommands)
+            {
+                return;
+            }
+
+            cmd.Execute();
+        };
+
+
+        return result;
+    }
+
     internal static object BuildMenuItem( Control owner, ApplicationCommandBase cmd, bool allowEnableStateAsVisibility = false)
     {
         if (cmd.CommandName.Equals("-"))
@@ -51,9 +89,9 @@ internal static class CommonMenuHelper
 
         result.Header = cmd.Title;
 
-        result.IconBrush = !string.IsNullOrEmpty(cmd.IconResourceName)
-            ? (Brush?) owner.FindResource(cmd.IconResourceName)
-            : Brushes.Transparent;
+        // result.IconBrush = !string.IsNullOrEmpty(cmd.IconResourceName)
+        //     ? (Brush?) owner.FindResource(cmd.IconResourceName)
+        //     : Brushes.Transparent;
 
         result.Bind(EWMenuItem.IsEnabledProperty, new Binding(nameof(ApplicationCommandBase.IsEnabled)));
         result.Bind(MenuItem.IsCheckedProperty, new Binding(nameof(ApplicationCommandBase.IsChecked)));

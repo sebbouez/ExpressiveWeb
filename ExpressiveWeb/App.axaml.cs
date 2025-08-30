@@ -27,6 +27,7 @@ using ExpressiveWeb.Core.Log;
 using ExpressiveWeb.Core.Network;
 using ExpressiveWeb.Core.Packages;
 using ExpressiveWeb.Core.Project;
+using ExpressiveWeb.Core.Settings;
 using ExpressiveWeb.Core.Style;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -39,6 +40,7 @@ public class App : Application
         ServiceCollection services = new();
         services.AddSingleton<IEnvironmentService, AppEnvironmentService>();
         services.AddSingleton<IApplicationCommandsService, ApplicationCommandsService>();
+        services.AddSingleton<ISettingsService, SettingsService>();
         services.AddSingleton<ILogService, LogService>();
         services.AddSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
         services.AddSingleton<INetworkService, NetworkService>();
@@ -55,6 +57,30 @@ public class App : Application
     private void DesktopOnExit(object? sender, ControlledApplicationLifetimeExitEventArgs e)
     {
         AppServices.ServicesFactory?.GetService<ILogService>()?.Dispose();
+    }
+
+    private UserSettings GetDefaultUserSettings()
+    {
+        UserSettings settings = new();
+        settings.UISettings.MainToolbarLeftCommands.Add("OpenProject");
+        settings.UISettings.MainToolbarLeftCommands.Add("-");
+        settings.UISettings.MainToolbarLeftCommands.Add("NewPage");
+        settings.UISettings.MainToolbarLeftCommands.Add("-");
+        settings.UISettings.MainToolbarLeftCommands.Add("Undo");
+        settings.UISettings.MainToolbarLeftCommands.Add("Redo");
+
+
+        settings.UISettings.MainToolbarCenterCommands.Add("DeleteElement");
+        settings.UISettings.MainToolbarCenterCommands.Add("DuplicateElement");
+        settings.UISettings.MainToolbarCenterCommands.Add("-");
+        settings.UISettings.MainToolbarCenterCommands.Add("SelectParentElement");
+        settings.UISettings.MainToolbarCenterCommands.Add("-");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementFirst");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementBefore");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementAfter");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementLast");
+
+        return settings;
     }
 
     public override void Initialize()
@@ -74,6 +100,8 @@ public class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        AppServices.ServicesFactory!.GetService<ISettingsService>()?.LoadSettings(GetDefaultUserSettings());
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             MainWindow mainWindow = new();

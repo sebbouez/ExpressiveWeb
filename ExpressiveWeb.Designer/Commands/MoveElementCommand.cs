@@ -36,19 +36,19 @@ internal class MoveElementCommand : IBusinessCommand
     internal HtmlElementInfo SourceElementInfo
     {
         get;
-        set;
+        init;
     }
 
     internal HtmlElementInfo TargetElementInfo
     {
         get;
-        set;
+        init;
     }
 
-    internal int RelativePosition
+    internal MoveRelativePosition RelativePosition
     {
         get;
-        set;
+        init;
     }
 
     public void Do()
@@ -57,16 +57,18 @@ internal class MoveElementCommand : IBusinessCommand
         _oldParentInternalId = SourceElementInfo.ParentInternalId;
 
         string script;
-        
+
         int newIndex = HtmlEditor.GetElementIndex(SourceElementInfo, TargetElementInfo, RelativePosition);
-        
+
         switch (RelativePosition)
         {
-            case -1:
-            case 1:
+            case MoveRelativePosition.First:
+            case MoveRelativePosition.Last:
+            case MoveRelativePosition.Before:
+            case MoveRelativePosition.After:
                 script = string.Format(CultureInfo.InvariantCulture, ".domHelper.moveElement('{0}','{1}', {2})", SourceElementInfo.InternalId, TargetElementInfo.ParentInternalId, newIndex);
                 break;
-            case 0:
+            case MoveRelativePosition.Inside:
                 script = string.Format(CultureInfo.InvariantCulture, ".domHelper.moveElement('{0}','{1}', {2})", SourceElementInfo.InternalId, TargetElementInfo.InternalId, 99);
                 break;
             default:

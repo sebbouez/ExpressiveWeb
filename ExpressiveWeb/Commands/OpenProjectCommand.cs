@@ -41,6 +41,14 @@ public class OpenProjectCommand : ApplicationCommandBase
         }
     }
 
+    public override string IconResourceName
+    {
+        get
+        {
+            return "IconOpen";
+        }
+    }
+
     public override string Title
     {
         get

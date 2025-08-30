@@ -32,7 +32,7 @@ public class EWMainMenuBar : TemplatedControl
 
     public void AppendMenu(string header, List<ApplicationCommandBase> commands)
     {
-        MenuItem menuItem = new()
+        EWMenuItem menuItem = new()
         {
             Header = header
         };
@@ -41,7 +41,7 @@ public class EWMainMenuBar : TemplatedControl
         {
             object childMenuItem = null;
 
-            if (menuItem is MenuItem cx1)
+            if (menuItem is EWMenuItem cx1)
             {
                 childMenuItem = CommonMenuHelper.BuildMenuItem(this, cmd);
                 cx1.Items.Add(childMenuItem);
@@ -56,7 +56,7 @@ public class EWMainMenuBar : TemplatedControl
 
             // Si la commande a des sous-commandes lors de la création, on register aussi les sous-commandes
             // attention, avec ce principe on ne gère qu'un seul niveau d'enfants
-            if (cmd.HasSubCommands && childMenuItem is MenuItem menuItem2)
+            if (cmd.HasSubCommands && childMenuItem is EWMenuItem menuItem2)
             {
                 foreach (ApplicationCommandBase subCommand in cmd.SubCommands!)
                 {
@@ -68,7 +68,7 @@ public class EWMainMenuBar : TemplatedControl
                     {
                         foreach (ApplicationCommandBase subCommand2 in subCommand.SubCommands)
                         {
-                            ((MenuItem) menuItem3).Items.Add(CommonMenuHelper.BuildMenuItem(this, subCommand2));
+                            ((EWMenuItem) menuItem3).Items.Add(CommonMenuHelper.BuildMenuItem(this, subCommand2));
                             _applicationCommandsService.RegisterCommand(subCommand2);
                         }
                     }

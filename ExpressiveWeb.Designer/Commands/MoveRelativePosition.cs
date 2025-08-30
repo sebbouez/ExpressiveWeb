@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.Core IApplicationCommandsService.cs
+// ExpressiveWeb.Designer MoveElementCommand.MoveRelativePosition.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,20 +12,15 @@
 // 
 // *********************************************************
 
-namespace ExpressiveWeb.Core.ApplicationCommands;
+using System.Linq;
 
-public interface IApplicationCommandsService
+namespace ExpressiveWeb.Designer.Commands;
+
+public enum MoveRelativePosition
 {
-    List<ApplicationCommandBase> RegisteredCommands
-    {
-        get;
-    }
-
-    T? GetCommand<T>() where T : ApplicationCommandBase;
-
-    void RegisterCommands(List<ApplicationCommandBase> commands);
-
-    void SetCommandState<T>(bool state);
-    void RegisterCommand(ApplicationCommandBase command);
-    ApplicationCommandBase? GetCommand(string commandName);
+    First = -1000,
+    Before = -1,
+    After = 1,
+    Inside = 0,
+    Last = 1000
 }

@@ -35,6 +35,14 @@ public class DuplicateElementCommand : ApplicationCommandBase
         }
     }
 
+    public override string IconResourceName
+    {
+        get
+        {
+            return "IconDuplicate";
+        }
+    }
+
     public override void Execute()
     {
         if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))

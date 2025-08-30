@@ -6,6 +6,7 @@
     <ControlTheme TargetType="menus:FilterableContextMenu"
                   x:Key="{x:Type menus:FilterableContextMenu}">
 
+        <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Focusable" Value="True" />
         <Setter Property="TextBlock.FontSize" Value="{DynamicResource FontSizeNormal}" />

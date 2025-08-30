@@ -61,7 +61,7 @@ public class InternalJavascriptBridge
             HtmlElementInfo elementCopy = sourceElementInfo.Freeze();
             elementCopy.InternalId = Guid.NewGuid().ToString();
             elementCopy.ParentInternalId = targetElementInfo.ParentInternalId;
-            elementCopy.Index = HtmlEditor.GetElementIndex(sourceElementInfo, targetElementInfo, relativePosition);
+            elementCopy.Index = HtmlEditor.GetElementIndex(sourceElementInfo, targetElementInfo, (MoveRelativePosition)relativePosition);
             elementCopy.InnerHtml = _editor.HTMLFilterService.FilterWith<RemoveEditorInternalIdFilter>(elementCopy.InnerHtml);
 
             InsertElementCommand cmd = new(_editor)
@@ -76,7 +76,7 @@ public class InternalJavascriptBridge
             {
                 SourceElementInfo = sourceElementInfo,
                 TargetElementInfo = targetElementInfo,
-                RelativePosition = relativePosition
+                RelativePosition = (MoveRelativePosition) relativePosition
             };
             _editor.CommandManager.ExecuteCommand(cmd);
         }

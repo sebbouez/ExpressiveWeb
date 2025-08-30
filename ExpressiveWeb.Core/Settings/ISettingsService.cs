@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.Core IApplicationCommandsService.cs
+// ExpressiveWeb.Core ISettingsService.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,20 +12,22 @@
 // 
 // *********************************************************
 
-namespace ExpressiveWeb.Core.ApplicationCommands;
+namespace ExpressiveWeb.Core.Settings;
 
-public interface IApplicationCommandsService
+public interface ISettingsService
 {
-    List<ApplicationCommandBase> RegisteredCommands
+    UserSettings UserSettings
     {
         get;
     }
 
-    T? GetCommand<T>() where T : ApplicationCommandBase;
+    /// <summary>
+    /// Loads user settings from a predefined location. If no saved settings exist,
+    /// initializes the settings with provided default values or creates a new instance.
+    /// </summary>
+    /// <param name="defaultSettings">Optional parameter to provide a set of default settings
+    /// if no saved settings are found.</param>
+    void LoadSettings(UserSettings? defaultSettings = null);
 
-    void RegisterCommands(List<ApplicationCommandBase> commands);
-
-    void SetCommandState<T>(bool state);
-    void RegisterCommand(ApplicationCommandBase command);
-    ApplicationCommandBase? GetCommand(string commandName);
+    void SaveSettings();
 }

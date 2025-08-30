@@ -35,6 +35,14 @@ public class SelectParentElementCommand : ApplicationCommandBase
         }
     }
 
+    public override string IconResourceName
+    {
+        get
+        {
+            return "IconSelectParent";
+        }
+    }
+
     public override void Execute()
     {
         if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))

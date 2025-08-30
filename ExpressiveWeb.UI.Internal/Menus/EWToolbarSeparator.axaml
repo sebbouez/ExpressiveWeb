@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus">
+
+
+    <ControlTheme TargetType="menus:EWToolbarSeparator"
+                  x:Key="{x:Type menus:EWToolbarSeparator}">
+        <Setter Property="Template">
+            <ControlTemplate>
+
+                <Border Width="1"
+                        Margin="0,2,4,2"
+                        Background="{DynamicResource ThemeBorderBrush}"
+                        Opacity="0.5" />
+
+            </ControlTemplate>
+        </Setter>
+
+    </ControlTheme>
+
+</ResourceDictionary>

@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:menus="clr-namespace:ExpressiveWeb.Presentation.Menus">
+
+
+    <ControlTheme TargetType="menus:EWToolbarButton"
+                  x:Key="{x:Type menus:EWToolbarButton}">
+        <Setter Property="Template">
+            <ControlTemplate>
+
+                <Border x:Name="PART_Container" Margin="0,0,4,0"
+                        Background="{DynamicResource ThemeControlBrush}"
+                        CornerRadius="4" Width="30" Height="30"
+                        ToolTip.Tip="{TemplateBinding Text}"
+                        ToolTip.ShowOnDisabled="True"
+                        ToolTip.Placement="Bottom"
+                        ToolTip.VerticalOffset="4">
+
+                    <Rectangle Fill="{TemplateBinding IconBrush}"
+                               Width="18" Height="18"
+                               x:Name="PART_Icon"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center" />
+                </Border>
+
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#PART_Container">
+            <Setter Property="Background" Value="{DynamicResource ThemeHoverBrush}" />
+        </Style>
+        <Style Selector="^:pressed  /template/ Border#PART_Container">
+            <Setter Property="Background" Value="{DynamicResource ThemeActiveBrush}" />
+        </Style>
+        <Style Selector="^:hasIcon  /template/ Rectangle#PART_Icon">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

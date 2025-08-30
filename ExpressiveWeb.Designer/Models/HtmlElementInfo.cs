@@ -74,6 +74,13 @@ internal sealed class HtmlElementInfo
     {
         get;
         set;
+    } 
+    
+    [JsonPropertyName("parentChildrenCount")]
+    public int ParentChildrenCount
+    {
+        get;
+        set;
     }
 
     [JsonPropertyName("attributes")]

@@ -130,6 +130,11 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(element.KitComponent != null);
             _applicationCommandsService.SetCommandState<DeleteElementCommand>(element.KitComponent != null);
             _applicationCommandsService.SetCommandState<SelectParentElementCommand>(element.KitComponent != null);
+
+            _applicationCommandsService.SetCommandState<MoveElementFirstCommand>(element.Index > 0);
+            _applicationCommandsService.SetCommandState<MoveElementBeforeCommand>(element.Index > 0);
+            _applicationCommandsService.SetCommandState<MoveElementAfterCommand>(element.Index < element.ParentChildrenCount-1);
+            _applicationCommandsService.SetCommandState<MoveElementLastCommand>(element.Index < element.ParentChildrenCount-1);
         }
         else
         {
@@ -137,6 +142,11 @@ public partial class EditorView : UserControl, IWorkspaceTabViewBase
             _applicationCommandsService.SetCommandState<DuplicateElementCommand>(false);
             _applicationCommandsService.SetCommandState<DeleteElementCommand>(false);
             _applicationCommandsService.SetCommandState<SelectParentElementCommand>(false);
+            
+            _applicationCommandsService.SetCommandState<MoveElementFirstCommand>(false);
+            _applicationCommandsService.SetCommandState<MoveElementBeforeCommand>(false);
+            _applicationCommandsService.SetCommandState<MoveElementAfterCommand>(false);
+            _applicationCommandsService.SetCommandState<MoveElementLastCommand>(false);
         }
 
         Dispatcher.UIThread.Invoke(() =>

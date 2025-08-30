@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb DuplicateElementCommand.cs
+// ExpressiveWeb MoveElementAfterCommand.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -13,17 +13,19 @@
 // *********************************************************
 
 using ExpressiveWeb.Core.ApplicationCommands;
+using ExpressiveWeb.Designer.Commands;
+using ExpressiveWeb.Localization;
 using ExpressiveWeb.Modules.EditorView;
 
 namespace ExpressiveWeb.Commands;
 
-public class DeleteElementCommand : ApplicationCommandBase
+public class MoveElementAfterCommand : ApplicationCommandBase
 {
     public override string CommandName
     {
         get
         {
-            return "DeleteElement";
+            return "MoveElementAfter";
         }
     }
 
@@ -31,7 +33,7 @@ public class DeleteElementCommand : ApplicationCommandBase
     {
         get
         {
-            return Localization.Resources.DeleteElement;
+            return Resources.MoveElementAfter;
         }
     }
 
@@ -39,7 +41,7 @@ public class DeleteElementCommand : ApplicationCommandBase
     {
         get
         {
-            return "IconDelete";
+            return "IconMoveAfter";
         }
     }
 
@@ -47,7 +49,7 @@ public class DeleteElementCommand : ApplicationCommandBase
     {
         if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
         {
-            editorWorkspace!.Editor.DeleteElement();
+            editorWorkspace!.Editor.ChangeElementIndex(MoveRelativePosition.After);
         }
     }
 }

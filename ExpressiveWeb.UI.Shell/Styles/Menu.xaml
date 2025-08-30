@@ -5,6 +5,8 @@
 
     <ControlTheme x:Key="SimpleTopLevelMenuItem"
                   TargetType="MenuItem">
+        <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Padding" Value="8 5" />
         <Setter Property="BorderThickness" Value="1" />

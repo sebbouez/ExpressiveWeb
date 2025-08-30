@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb DuplicateElementCommand.cs
+// ExpressiveWeb.UI.Internal EWToolbarButton.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,42 +12,41 @@
 // 
 // *********************************************************
 
-using ExpressiveWeb.Core.ApplicationCommands;
-using ExpressiveWeb.Modules.EditorView;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
 
-namespace ExpressiveWeb.Commands;
+namespace ExpressiveWeb.Presentation.Menus;
 
-public class DeleteElementCommand : ApplicationCommandBase
+public class EWToolbarButton : Button
 {
-    public override string CommandName
+    public static readonly StyledProperty<string> TextProperty =
+        AvaloniaProperty.Register<EWToolbarButton, string>(nameof(Text), string.Empty);
+
+    public static readonly StyledProperty<IBrush?> IconBrushProperty =
+        AvaloniaProperty.Register<EWToolbarButton, IBrush?>(nameof(IconBrush));
+
+    public IBrush? IconBrush
     {
         get
         {
-            return "DeleteElement";
+            return GetValue(IconBrushProperty);
+        }
+        set
+        {
+            SetValue(IconBrushProperty, value);
         }
     }
 
-    public override string Title
+    public string Text
     {
         get
         {
-            return Localization.Resources.DeleteElement;
+            return GetValue(TextProperty);
         }
-    }
-
-    public override string IconResourceName
-    {
-        get
+        set
         {
-            return "IconDelete";
-        }
-    }
-
-    public override void Execute()
-    {
-        if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
-        {
-            editorWorkspace!.Editor.DeleteElement();
+            SetValue(TextProperty, value);
         }
     }
 }

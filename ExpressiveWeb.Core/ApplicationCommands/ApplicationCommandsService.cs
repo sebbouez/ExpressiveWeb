@@ -68,6 +68,11 @@ public class ApplicationCommandsService : IApplicationCommandsService
         return null;
     }
 
+    public ApplicationCommandBase? GetCommand(string commandName)
+    {
+        return _commandsCache.FirstOrDefault(x => x.CommandName.Equals(commandName, StringComparison.InvariantCulture));
+    }
+    
     public void SetCommandState<T>(bool state)
     {
         if (typeof(T).IsInterface)
