@@ -22,6 +22,7 @@ class ElementInfo {
     innerText: string;
     parentInternalId: string;
     index: number;
+    parentChildrenCount: number;
     attributes: ElementAttributeInfo[];
 }
 
@@ -118,10 +119,10 @@ class EditorComponent {
         return (foundElement as HTMLElement);
     }
 
-    public selectParentElement(internalId:string): void {
+    public selectParentElement(internalId: string): void {
 
         this.unSelectAll();
-        
+
         const element = this.getElementByInternalId(internalId);
         const foundElement: HTMLElement = element.parentElement.closest($EDITOR_KIT_DATA.KNOWN_COMPONENTS_SELECTOR);
 
@@ -205,6 +206,7 @@ class EditorComponent {
         result.internalId = this.getElementInternalId(element);
         result.parentInternalId = this.getElementInternalId(element.parentElement);
         result.index = Array.from(element.parentElement.children).indexOf(element);
+        result.parentChildrenCount = element.parentElement.children.length;
 
         const component = this.getComponentInfoFromHtmlElement(element);
 
@@ -283,7 +285,7 @@ class EditorComponent {
     }
 
     public unSelectAll(): void {
-        this.adornerManager.unSelectAll(); 
+        this.adornerManager.unSelectAll();
         $HOST_INTEROP.raiseSelectedElementChanged("{}");
     }
 

@@ -12,7 +12,6 @@
 // 
 // *********************************************************
 
-using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using Avalonia;
@@ -47,20 +46,16 @@ public class HtmlEditor : Border, IDisposable
 {
     internal const string JS_GLOBAL_EDITOR_OBJ_NAME = "window.$___CURRENT_EDITOR";
     private readonly AvaloniaCefBrowser _browser = new();
+    private readonly ContextMenu _componentActionsMenu = new();
     private readonly ILogService _logService;
     private readonly INetworkService _networkService;
-    private TextEditor? _textEditor;
-    private ContextMenu _componentActionsMenu = new();
 
-    private List<IEditorQuickAction> _supportedQuickActions = new()
+    private readonly List<IEditorQuickAction> _supportedQuickActions = new()
     {
         new AppendChildQuickAction()
     };
 
-    internal HtmlFilterService HTMLFilterService
-    {
-        get;
-    } = new();
+    private TextEditor? _textEditor;
 
     public HtmlEditor(Kit kit)
     {
@@ -80,6 +75,11 @@ public class HtmlEditor : Border, IDisposable
 
         Initialized += OnInitialized;
     }
+
+    internal HtmlFilterService HTMLFilterService
+    {
+        get;
+    } = new();
 
     public event EventHandler<object?>? SelectionChanged;
     public event EventHandler<string>? InfoRaised;
@@ -144,6 +144,22 @@ public class HtmlEditor : Border, IDisposable
         }
     }
 
+    private void BuildComponentActionsMenu(KitComponent component)
+    {
+        _componentActionsMenu.Items.Clear();
+
+        foreach (QuickAction quickAction in component.ActionList)
+        {
+            MenuItem menuItem = new()
+            {
+                Header = quickAction.Header,
+                Tag = quickAction
+            };
+            menuItem.Click += MenuItemOnClick;
+            _componentActionsMenu.Items.Add(menuItem);
+        }
+    }
+
     private HtmlElement ConvertElementInfoToHtmlElement(HtmlElementInfo info)
     {
         HtmlElement el = new()
@@ -152,6 +168,8 @@ public class HtmlEditor : Border, IDisposable
             CssClass = info.CssClass,
             TagName = info.TagName,
             InternalId = info.InternalId,
+            Index = info.Index,
+            ParentChildrenCount = info.ParentChildrenCount,
             KitComponent = Kit.Components.FirstOrDefault(x => x.UID.Equals(info.ComponentUid))
         };
 
@@ -176,6 +194,46 @@ public class HtmlEditor : Border, IDisposable
 
         await _textEditor.Commit();
         _textEditor = null;
+    }
+
+    internal static int GetElementIndex(HtmlElementInfo sourceElementInfo, HtmlElementInfo targetElementInfo, MoveRelativePosition relativePosition)
+    {
+        int newIndex = 0;
+
+        switch (relativePosition)
+        {
+            case MoveRelativePosition.Before:
+
+                newIndex = targetElementInfo.Index;
+                if (sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
+                    && sourceElementInfo == targetElementInfo || sourceElementInfo.Index < targetElementInfo.Index)
+                {
+                    newIndex--;
+                }
+
+                break;
+            case MoveRelativePosition.After:
+
+                newIndex = targetElementInfo.Index + 1;
+                if (sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
+                    && sourceElementInfo.Index < targetElementInfo.Index)
+                {
+                    newIndex--;
+                }
+
+                break;
+            case MoveRelativePosition.Inside:
+                newIndex = 99;
+                break;
+            case MoveRelativePosition.First:
+                newIndex = 0;
+                break;
+            case MoveRelativePosition.Last:
+                newIndex = 99;
+                break;
+        }
+
+        return newIndex;
     }
 
     internal async Task<HtmlElementInfo?> GetElementInfoFromInternalId(string internalId)
@@ -239,25 +297,6 @@ public class HtmlEditor : Border, IDisposable
         _browser.ExecuteJavaScript(script);
     }
 
-    internal void InvokeContextMenuOpening(double x, double y)
-    {
-        Dispatcher.UIThread.Post(() =>
-        {
-            if (ContextMenu != null)
-            {
-                ContextMenu.CustomPopupPlacementCallback = p =>
-                {
-                    p.Anchor = PopupAnchor.TopLeft;
-                    p.Gravity = PopupGravity.BottomRight;
-                    p.Offset = new Point(x + 5, y + 5);
-                };
-
-                ContextMenu.Placement = PlacementMode.Custom;
-                ContextMenu.Open(this);
-            }
-        });
-    }
-
     internal void InvokeComponentActionMenuClose()
     {
         if (_componentActionsMenu.IsOpen)
@@ -291,44 +330,23 @@ public class HtmlEditor : Border, IDisposable
         });
     }
 
-    private void BuildComponentActionsMenu(KitComponent component)
+    internal void InvokeContextMenuOpening(double x, double y)
     {
-        _componentActionsMenu.Items.Clear();
-
-        foreach (QuickAction quickAction in component.ActionList)
+        Dispatcher.UIThread.Post(() =>
         {
-            MenuItem menuItem = new MenuItem
+            if (ContextMenu != null)
             {
-                Header = quickAction.Header,
-                Tag = quickAction
-            };
-            menuItem.Click += MenuItemOnClick;
-            _componentActionsMenu.Items.Add(menuItem);
-        }
-    }
+                ContextMenu.CustomPopupPlacementCallback = p =>
+                {
+                    p.Anchor = PopupAnchor.TopLeft;
+                    p.Gravity = PopupGravity.BottomRight;
+                    p.Offset = new Point(x + 5, y + 5);
+                };
 
-    private void MenuItemOnClick(object? sender, RoutedEventArgs e)
-    {
-        if (sender == null || sender is not MenuItem menuItem || menuItem.Tag is not QuickAction quickAction)
-        {
-            return;
-        }
-
-        IEditorQuickAction? foundAction = _supportedQuickActions.FirstOrDefault(x => x.CommandName.Equals(quickAction.Command, StringComparison.Ordinal));
-        try
-        {
-            foundAction?.Execute(this, quickAction.Params);
-        }
-        catch (InvalidQuickActionParameterException ex)
-        {
-            _ = EWMessageBox.Show(new MessageBoxData()
-            {
-                Owner = (Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow,
-                Buttons = MessageBoxButtons.Ok,
-                Message = string.Concat("Invalid action parameter: ", ex.Message),
-                Title = "Error"
-            });
-        }
+                ContextMenu.Placement = PlacementMode.Custom;
+                ContextMenu.Open(this);
+            }
+        });
     }
 
     internal void InvokeSelectionChanged(HtmlElementInfo? info)
@@ -357,6 +375,30 @@ public class HtmlEditor : Border, IDisposable
         //_browser.Address = "https://test/intercept.html";
     }
 
+    private void MenuItemOnClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender == null || sender is not MenuItem menuItem || menuItem.Tag is not QuickAction quickAction)
+        {
+            return;
+        }
+
+        IEditorQuickAction? foundAction = _supportedQuickActions.FirstOrDefault(x => x.CommandName.Equals(quickAction.Command, StringComparison.Ordinal));
+        try
+        {
+            foundAction?.Execute(this, quickAction.Params);
+        }
+        catch (InvalidQuickActionParameterException ex)
+        {
+            _ = EWMessageBox.Show(new MessageBoxData
+            {
+                Owner = (Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow,
+                Buttons = MessageBoxButtons.Ok,
+                Message = string.Concat("Invalid action parameter: ", ex.Message),
+                Title = "Error"
+            });
+        }
+    }
+
     private void OnInitialized(object? sender, EventArgs e)
     {
         _browser.RegisterJavascriptObject(new InternalJavascriptBridge(this, _logService), "$HOST_INTEROP");
@@ -383,11 +425,6 @@ public class HtmlEditor : Border, IDisposable
         InternalExecuteBrowserScript(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.reloadExternalResources()"));
     }
 
-    public void SelectElement(HtmlElement? element)
-    {
-        SelectElementByInternalId(element?.InternalId);
-    }
-
     public void SelectElementByInternalId(string? internalId)
     {
         if (string.IsNullOrEmpty(internalId))
@@ -398,50 +435,6 @@ public class HtmlEditor : Border, IDisposable
         {
             InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".selectElementByInternalId"), internalId);
         }
-    }
-
-    internal static int GetElementIndex(HtmlElementInfo sourceElementInfo, HtmlElementInfo targetElementInfo, int relativePosition)
-    {
-        int newIndex = 0;
-
-        switch (relativePosition)
-        {
-            case -1:
-
-                newIndex = targetElementInfo.Index;
-                if (sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
-                    && sourceElementInfo.Index < targetElementInfo.Index)
-                {
-                    newIndex--;
-                }
-
-                break;
-            case 1:
-
-                newIndex = targetElementInfo.Index + 1;
-                if (sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
-                    && sourceElementInfo.Index < targetElementInfo.Index)
-                {
-                    newIndex--;
-                }
-
-                break;
-            case 0:
-                newIndex = 99;
-                break;
-        }
-
-        return newIndex;
-    }
-
-    /// <summary>
-    /// Unselect all elements in the editor.
-    /// </summary>
-    public void UnselectAll()
-    {
-        InternalExecuteBrowserScript(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".unSelectAll()"));
-        SelectedElement = null;
-        SelectionChanged?.Invoke(this, null);
     }
 
     public void ShowDevTools()
@@ -455,22 +448,47 @@ public class HtmlEditor : Border, IDisposable
         _textEditor.Start();
     }
 
+    /// <summary>
+    ///     Unselect all elements in the editor.
+    /// </summary>
+    public void UnselectAll()
+    {
+        InternalExecuteBrowserScript(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".unSelectAll()"));
+        SelectedElement = null;
+        SelectionChanged?.Invoke(this, null);
+    }
+
     internal void UpdateDecorators()
     {
         InternalExecuteBrowserScript(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".adornerManager.updateDecorators();"));
     }
 
-    public void SelectParentElement()
-    {
-        if (SelectedElement == null)
-        {
-            return;
-        }
-
-        InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".selectParentElement"), SelectedElement.InternalId);
-    }
-
     #region Public Commands
+
+    /// <summary>
+    /// Changes the index of the currently selected HTML element based on the specified relative position.
+    /// </summary>
+    /// <param name="relativePosition">
+    /// The position relative in the current parent element.
+    /// </param>
+    public void ChangeElementIndex(MoveRelativePosition relativePosition)
+    {
+        HtmlElementInfo info = SelectedElement.DataContext.Freeze();
+
+        MoveElementCommand cmd = new(this)
+        {
+            SourceElementInfo = info,
+            TargetElementInfo = info,
+            RelativePosition = relativePosition
+        };
+        CommandManager.ExecuteCommand(cmd);
+    } 
+    
+
+    public void SelectElement(HtmlElement? element)
+    {
+        SelectElementByInternalId(element?.InternalId);
+    }
 
     public void SetElementCssClass(string newCssClass)
     {
@@ -483,12 +501,22 @@ public class HtmlEditor : Border, IDisposable
             return;
         }
 
-        EditElementCssClassCommand cmd = new EditElementCssClassCommand(this)
+        EditElementCssClassCommand cmd = new(this)
         {
             InitialElementInfo = info,
             NewCssClass = newCssClass
         };
         CommandManager.ExecuteCommand(cmd);
+    }
+
+    public void SelectParentElement()
+    {
+        if (SelectedElement == null)
+        {
+            return;
+        }
+
+        InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".selectParentElement"), SelectedElement.InternalId);
     }
 
     public void DuplicateElement()
@@ -568,7 +596,7 @@ public class HtmlEditor : Border, IDisposable
             return;
         }
 
-        ChangeElementTagNameCommand cmd = new ChangeElementTagNameCommand(this)
+        ChangeElementTagNameCommand cmd = new(this)
         {
             SourceElementInfo = info,
             NewTagName = newTagName

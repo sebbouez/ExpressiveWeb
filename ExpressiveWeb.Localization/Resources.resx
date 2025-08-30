@@ -204,4 +204,16 @@
     <data name="StatusPressCtrlToDropCopy" xml:space="preserve">
         <value>Press **ctrl key** during drag and drop to duplicate.</value>
     </data>
+    <data name="MoveElementFirst" xml:space="preserve">
+        <value>Move at first position</value>
+    </data>
+    <data name="MoveElementLast" xml:space="preserve">
+        <value>Move at last position</value>
+    </data>
+    <data name="MoveElementAfter" xml:space="preserve">
+        <value>Move one step after</value>
+    </data>
+    <data name="MoveElementBefore" xml:space="preserve">
+        <value>Move one step before</value>
+    </data>
 </root>

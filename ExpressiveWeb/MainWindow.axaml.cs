@@ -176,7 +176,12 @@ public partial class MainWindow : Window
             new DevToolsCommand(),
 #endif
             new SeparatorCommand(),
-            new SelectParentElementCommand()
+            new SelectParentElementCommand(),
+            new SeparatorCommand(),
+            new MoveElementFirstCommand(),
+            new MoveElementBeforeCommand(),
+            new MoveElementAfterCommand(),
+            new MoveElementLastCommand(),
         };
 
         return result;

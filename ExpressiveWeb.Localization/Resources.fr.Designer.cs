@@ -402,6 +402,42 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Déplacer un cran après.
+        /// </summary>
+        public static string MoveElementAfter {
+            get {
+                return ResourceManager.GetString("MoveElementAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Déplacer un cran avant.
+        /// </summary>
+        public static string MoveElementBefore {
+            get {
+                return ResourceManager.GetString("MoveElementBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Déplacer au début.
+        /// </summary>
+        public static string MoveElementFirst {
+            get {
+                return ResourceManager.GetString("MoveElementFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Déplacer à la fin.
+        /// </summary>
+        public static string MoveElementLast {
+            get {
+                return ResourceManager.GetString("MoveElementLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dossier....
         /// </summary>
         public static string NewFolder {

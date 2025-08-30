@@ -72,8 +72,13 @@ public class App : Application
 
         settings.UISettings.MainToolbarCenterCommands.Add("DeleteElement");
         settings.UISettings.MainToolbarCenterCommands.Add("DuplicateElement");
-        settings.UISettings.MainToolbarLeftCommands.Add("-");
+        settings.UISettings.MainToolbarCenterCommands.Add("-");
         settings.UISettings.MainToolbarCenterCommands.Add("SelectParentElement");
+        settings.UISettings.MainToolbarCenterCommands.Add("-");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementFirst");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementBefore");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementAfter");
+        settings.UISettings.MainToolbarCenterCommands.Add("MoveElementLast");
 
         return settings;
     }
