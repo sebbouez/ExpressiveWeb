@@ -12,49 +12,48 @@
 
 
             <Color x:Key="ThemeBackgroundColor">#ffefefef</Color>
-            <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{StaticResource ThemeBackgroundColor}" />
+            <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{DynamicResource ThemeBackgroundColor}" />
 
             <Color x:Key="ThemeWorkspaceColor">#ffe8e8e8</Color>
-            <SolidColorBrush x:Key="ThemeWorkspaceBrush" Color="{StaticResource ThemeWorkspaceColor}" />
+            <SolidColorBrush x:Key="ThemeWorkspaceBrush" Color="{DynamicResource ThemeWorkspaceColor}" />
 
             <Color x:Key="ThemeWorkspace2Color">#D6D6D6</Color>
-            <SolidColorBrush x:Key="ThemeWorkspace2Brush" Color="{StaticResource ThemeWorkspace2Color}" />
+            <SolidColorBrush x:Key="ThemeWorkspace2Brush" Color="{DynamicResource ThemeWorkspace2Color}" />
 
             <Color x:Key="ThemeForegroundColor">#FF212121</Color>
-            <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{StaticResource ThemeForegroundColor}" />
+            <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{DynamicResource ThemeForegroundColor}" />
 
             <Color x:Key="ThemeWorkspaceMidColor">#FFc6c6c6</Color>
-            <SolidColorBrush x:Key="ThemeWorkspaceColorMidBrush" Color="{StaticResource ThemeWorkspaceMidColor}" />
+            <SolidColorBrush x:Key="ThemeWorkspaceColorMidBrush" Color="{DynamicResource ThemeWorkspaceMidColor}" />
 
             <Color x:Key="ThemeMenuHoverColor">#2880E6</Color>
-            <SolidColorBrush x:Key="ThemeMenuHoverBrush" Color="{StaticResource ThemeMenuHoverColor}" />
+            <SolidColorBrush x:Key="ThemeMenuHoverBrush" Color="{DynamicResource ThemeMenuHoverColor}" />
 
 
             <Color x:Key="ThemeHoverColor">#22444444</Color>
-            <SolidColorBrush x:Key="ThemeHoverBrush" Color="{StaticResource ThemeHoverColor}" />
+            <SolidColorBrush x:Key="ThemeHoverBrush" Color="{DynamicResource ThemeHoverColor}" />
 
             <Color x:Key="ThemeActiveColor">#33444444</Color>
-            <SolidColorBrush x:Key="ThemeActiveBrush" Color="{StaticResource ThemeActiveColor}" />
+            <SolidColorBrush x:Key="ThemeActiveBrush" Color="{DynamicResource ThemeActiveColor}" />
 
             <Color x:Key="ThemeIconStrokeColor">#757575</Color>
-            <SolidColorBrush x:Key="ThemeIconStrokeBrush" Color="{StaticResource ThemeIconStrokeColor}" />
+            <SolidColorBrush x:Key="ThemeIconStrokeBrush" Color="{DynamicResource ThemeIconStrokeColor}" />
 
             <Color x:Key="ThemeIconFillColor1">#dddddd</Color>
-            <SolidColorBrush x:Key="ThemeIconFillColor1Brush" Color="{StaticResource ThemeIconFillColor1}" />
+            <SolidColorBrush x:Key="ThemeIconFillColor1Brush" Color="{DynamicResource ThemeIconFillColor1}" />
 
             <Color x:Key="ThemeIconFillColor2">#323332</Color>
-            <SolidColorBrush x:Key="ThemeIconFillColor2Brush" Color="{StaticResource ThemeIconFillColor2}" />
+            <SolidColorBrush x:Key="ThemeIconFillColor2Brush" Color="{DynamicResource ThemeIconFillColor2}" />
 
 
             <Color x:Key="ThemeBorderColor">#aaaaaa</Color>
-            <SolidColorBrush x:Key="ThemeBorderBrush" Color="{StaticResource ThemeBorderColor}" />
+            <SolidColorBrush x:Key="ThemeBorderBrush" Color="{DynamicResource ThemeBorderColor}" />
 
             <Color x:Key="ThemeControlColor">#ffffff</Color>
-            <SolidColorBrush x:Key="ThemeControlBrush" Color="{StaticResource ThemeControlColor}" />
+            <SolidColorBrush x:Key="ThemeControlBrush" Color="{DynamicResource ThemeControlColor}" />
 
 
-            <Color x:Key="ThemeHoverBackgroundColor">#FF119EDA</Color>
-
+            <!-- TODO Remove unused colors -->
 
             <Color x:Key="ThemeBorderLowColor">#FFAAAAAA</Color>
             <Color x:Key="ThemeBorderMidColor">#FF888888</Color>
@@ -104,14 +103,48 @@
         <ResourceDictionary x:Key="Dark">
 
             <Color x:Key="ThemeBackgroundColor">#FF282828</Color>
-            <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{StaticResource ThemeBackgroundColor}" />
-            <Color x:Key="ThemeWorkspaceColor">#ffe6e6e6</Color>
-            <SolidColorBrush x:Key="ThemeWorkspaceBrush" Color="{StaticResource ThemeWorkspaceColor}" />
+            <SolidColorBrush x:Key="ThemeBackgroundBrush" Color="{DynamicResource ThemeBackgroundColor}" />
+            <Color x:Key="ThemeWorkspaceColor">#ff18181A</Color>
+            <SolidColorBrush x:Key="ThemeWorkspaceBrush" Color="{DynamicResource ThemeWorkspaceColor}" />
+
+            
+            <Color x:Key="ThemeWorkspace2Color">#323130</Color>
+            <SolidColorBrush x:Key="ThemeWorkspace2Brush" Color="{DynamicResource ThemeWorkspace2Color}" />
+
+            <Color x:Key="ThemeForegroundColor">#FFDEDEDE</Color>
+            <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{DynamicResource ThemeForegroundColor}" />
+
+            <Color x:Key="ThemeWorkspaceMidColor">#1E1E1E</Color>
+            <SolidColorBrush x:Key="ThemeWorkspaceColorMidBrush" Color="{DynamicResource ThemeWorkspaceMidColor}" />
+
+            <Color x:Key="ThemeMenuHoverColor">#2880E6</Color>
+            <SolidColorBrush x:Key="ThemeMenuHoverBrush" Color="{DynamicResource ThemeMenuHoverColor}" />
 
 
-            <Color x:Key="ThemeHoverBackground">#FFFEFEFE</Color>
+            <Color x:Key="ThemeHoverColor">#33ffffff</Color>
+            <SolidColorBrush x:Key="ThemeHoverBrush" Color="{DynamicResource ThemeHoverColor}" />
+
+            <Color x:Key="ThemeActiveColor">#66ffffff</Color>
+            <SolidColorBrush x:Key="ThemeActiveBrush" Color="{DynamicResource ThemeActiveColor}" />
+
+            <Color x:Key="ThemeIconStrokeColor">#dddddd</Color>
+            <SolidColorBrush x:Key="ThemeIconStrokeBrush" Color="{DynamicResource ThemeIconStrokeColor}" />
+
+            <Color x:Key="ThemeIconFillColor1">#444444</Color>
+            <SolidColorBrush x:Key="ThemeIconFillColor1Brush" Color="{DynamicResource ThemeIconFillColor1}" />
+
+            <Color x:Key="ThemeIconFillColor2">#cccccc</Color>
+            <SolidColorBrush x:Key="ThemeIconFillColor2Brush" Color="{DynamicResource ThemeIconFillColor2}" />
 
 
+            <Color x:Key="ThemeBorderColor">#595959</Color>
+            <SolidColorBrush x:Key="ThemeBorderBrush" Color="{DynamicResource ThemeBorderColor}" />
+
+            <Color x:Key="ThemeControlColor">#323130</Color>
+            <SolidColorBrush x:Key="ThemeControlBrush" Color="{DynamicResource ThemeControlColor}" />
+
+            <!-- TODO Remove unused colors -->
+            
             <Color x:Key="ThemeBorderLowColor">#FF505050</Color>
             <Color x:Key="ThemeBorderMidColor">#FF808080</Color>
             <Color x:Key="ThemeBorderHighColor">#FFA0A0A0</Color>
@@ -123,7 +156,7 @@
             <Color x:Key="ThemeControlHighlightLowColor">#FFA8A8A8</Color>
             <Color x:Key="ThemeControlHighlightMidColor">#FF828282</Color>
             <Color x:Key="ThemeControlHighlightHighColor">#FF505050</Color>
-            <Color x:Key="ThemeForegroundColor">#FFDEDEDE</Color>
+          
             <Color x:Key="HighlightColor">#FF119EDA</Color>
             <Color x:Key="HighlightColor2">#FF096085</Color>
             <Color x:Key="HyperlinkVisitedColor">#FFC58AF9</Color>
@@ -143,7 +176,6 @@
                              Color="{StaticResource ThemeControlHighlightMidColor}" />
             <SolidColorBrush x:Key="ThemeControlHighlightHighBrush"
                              Color="{StaticResource ThemeControlHighlightHighColor}" />
-            <SolidColorBrush x:Key="ThemeForegroundBrush" Color="{StaticResource ThemeForegroundColor}" />
             <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource HighlightColor}" />
             <SolidColorBrush x:Key="HighlightBrush2" Color="{StaticResource HighlightColor2}" />
             <SolidColorBrush x:Key="HyperlinkVisitedBrush" Color="{StaticResource HyperlinkVisitedColor}" />
@@ -154,7 +186,7 @@
 
             <!-- BaseResources for CaptionButtons.xaml -->
             <SolidColorBrush x:Key="CaptionButtonForeground" Color="White" />
-            <SolidColorBrush x:Key="CaptionButtonBackground" Color="#ffe5e5e5" />
+            <SolidColorBrush x:Key="CaptionButtonBackground" Color="#FF686868" />
             <SolidColorBrush x:Key="CaptionButtonBorderBrush" Color="#ffcacaca" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
@@ -162,21 +194,25 @@
     <FontFamily x:Key="ContentControlThemeFontFamily">fonts:Inter#Inter, $Default</FontFamily>
 
 
-    <Color x:Key="ThemeAccentColor">#2880E6</Color>
-    <Color x:Key="ThemeAccentColor2">#99119EDA</Color>
+    <Color x:Key="ThemeAccentColor">#1EC8B0</Color>
+    <SolidColorBrush x:Key="ThemeAccentBrush" Color="{StaticResource ThemeAccentColor}" />
+    
+    
+    <Color x:Key="ThemeAccentColor2">#991EC8B0</Color>
+    <SolidColorBrush x:Key="ThemeAccentBrush2" Color="{StaticResource ThemeAccentColor2}" />
 
-    <Color x:Key="ThemeAccentColor3">#66119EDA</Color>
-    <Color x:Key="ThemeAccentColor4">#33119EDA</Color>
+    <Color x:Key="ThemeAccentColor3">#661EC8B0</Color>
+    <SolidColorBrush x:Key="ThemeAccentBrush3" Color="{StaticResource ThemeAccentColor3}" />
+    
+    <Color x:Key="ThemeAccentColor4">#331EC8B0</Color>
+    <SolidColorBrush x:Key="ThemeAccentBrush4" Color="{StaticResource ThemeAccentColor4}" />
+    
     <Color x:Key="ThemeForegroundLowColor">#FF808080</Color>
     <Color x:Key="HighlightForegroundColor">#FFFFFFFF</Color>
     <Color x:Key="ErrorColor">#FFFF0000</Color>
     <Color x:Key="ErrorLowColor">#10FF0000</Color>
     <SolidColorBrush x:Key="HighlightForegroundBrush" Color="{StaticResource HighlightForegroundColor}" />
     <SolidColorBrush x:Key="ThemeForegroundLowBrush" Color="{StaticResource ThemeForegroundLowColor}" />
-    <SolidColorBrush x:Key="ThemeAccentBrush2" Color="{StaticResource ThemeAccentColor2}" />
-    <SolidColorBrush x:Key="ThemeAccentBrush3" Color="{StaticResource ThemeAccentColor3}" />
-    <SolidColorBrush x:Key="ThemeAccentBrush4" Color="{StaticResource ThemeAccentColor4}" />
-    <SolidColorBrush x:Key="ThemeAccentBrush" Color="{StaticResource ThemeAccentColor}" />
     <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}" />
     <SolidColorBrush x:Key="ErrorLowBrush" Color="{StaticResource ErrorLowColor}" />
     <SolidColorBrush

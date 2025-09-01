@@ -34,13 +34,14 @@ public class ApplicationWorkspace : ContentControl
         Right
     }
 
+    private readonly DockControl _dockControl;
+
     private readonly DocumentDock _documentDock;
     private readonly Factory _factory;
 
     // Références aux ToolDocks principaux
     private readonly ToolDock? _leftToolDock;
     private readonly ToolDock? _rightToolDock;
-    private readonly DockControl _dockControl;
 
     private WorkspaceView? _lastView;
 
@@ -116,28 +117,6 @@ public class ApplicationWorkspace : ContentControl
         Content = _dockControl;
     }
 
-    private void FactoryOnDockableClosing(object? sender, DockableClosingEventArgs e)
-    {
-        // Little dirty trick to close the view
-        // the method is synchronous and opening a dialog to ask for saving is asynchronous
-        // so we need to first cancel the event, manage the asynchronous call and then re-enable the event
-        // it would be better if the DockableClosing event was asynchronous
-
-        if (e.Dockable is WorkspaceView view)
-        {
-            e.Cancel = !view.QueryCanClose(() =>
-            {
-                Dispatcher.UIThread.Post(() =>
-                {
-                    _factory.CloseDockable(view);
-                });
-            });
-            return;
-        }
-
-        e.Cancel = true;
-    }
-
     public event EventHandler<WorkspaceView>? ActiveViewChanged;
 
     /// <summary>
@@ -170,6 +149,68 @@ public class ApplicationWorkspace : ContentControl
         dock.ActiveDockable = tool;
 
         _dockControl.UpdateLayout();
+    }
+
+    public void CloseAllDocuments()
+    {
+        if (_documentDock.ActiveDockable != null)
+        {
+            _factory.CloseAllDockables(_documentDock.ActiveDockable);
+        }
+    }
+
+    public void CloseCurrenDocument()
+    {
+        if (_documentDock.ActiveDockable != null)
+        {
+            _factory.CloseDockable(_documentDock.ActiveDockable);
+        }
+    }
+
+    public void CloseDocumentsLeft()
+    {
+        if (_documentDock.ActiveDockable != null)
+        {
+            _factory.CloseLeftDockables(_documentDock.ActiveDockable);
+        }
+    }
+
+    public void CloseDocumentsRight()
+    {
+        if (_documentDock.ActiveDockable != null)
+        {
+            _factory.CloseRightDockables(_documentDock.ActiveDockable);
+        }
+    }
+
+    public void CloseOtherDocuments()
+    {
+        if (_documentDock.ActiveDockable != null)
+        {
+            _factory.CloseOtherDockables(_documentDock.ActiveDockable);
+        }
+    }
+
+    private void FactoryOnDockableClosing(object? sender, DockableClosingEventArgs e)
+    {
+        // Little dirty trick to close the view
+        // the method is synchronous and opening a dialog to ask for saving is asynchronous
+        // so we need to first cancel the event, manage the asynchronous call and then re-enable the event
+        // it would be better if the DockableClosing event was asynchronous
+
+        if (e.Dockable is WorkspaceView view)
+        {
+            e.Cancel = !view.QueryCanClose(() =>
+            {
+                Dispatcher.UIThread.Post(() =>
+                {
+                    _factory.CloseDockable(view);
+                });
+            });
+            return;
+        }
+
+        e.Cancel = true;
     }
 
     private void FactoryOnFocusedDockableChanged(object? sender, FocusedDockableChangedEventArgs e)

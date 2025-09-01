@@ -159,6 +159,69 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close all tabs.
+        /// </summary>
+        public static string DockCloseAll {
+            get {
+                return ResourceManager.GetString("DockCloseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close tabs to the left.
+        /// </summary>
+        public static string DockCloseOnLeft {
+            get {
+                return ResourceManager.GetString("DockCloseOnLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close tabs to the right.
+        /// </summary>
+        public static string DockCloseOnRight {
+            get {
+                return ResourceManager.GetString("DockCloseOnRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close other tabs.
+        /// </summary>
+        public static string DockCloseOthers {
+            get {
+                return ResourceManager.GetString("DockCloseOthers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string DockCloseTab {
+            get {
+                return ResourceManager.GetString("DockCloseTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New horizontal tabs group.
+        /// </summary>
+        public static string DockNewHorizontalGroup {
+            get {
+                return ResourceManager.GetString("DockNewHorizontalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New vertical tabs group.
+        /// </summary>
+        public static string DockNewVerticalGroup {
+            get {
+                return ResourceManager.GetString("DockNewVerticalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string DuplicateElement {
@@ -641,6 +704,51 @@ namespace ExpressiveWeb.Localization {
         public static string VariableDurationActionMessage {
             get {
                 return ResourceManager.GetString("VariableDurationActionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close all documents.
+        /// </summary>
+        public static string ViewCloseAllDocuments {
+            get {
+                return ResourceManager.GetString("ViewCloseAllDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close current document.
+        /// </summary>
+        public static string ViewCloseCurrentDocument {
+            get {
+                return ResourceManager.GetString("ViewCloseCurrentDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close documents to the left.
+        /// </summary>
+        public static string ViewCloseDocumentsLeft {
+            get {
+                return ResourceManager.GetString("ViewCloseDocumentsLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close documents to the right.
+        /// </summary>
+        public static string ViewCloseDocumentsRight {
+            get {
+                return ResourceManager.GetString("ViewCloseDocumentsRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close other documents.
+        /// </summary>
+        public static string ViewCloseOtherDocuments {
+            get {
+                return ResourceManager.GetString("ViewCloseOtherDocuments", resourceCulture);
             }
         }
         

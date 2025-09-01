@@ -46,6 +46,7 @@
     <Setter Property="Focusable" Value="False" />
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="ZIndex" Value="1" />
+    <Setter Property="Height" Value="32" />
 
     <Setter Property="Template">
       <ControlTemplate>
@@ -157,10 +158,7 @@
       <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
       <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
     </Style>
-
-    <Style Selector="^:not(:create):empty">
-      <Setter Property="IsVisible" Value="False" />
-    </Style>
+    
 
     <Style Selector="^/template/ Border#PART_BorderFill">
       <Setter Property="Background" Value="Transparent" />

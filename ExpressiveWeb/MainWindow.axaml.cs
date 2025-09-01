@@ -69,8 +69,8 @@ public partial class MainWindow : Window
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuEdit, GetEditCommands());
         // MainMenuBarControl.AppendMenu(Localization.Resources.MenuInsert, GetFileCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuFormat, GetFormatCommands());
-        // MainMenuBarControl.AppendMenu(Localization.Resources.MenuView, GetFileCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuCommunity, GetCommunityCommands());
+        MainMenuBarControl.AppendMenu(Localization.Resources.MenuView, GetViewCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuHelp, GetHelpCommands());
     }
 
@@ -80,10 +80,10 @@ public partial class MainWindow : Window
 
         List<ApplicationCommandBase?> leftCommands = settingsService.UserSettings.UISettings.MainToolbarLeftCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
         MainToolbarControl.SetLeftToolbarItems(leftCommands);
-        
+
         List<ApplicationCommandBase?> centerCommands = settingsService.UserSettings.UISettings.MainToolbarCenterCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
         MainToolbarControl.SetCenterToolbarItems(centerCommands);
-        
+
         List<ApplicationCommandBase?> rightCommands = settingsService.UserSettings.UISettings.MainToolbarRightCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
         MainToolbarControl.SetRightToolbarItems(rightCommands);
     }
@@ -181,7 +181,7 @@ public partial class MainWindow : Window
             new MoveElementFirstCommand(),
             new MoveElementBeforeCommand(),
             new MoveElementAfterCommand(),
-            new MoveElementLastCommand(),
+            new MoveElementLastCommand()
         };
 
         return result;
@@ -223,6 +223,21 @@ public partial class MainWindow : Window
         List<ApplicationCommandBase> result = new()
         {
             new AboutApplicationCommand()
+        };
+
+        return result;
+    }
+
+    private List<ApplicationCommandBase> GetViewCommands()
+    {
+        List<ApplicationCommandBase> result = new()
+        {
+            new CloseCurrentDocumentCommand(),
+            new CloseOtherDocumentsCommand(),
+            new CloseAllDocumentsCommand(),
+            new SeparatorCommand(),
+            new CloseDocumentsLeftCommand(),
+            new CloseDocumentsRightCommand()
         };
 
         return result;
@@ -276,7 +291,7 @@ public partial class MainWindow : Window
         ApplicationSharedEvents.ProjectLoaded += ApplicationSharedEventsOnProjectLoaded;
 
         NetworkServiceOnModeChanged(networkService, EventArgs.Empty);
-        
+
         BuildMenuBar();
         BuildToolBar();
 

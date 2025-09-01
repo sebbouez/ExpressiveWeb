@@ -23,6 +23,7 @@
     <Setter Property="Focusable" Value="False" />
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="ZIndex" Value="1" />
+    <Setter Property="Height" Value="32" />
 
     <Setter Property="Template">
       <ControlTemplate>
