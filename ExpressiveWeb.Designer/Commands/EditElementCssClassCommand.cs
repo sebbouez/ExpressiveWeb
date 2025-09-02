@@ -45,6 +45,7 @@ internal class EditElementCssClassCommand : IBusinessCommand
         _oldCssClass = InitialElementInfo.CssClass;
         _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementCssClass"), InitialElementInfo.InternalId, NewCssClass);
         _editor.UpdateDecorators();
+        _editor.SelectElementByInternalId(InitialElementInfo.InternalId);
     }
 
     public void Undo()
