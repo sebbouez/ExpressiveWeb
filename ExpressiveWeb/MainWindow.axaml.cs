@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Interactivity;
@@ -44,15 +45,21 @@ namespace ExpressiveWeb;
 
 public partial class MainWindow : Window
 {
-    private IApplicationCommandsService _applicationCommandsService;
+    private readonly IApplicationCommandsService _applicationCommandsService;
     private HtmlEditor _ed;
 
     private ExplorerControl _explorerControl;
+    private readonly ISettingsService _settingsService;
 
     public MainWindow()
     {
         InitializeComponent();
+
+        _settingsService = AppServices.ServicesFactory!.GetService<ISettingsService>()!;
+        _applicationCommandsService = AppServices.ServicesFactory!.GetService<IApplicationCommandsService>()!;
+
         Loaded += OnLoaded;
+        Closing += OnClosing;
     }
 
     private void ApplicationSharedEventsOnProjectLoaded(object? sender, Project e)
@@ -69,8 +76,8 @@ public partial class MainWindow : Window
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuEdit, GetEditCommands());
         // MainMenuBarControl.AppendMenu(Localization.Resources.MenuInsert, GetFileCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuFormat, GetFormatCommands());
-        // MainMenuBarControl.AppendMenu(Localization.Resources.MenuView, GetFileCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuCommunity, GetCommunityCommands());
+        MainMenuBarControl.AppendMenu(Localization.Resources.MenuView, GetViewCommands());
         MainMenuBarControl.AppendMenu(Localization.Resources.MenuHelp, GetHelpCommands());
     }
 
@@ -80,10 +87,10 @@ public partial class MainWindow : Window
 
         List<ApplicationCommandBase?> leftCommands = settingsService.UserSettings.UISettings.MainToolbarLeftCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
         MainToolbarControl.SetLeftToolbarItems(leftCommands);
-        
+
         List<ApplicationCommandBase?> centerCommands = settingsService.UserSettings.UISettings.MainToolbarCenterCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
         MainToolbarControl.SetCenterToolbarItems(centerCommands);
-        
+
         List<ApplicationCommandBase?> rightCommands = settingsService.UserSettings.UISettings.MainToolbarRightCommands.Select(commandName => _applicationCommandsService.GetCommand(commandName)).ToList();
         MainToolbarControl.SetRightToolbarItems(rightCommands);
     }
@@ -181,7 +188,7 @@ public partial class MainWindow : Window
             new MoveElementFirstCommand(),
             new MoveElementBeforeCommand(),
             new MoveElementAfterCommand(),
-            new MoveElementLastCommand(),
+            new MoveElementLastCommand()
         };
 
         return result;
@@ -228,6 +235,21 @@ public partial class MainWindow : Window
         return result;
     }
 
+    private List<ApplicationCommandBase> GetViewCommands()
+    {
+        List<ApplicationCommandBase> result = new()
+        {
+            new CloseCurrentDocumentCommand(),
+            new CloseOtherDocumentsCommand(),
+            new CloseAllDocumentsCommand(),
+            new SeparatorCommand(),
+            new CloseDocumentsLeftCommand(),
+            new CloseDocumentsRightCommand()
+        };
+
+        return result;
+    }
+
     private void InitToolsPanel()
     {
         // TODO panels should be dynamically created with configuration
@@ -264,19 +286,32 @@ public partial class MainWindow : Window
         }
     }
 
+    private void OnClosing(object? sender, WindowClosingEventArgs e)
+    {
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth = (int) Width;
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight = (int) Height;
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowX = Position.X;
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowY = Position.Y;
+        _settingsService.UserSettings.UISettings.MainWindowSize.IsMaximized = WindowState == WindowState.Maximized;
+
+        _settingsService.SaveSettings();
+    }
+
     private void OnLoaded(object? sender, RoutedEventArgs e)
     {
         INetworkService networkService = AppServices.ServicesFactory!.GetService<INetworkService>()!;
         AppServices.ServicesFactory!.GetService<IBackgroundTaskManager>()!.StatusChanged += OnStatusChanged;
         TasksManagerIndicator.BindService(AppServices.ServicesFactory!.GetService<IBackgroundTaskManager>()!);
 
-        _applicationCommandsService = AppServices.ServicesFactory!.GetService<IApplicationCommandsService>()!;
 
         networkService.ModeChanged += NetworkServiceOnModeChanged;
         ApplicationSharedEvents.ProjectLoaded += ApplicationSharedEventsOnProjectLoaded;
 
         NetworkServiceOnModeChanged(networkService, EventArgs.Empty);
-        
+
+
+        RestoreWindowSize();
+
         BuildMenuBar();
         BuildToolBar();
 
@@ -285,6 +320,32 @@ public partial class MainWindow : Window
 
     private void OnStatusChanged(object? sender, BackgroundTaskManagerStatus e)
     {
+    }
+
+    private void RestoreWindowSize()
+    {
+        if (_settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth > 100
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight > 100
+            && !_settingsService.UserSettings.UISettings.MainWindowSize.IsMaximized)
+        {
+            Width = _settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth!.Value;
+            Height = _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight!.Value;
+        }
+
+        if (_settingsService.UserSettings.UISettings.MainWindowSize.WindowX != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowY != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowX > 0
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowY > 0
+            && !_settingsService.UserSettings.UISettings.MainWindowSize.IsMaximized)
+        {
+            int x = _settingsService.UserSettings.UISettings.MainWindowSize.WindowX!.Value;
+            int y = _settingsService.UserSettings.UISettings.MainWindowSize.WindowY!.Value;
+            x = x < 0 ? 0 : x;
+            y = y < 0 ? 0 : y;
+            Position = new PixelPoint(x, y);
+        }
     }
 
     public void SetStatusMessage(string message)

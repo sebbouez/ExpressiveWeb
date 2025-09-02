@@ -10,21 +10,43 @@
 
                 <Border x:Name="PART_Container" Margin="0,0,4,0"
                         Background="{DynamicResource ThemeControlBrush}"
-                        CornerRadius="4" Width="30" Height="30"
+                        CornerRadius="4"
+                        Width="30"
+                        Height="30"
                         ToolTip.Tip="{TemplateBinding Text}"
                         ToolTip.ShowOnDisabled="True"
                         ToolTip.Placement="Bottom"
                         ToolTip.VerticalOffset="4">
 
-                    <Rectangle Fill="{TemplateBinding IconBrush}"
-                               Width="18" Height="18"
-                               x:Name="PART_Icon"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center" />
-                </Border>
+                    <StackPanel x:Name="PART_Stack" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Rectangle Fill="{TemplateBinding IconBrush}"
+                                   Width="18" Height="18"
+                                   x:Name="PART_Icon"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
 
+                        <TextBlock x:Name="PART_Text" IsVisible="False" Margin="6,0,0,0"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Text="{TemplateBinding Text}" />
+
+                    </StackPanel>
+                </Border>
             </ControlTemplate>
         </Setter>
+
+        <Style Selector="^:isOverFlown /template/ TextBlock#PART_Text">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:isOverFlown /template/ Border#PART_Container">
+            <Setter Property="Width" Value="NaN" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+        <Style Selector="^:isOverFlown /template/ StackPanel#PART_Stack">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="6,0" />
+        </Style>
 
         <Style Selector="^:pointerover /template/ Border#PART_Container">
             <Setter Property="Background" Value="{DynamicResource ThemeHoverBrush}" />
@@ -32,12 +54,11 @@
         <Style Selector="^:pressed  /template/ Border#PART_Container">
             <Setter Property="Background" Value="{DynamicResource ThemeActiveBrush}" />
         </Style>
-        <Style Selector="^:hasIcon  /template/ Rectangle#PART_Icon">
-            <Setter Property="IsVisible" Value="True" />
-        </Style>
+
         <Style Selector="^:disabled">
             <Setter Property="Opacity" Value="0.5" />
         </Style>
+
     </ControlTheme>
 
 </ResourceDictionary>

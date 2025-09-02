@@ -17,7 +17,7 @@
         <Setter Property="Height" Value="14" />
         <Setter Property="Background" Value="Transparent" />
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource DockApplicationAccentBrushHigh}" />
+            <Setter Property="Background" Value="{DynamicResource ThemeHoverBrush}" />
         </Style>
     </ControlTheme>
 
@@ -84,6 +84,7 @@
                                 <Setter Property="Margin" Value="2" />
                                 <Setter Property="Stretch" Value="Uniform" />
                                 <Setter Property="UseLayoutRounding" Value="False" />
+                                <Setter Property="Fill" Value="{DynamicResource Fore}" />
                                 <Setter Property="Data" Value="{DynamicResource DockIconCloseGeometry}" />
                             </Style>
                             <Style Selector="Path.selected">

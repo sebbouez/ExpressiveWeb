@@ -216,4 +216,49 @@
     <data name="MoveElementLast" xml:space="preserve">
         <value>Déplacer à la fin</value>
     </data>
+    <data name="DockCloseOthers" xml:space="preserve">
+        <value>Fermer les autres onglets</value>
+    </data>
+    <data name="DockCloseTab" xml:space="preserve">
+        <value>Fermer</value>
+    </data>
+    <data name="DockCloseAll" xml:space="preserve">
+        <value>Fermer tous les onglets</value>
+    </data>
+    <data name="DockCloseOnLeft" xml:space="preserve">
+        <value>Fermer les onglets à gauche</value>
+    </data>
+    <data name="DockCloseOnRight" xml:space="preserve">
+        <value>Fermer les onglets à droite</value>
+    </data>
+    <data name="DockNewHorizontalGroup" xml:space="preserve">
+        <value>Nouveau groupe d'onglets horizontal</value>
+    </data>
+    <data name="DockNewVerticalGroup" xml:space="preserve">
+        <value>Nouveau groupe d'onglets vertical</value>
+    </data>
+    <data name="ViewCloseCurrentDocument" xml:space="preserve">
+        <value>Fermer le document actif</value>
+    </data>
+    <data name="ViewCloseAllDocuments" xml:space="preserve">
+        <value>Fermer tous les documents</value>
+    </data>
+    <data name="ViewCloseOtherDocuments" xml:space="preserve">
+        <value>Fermer les autres documents</value>
+    </data>
+    <data name="ViewCloseDocumentsLeft" xml:space="preserve">
+        <value>Fermer les documents à gauche</value>
+    </data>
+    <data name="ViewCloseDocumentsRight" xml:space="preserve">
+        <value>Fermer les documents à droite</value>
+    </data>
+    <data name="DockFloat" xml:space="preserve">
+        <value>Détacher le panneau</value>
+    </data>
+    <data name="DockFloatAll" xml:space="preserve">
+        <value>Détacher le groupe de panneaux</value>
+    </data>
+    <data name="DockAutoHide" xml:space="preserve">
+        <value>Masquer automatiquement</value>
+    </data>
 </root>

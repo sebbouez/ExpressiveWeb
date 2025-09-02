@@ -216,4 +216,49 @@
     <data name="MoveElementBefore" xml:space="preserve">
         <value>Move one step before</value>
     </data>
+    <data name="DockCloseTab" xml:space="preserve">
+        <value>Close</value>
+    </data>
+    <data name="DockCloseOthers" xml:space="preserve">
+        <value>Close other tabs</value>
+    </data>
+    <data name="DockCloseAll" xml:space="preserve">
+        <value>Close all tabs</value>
+    </data>
+    <data name="DockCloseOnLeft" xml:space="preserve">
+        <value>Close tabs to the left</value>
+    </data>
+    <data name="DockCloseOnRight" xml:space="preserve">
+        <value>Close tabs to the right</value>
+    </data>
+    <data name="DockNewHorizontalGroup" xml:space="preserve">
+        <value>New horizontal tabs group</value>
+    </data>
+    <data name="DockNewVerticalGroup" xml:space="preserve">
+        <value>New vertical tabs group</value>
+    </data>
+    <data name="ViewCloseCurrentDocument" xml:space="preserve">
+        <value>Close current document</value>
+    </data>
+    <data name="ViewCloseAllDocuments" xml:space="preserve">
+        <value>Close all documents</value>
+    </data>
+    <data name="ViewCloseOtherDocuments" xml:space="preserve">
+        <value>Close other documents</value>
+    </data>
+    <data name="ViewCloseDocumentsLeft" xml:space="preserve">
+        <value>Close documents to the left</value>
+    </data>
+    <data name="ViewCloseDocumentsRight" xml:space="preserve">
+        <value>Close documents to the right</value>
+    </data>
+    <data name="DockFloat" xml:space="preserve">
+        <value>Detach panel</value>
+    </data>
+    <data name="DockFloatAll" xml:space="preserve">
+        <value>Detach panels group</value>
+    </data>
+    <data name="DockAutoHide" xml:space="preserve">
+        <value>Auto hide</value>
+    </data>
 </root>

@@ -112,10 +112,20 @@ public class EWToolbar : TemplatedControl
             if (usedWidth < maxWidth)
             {
                 _mainItemsControl.Items.Add(control);
+
+                if (control is EWToolbarButton tb)
+                {
+                    tb.IsInOverflow = false;
+                }
             }
             else
             {
                 _overflowItemsControl.Items.Add(control);
+
+                if (control is EWToolbarButton tb)
+                {
+                    tb.IsInOverflow = true;
+                }
             }
         }
 

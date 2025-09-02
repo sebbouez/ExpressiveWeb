@@ -57,7 +57,6 @@ internal static class CommonMenuHelper
             cmd.Execute();
         };
 
-
         return result;
     }
 

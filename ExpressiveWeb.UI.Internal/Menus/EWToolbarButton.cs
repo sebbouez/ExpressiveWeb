@@ -20,11 +20,19 @@ namespace ExpressiveWeb.Presentation.Menus;
 
 public class EWToolbarButton : Button
 {
+    public static readonly StyledProperty<IBrush?> IconBrushProperty =
+        AvaloniaProperty.Register<EWToolbarButton, IBrush?>(nameof(IconBrush));
+
+    public static readonly StyledProperty<bool> IsInOverflowProperty =
+        AvaloniaProperty.Register<EWToolbarButton, bool>(nameof(IsInOverflow));
+
     public static readonly StyledProperty<string> TextProperty =
         AvaloniaProperty.Register<EWToolbarButton, string>(nameof(Text), string.Empty);
 
-    public static readonly StyledProperty<IBrush?> IconBrushProperty =
-        AvaloniaProperty.Register<EWToolbarButton, IBrush?>(nameof(IconBrush));
+    public EWToolbarButton()
+    {
+        UpdatePseudoClasses();
+    }
 
     public IBrush? IconBrush
     {
@@ -38,6 +46,19 @@ public class EWToolbarButton : Button
         }
     }
 
+    public bool IsInOverflow
+    {
+        get
+        {
+            return GetValue(IsInOverflowProperty);
+        }
+        set
+        {
+            SetValue(IsInOverflowProperty, value);
+            UpdatePseudoClasses();
+        }
+    }
+
     public string Text
     {
         get
@@ -48,5 +69,10 @@ public class EWToolbarButton : Button
         {
             SetValue(TextProperty, value);
         }
+    }
+
+    private void UpdatePseudoClasses()
+    {
+        PseudoClasses.Set(":isOverFlown", IsInOverflow);
     }
 }

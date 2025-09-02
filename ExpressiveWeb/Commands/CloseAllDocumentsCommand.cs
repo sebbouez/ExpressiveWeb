@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.Core UISettings.cs
+// ExpressiveWeb CloseCurrentDocumentCommand.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,40 +12,35 @@
 // 
 // *********************************************************
 
-namespace ExpressiveWeb.Core.Settings;
+using ExpressiveWeb.Core.ApplicationCommands;
 
-public class UISettings
+namespace ExpressiveWeb.Commands;
+
+public class CloseAllDocumentsCommand : ApplicationCommandBase
 {
-    public List<string> MainToolbarLeftCommands
+    public CloseAllDocumentsCommand()
     {
-        get;
-        set;
-    } = new();
+        IsEnabled = true;       
+    }
 
-    public List<string> MainToolbarRightCommands
+    public override string CommandName
     {
-        get;
-        set;
-    }= new();
+        get
+        {
+            return "CloseAllDocuments";
+        }
+    }
 
-    public List<string> MainToolbarCenterCommands
+    public override string Title
     {
-        get;
-        set;
-    }= new();
-    
-    public WindowSizeOptions MainWindowSize
-    {
-        get;
-        set;
-    } = new();
-}
+        get
+        {
+            return Localization.Resources.ViewCloseAllDocuments;
+        }
+    }
 
-public class WindowSizeOptions
-{
-    public int? WindowWidth { get; set; }
-    public int? WindowHeight { get; set; }
-    public int? WindowX { get; set; }
-    public int? WindowY { get; set; }
-    public bool IsMaximized { get; set; }
+    public override void Execute()
+    {
+        AppState.Instance.AppWindow.ApplicationWorkspaceControl.CloseAllDocuments();
+    }
 }

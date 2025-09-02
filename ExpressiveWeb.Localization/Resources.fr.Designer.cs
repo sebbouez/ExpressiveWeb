@@ -159,6 +159,96 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Masquer automatiquement.
+        /// </summary>
+        public static string DockAutoHide {
+            get {
+                return ResourceManager.GetString("DockAutoHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer tous les onglets.
+        /// </summary>
+        public static string DockCloseAll {
+            get {
+                return ResourceManager.GetString("DockCloseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer les onglets à gauche.
+        /// </summary>
+        public static string DockCloseOnLeft {
+            get {
+                return ResourceManager.GetString("DockCloseOnLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer les onglets à droite.
+        /// </summary>
+        public static string DockCloseOnRight {
+            get {
+                return ResourceManager.GetString("DockCloseOnRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer les autres onglets.
+        /// </summary>
+        public static string DockCloseOthers {
+            get {
+                return ResourceManager.GetString("DockCloseOthers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer.
+        /// </summary>
+        public static string DockCloseTab {
+            get {
+                return ResourceManager.GetString("DockCloseTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Détacher le panneau.
+        /// </summary>
+        public static string DockFloat {
+            get {
+                return ResourceManager.GetString("DockFloat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Détacher le groupe de panneaux.
+        /// </summary>
+        public static string DockFloatAll {
+            get {
+                return ResourceManager.GetString("DockFloatAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nouveau groupe d&apos;onglets horizontal.
+        /// </summary>
+        public static string DockNewHorizontalGroup {
+            get {
+                return ResourceManager.GetString("DockNewHorizontalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nouveau groupe d&apos;onglets vertical.
+        /// </summary>
+        public static string DockNewVerticalGroup {
+            get {
+                return ResourceManager.GetString("DockNewVerticalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dupliquer.
         /// </summary>
         public static string DuplicateElement {
@@ -641,6 +731,51 @@ namespace ExpressiveWeb.Localization {
         public static string VariableDurationActionMessage {
             get {
                 return ResourceManager.GetString("VariableDurationActionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer tous les documents.
+        /// </summary>
+        public static string ViewCloseAllDocuments {
+            get {
+                return ResourceManager.GetString("ViewCloseAllDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer le document actif.
+        /// </summary>
+        public static string ViewCloseCurrentDocument {
+            get {
+                return ResourceManager.GetString("ViewCloseCurrentDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer les documents à gauche.
+        /// </summary>
+        public static string ViewCloseDocumentsLeft {
+            get {
+                return ResourceManager.GetString("ViewCloseDocumentsLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer les documents à droite.
+        /// </summary>
+        public static string ViewCloseDocumentsRight {
+            get {
+                return ResourceManager.GetString("ViewCloseDocumentsRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer les autres documents.
+        /// </summary>
+        public static string ViewCloseOtherDocuments {
+            get {
+                return ResourceManager.GetString("ViewCloseOtherDocuments", resourceCulture);
             }
         }
         
