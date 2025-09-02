@@ -9,24 +9,18 @@
         CanResize="False"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
-        ExtendClientAreaChromeHints="NoChrome"
-        ExtendClientAreaToDecorationsHint="True"
         KeyboardNavigation.TabNavigation="Cycle"
         KeyboardNavigation.IsTabStop="True"
-        Title="CreatePageDialog" Width="480" Height="350">
+        Title="{x:Static localization:Resources.TitleCreatePage}" Width="480" Height="350">
 
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-
-        <TextBlock Grid.Row="0" Classes="DialogTitle" Text="{x:Static localization:Resources.TitleCreatePage}"></TextBlock>
-
-        <StackPanel Grid.Row="1" Margin="0,8">
+        <StackPanel Grid.Row="0" Margin="0,8">
 
             <TextBlock Text="{x:Static localization:Resources.PageTemplate}" />
             <ComboBox x:Name="ComboTemplates"></ComboBox>
@@ -37,7 +31,7 @@
         </StackPanel>
 
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <buttons:EWButton Margin="8,0,0,0" x:Name="BtnOk" Click="BtnOk_OnClick" IsEnabled="False"
                               Text="{x:Static localization:Resources.ButtonOk}" />
 

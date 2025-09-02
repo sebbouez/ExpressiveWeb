@@ -159,6 +159,15 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Masquer automatiquement.
+        /// </summary>
+        public static string DockAutoHide {
+            get {
+                return ResourceManager.GetString("DockAutoHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fermer tous les onglets.
         /// </summary>
         public static string DockCloseAll {
@@ -200,6 +209,24 @@ namespace ExpressiveWeb.Localization {
         public static string DockCloseTab {
             get {
                 return ResourceManager.GetString("DockCloseTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Détacher le panneau.
+        /// </summary>
+        public static string DockFloat {
+            get {
+                return ResourceManager.GetString("DockFloat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Détacher le groupe de panneaux.
+        /// </summary>
+        public static string DockFloatAll {
+            get {
+                return ResourceManager.GetString("DockFloatAll", resourceCulture);
             }
         }
         

@@ -159,6 +159,15 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto hide.
+        /// </summary>
+        public static string DockAutoHide {
+            get {
+                return ResourceManager.GetString("DockAutoHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close all tabs.
         /// </summary>
         public static string DockCloseAll {
@@ -200,6 +209,24 @@ namespace ExpressiveWeb.Localization {
         public static string DockCloseTab {
             get {
                 return ResourceManager.GetString("DockCloseTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detach panel.
+        /// </summary>
+        public static string DockFloat {
+            get {
+                return ResourceManager.GetString("DockFloat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detach panels group.
+        /// </summary>
+        public static string DockFloatAll {
+            get {
+                return ResourceManager.GetString("DockFloatAll", resourceCulture);
             }
         }
         

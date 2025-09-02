@@ -252,4 +252,13 @@
     <data name="ViewCloseDocumentsRight" xml:space="preserve">
         <value>Close documents to the right</value>
     </data>
+    <data name="DockFloat" xml:space="preserve">
+        <value>Detach panel</value>
+    </data>
+    <data name="DockFloatAll" xml:space="preserve">
+        <value>Detach panels group</value>
+    </data>
+    <data name="DockAutoHide" xml:space="preserve">
+        <value>Auto hide</value>
+    </data>
 </root>
