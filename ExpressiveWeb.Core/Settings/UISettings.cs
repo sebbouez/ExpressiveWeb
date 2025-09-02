@@ -33,4 +33,19 @@ public class UISettings
         get;
         set;
     }= new();
+    
+    public WindowSizeOptions MainWindowSize
+    {
+        get;
+        set;
+    } = new();
+}
+
+public class WindowSizeOptions
+{
+    public int? WindowWidth { get; set; }
+    public int? WindowHeight { get; set; }
+    public int? WindowX { get; set; }
+    public int? WindowY { get; set; }
+    public bool IsMaximized { get; set; }
 }

@@ -50,12 +50,9 @@ public class SettingsService : ISettingsService
             UserSettings = JsonSerializer.Deserialize<UserSettings?>(json);
         }
 
-        if (UserSettings == null && defaultSettings != null)
+        if (UserSettings == null)
         {
-            UserSettings = defaultSettings;
-            return;
+            UserSettings = defaultSettings ?? new UserSettings();
         }
-
-        UserSettings = new UserSettings();
     }
 }

@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Interactivity;
@@ -44,15 +45,21 @@ namespace ExpressiveWeb;
 
 public partial class MainWindow : Window
 {
-    private IApplicationCommandsService _applicationCommandsService;
+    private readonly IApplicationCommandsService _applicationCommandsService;
     private HtmlEditor _ed;
 
     private ExplorerControl _explorerControl;
+    private readonly ISettingsService _settingsService;
 
     public MainWindow()
     {
         InitializeComponent();
+
+        _settingsService = AppServices.ServicesFactory!.GetService<ISettingsService>()!;
+        _applicationCommandsService = AppServices.ServicesFactory!.GetService<IApplicationCommandsService>()!;
+
         Loaded += OnLoaded;
+        Closing += OnClosing;
     }
 
     private void ApplicationSharedEventsOnProjectLoaded(object? sender, Project e)
@@ -279,18 +286,31 @@ public partial class MainWindow : Window
         }
     }
 
+    private void OnClosing(object? sender, WindowClosingEventArgs e)
+    {
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth = (int) Width;
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight = (int) Height;
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowX = Position.X;
+        _settingsService.UserSettings.UISettings.MainWindowSize.WindowY = Position.Y;
+        _settingsService.UserSettings.UISettings.MainWindowSize.IsMaximized = WindowState == WindowState.Maximized;
+
+        _settingsService.SaveSettings();
+    }
+
     private void OnLoaded(object? sender, RoutedEventArgs e)
     {
         INetworkService networkService = AppServices.ServicesFactory!.GetService<INetworkService>()!;
         AppServices.ServicesFactory!.GetService<IBackgroundTaskManager>()!.StatusChanged += OnStatusChanged;
         TasksManagerIndicator.BindService(AppServices.ServicesFactory!.GetService<IBackgroundTaskManager>()!);
 
-        _applicationCommandsService = AppServices.ServicesFactory!.GetService<IApplicationCommandsService>()!;
 
         networkService.ModeChanged += NetworkServiceOnModeChanged;
         ApplicationSharedEvents.ProjectLoaded += ApplicationSharedEventsOnProjectLoaded;
 
         NetworkServiceOnModeChanged(networkService, EventArgs.Empty);
+
+
+        RestoreWindowSize();
 
         BuildMenuBar();
         BuildToolBar();
@@ -300,6 +320,32 @@ public partial class MainWindow : Window
 
     private void OnStatusChanged(object? sender, BackgroundTaskManagerStatus e)
     {
+    }
+
+    private void RestoreWindowSize()
+    {
+        if (_settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth > 100
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight > 100
+            && !_settingsService.UserSettings.UISettings.MainWindowSize.IsMaximized)
+        {
+            Width = _settingsService.UserSettings.UISettings.MainWindowSize.WindowWidth!.Value;
+            Height = _settingsService.UserSettings.UISettings.MainWindowSize.WindowHeight!.Value;
+        }
+
+        if (_settingsService.UserSettings.UISettings.MainWindowSize.WindowX != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowY != null
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowX > 0
+            && _settingsService.UserSettings.UISettings.MainWindowSize.WindowY > 0
+            && !_settingsService.UserSettings.UISettings.MainWindowSize.IsMaximized)
+        {
+            int x = _settingsService.UserSettings.UISettings.MainWindowSize.WindowX!.Value;
+            int y = _settingsService.UserSettings.UISettings.MainWindowSize.WindowY!.Value;
+            x = x < 0 ? 0 : x;
+            y = y < 0 ? 0 : y;
+            Position = new PixelPoint(x, y);
+        }
     }
 
     public void SetStatusMessage(string message)
