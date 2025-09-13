@@ -105,14 +105,60 @@ class DomHelper {
     }
 
     public setElementCssClass(elementInternalId: string, newClass: string): void {
+
+        const element: HTMLElement = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementInnerHtml: Element not found');
+            return;
+        }
         
+        if (element.hasAttribute('data-old-class')) {
+            element.removeAttribute('data-old-class');
+        }
+        
+        element.className = newClass;
+    }
+
+    public startPreviewElementCssClass(elementInternalId: string, newClass: string): void {
+
         const element: HTMLElement = this.parentEditor.getElementByInternalId(elementInternalId);
         if (!element) {
             console.error('setElementInnerHtml: Element not found');
             return;
         }
 
+        const currentClass = element.getAttribute('class');
+        if (!element.hasAttribute('data-old-class')) {
+            element.setAttribute('data-old-class', currentClass);
+        }
+
         element.className = newClass;
+    }
+
+    public endPreviewElementCssClass(elementInternalId: string, newClass: string): void {
+
+        const element: HTMLElement = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementInnerHtml: Element not found');
+            return;
+        }
+
+        if (element.hasAttribute('data-old-class')) {
+            element.className = element.getAttribute('data-old-class');
+            element.removeAttribute('data-old-class');
+        }
+    }
+
+
+    public setElementStyleAttribute(elementInternalId: string, value: string): void {
+
+        const element: HTMLElement = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementStyleAttribute: Element not found');
+            return;
+        }
+
+        element.setAttribute('style', value);
     }
 
 

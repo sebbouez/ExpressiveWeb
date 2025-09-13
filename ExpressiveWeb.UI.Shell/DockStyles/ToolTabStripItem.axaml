@@ -2,8 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:core="using:Dock.Model.Core"
                     xmlns:converters="using:Dock.Avalonia.Converters"
+                    xmlns:localization="clr-namespace:ExpressiveWeb.Localization;assembly=ExpressiveWeb.Localization"
                     x:DataType="core:IDockable"
                     x:CompileBindings="True">
+    
     <Design.PreviewWith>
         <Border Padding="20">
             <StackPanel Spacing="20">
@@ -18,7 +20,7 @@
     <x:Double x:Key="TabStripItemPipeThickness">2</x:Double>
 
     <ContextMenu x:Key="ToolTabStripItemContextMenu">
-        <MenuItem Header="{DynamicResource ToolTabStripItemFloatString}"
+        <MenuItem Header="{x:Static localization:Resources.DockFloat}"
                   Command="{Binding Owner.Factory.FloatDockable}"
                   CommandParameter="{Binding}">
             <MenuItem.IsVisible>
@@ -31,7 +33,7 @@
                 </MultiBinding>
             </MenuItem.IsVisible>
         </MenuItem>
-        <MenuItem Header="{DynamicResource ToolTabStripItemFloatAllString}"
+        <MenuItem Header="{x:Static localization:Resources.DockFloatAll}"
                   Command="{Binding Owner.Factory.FloatAllDockables}"
                   CommandParameter="{Binding}">
             <MenuItem.IsVisible>
@@ -44,16 +46,8 @@
                 </MultiBinding>
             </MenuItem.IsVisible>
         </MenuItem>
-        <MenuItem Header="{DynamicResource ToolTabStripItemDockString}"
-                  Command="{Binding Owner.Factory.PinDockable}"
-                  CommandParameter="{Binding}"
-                  IsEnabled="{Binding OriginalOwner, Converter={x:Static ObjectConverters.IsNotNull}, FallbackValue=False}"
-                  IsVisible="{Binding CanPin, FallbackValue=False}" />
-        <MenuItem Header="{DynamicResource ToolTabStripItemDockAsDocumentString}"
-                  Command="{Binding Owner.Factory.DockAsDocument}"
-                  CommandParameter="{Binding}"
-                  IsVisible="{Binding Owner, Converter={x:Static converters:OwnerIsToolDockConverter.Instance}}" />
-        <MenuItem Header="{DynamicResource ToolTabStripItemAutoHideString}"
+
+        <MenuItem Header="{x:Static localization:Resources.DockAutoHide}"
                   Command="{Binding Owner.Factory.PinDockable}"
                   CommandParameter="{Binding }"
                   IsEnabled="{Binding OriginalOwner, Converter={x:Static ObjectConverters.IsNull}, FallbackValue=False}">
@@ -64,7 +58,7 @@
                 </MultiBinding>
             </MenuItem.IsVisible>
         </MenuItem>
-        <MenuItem Header="{DynamicResource ToolTabStripItemCloseString}"
+        <MenuItem Header="{x:Static localization:Resources.DockCloseTab}"
                   Command="{Binding Owner.Factory.CloseDockable}"
                   CommandParameter="{Binding}">
             <MenuItem.IsVisible>

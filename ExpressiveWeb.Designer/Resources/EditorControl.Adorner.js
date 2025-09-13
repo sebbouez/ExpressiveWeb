@@ -162,6 +162,18 @@ class AdornerManager extends HTMLElement {
             this.selectDecorator(foundDecorator);
         }
     }
+    disableDecoratorFromElementInternalId(internalId) {
+        const foundDecorator = this._adornerContainer.querySelector("adorner-decorator[data-source-element-id='" + internalId + "']");
+        if (foundDecorator) {
+            foundDecorator.disable();
+        }
+    }
+    enableDecoratorFromElementInternalId(internalId) {
+        const foundDecorator = this._adornerContainer.querySelector("adorner-decorator[data-source-element-id='" + internalId + "']");
+        if (foundDecorator) {
+            foundDecorator.enable();
+        }
+    }
     getDecoratorFromElement(element) {
         const internalId = element.getAttribute("data-internal-id");
         const foundDecorator = this._adornerContainer.querySelector("adorner-decorator[data-source-element-id='" + internalId + "']");
@@ -221,6 +233,12 @@ class AdornerManager extends HTMLElement {
             self._adornerContainer.appendChild(decorator0);
         });
     }
+    discardEvents() {
+        this._adornerContainer.style.pointerEvents = "none";
+    }
+    restoreEvents() {
+        this._adornerContainer.style.pointerEvents = "auto";
+    }
     dblClickDecoratorHandler(owner, e) {
         const element = this.parentEditor.getSourceElementFromDecorator(e.target);
         if (element) {
@@ -228,12 +246,6 @@ class AdornerManager extends HTMLElement {
             const component = this.parentEditor.getComponentInfoFromDecorator(e.target);
             $HOST_INTEROP.raiseElementDblClick(JSON.stringify(info));
         }
-    }
-    discardEvents() {
-        this._adornerContainer.style.pointerEvents = "none";
-    }
-    restoreEvents() {
-        this._adornerContainer.style.pointerEvents = "auto";
     }
     handleMouseUp(owner, e) {
         if (this._dragInfo) {

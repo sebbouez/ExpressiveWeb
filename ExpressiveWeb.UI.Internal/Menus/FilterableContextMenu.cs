@@ -28,7 +28,7 @@ namespace ExpressiveWeb.Presentation.Menus;
 public class FilterableContextMenu : Avalonia.Controls.ContextMenu
 {
     private readonly IApplicationCommandsService _applicationCommandsService;
-    private TextBox _filterTextBox;
+    private Avalonia.Controls.TextBox _filterTextBox;
 
     private List<object> _items = new();
     private ItemsPresenter _itemsPanel;
@@ -139,7 +139,7 @@ public class FilterableContextMenu : Avalonia.Controls.ContextMenu
     {
         base.OnApplyTemplate(e);
 
-        _filterTextBox = e.NameScope.Find<TextBox>("PART_FilterTextBox");
+        _filterTextBox = e.NameScope.Find<Avalonia.Controls.TextBox>("PART_FilterTextBox");
         _itemsPanel = e.NameScope.Find<ItemsPresenter>("PART_ItemsPresenter");
 
         _filterTextBox!.Watermark = Localization.Resources.WatermarkFilterCommands;

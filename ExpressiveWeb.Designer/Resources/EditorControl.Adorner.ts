@@ -284,6 +284,20 @@ class AdornerManager extends HTMLElement {
         }
     }
 
+    public disableDecoratorFromElementInternalId(internalId: string): void {
+        const foundDecorator = this._adornerContainer.querySelector("adorner-decorator[data-source-element-id='" + internalId + "']");
+        if (foundDecorator) {
+            (foundDecorator as AdornerDecorator).disable();
+        }
+    }
+
+    public enableDecoratorFromElementInternalId(internalId: string): void {
+        const foundDecorator = this._adornerContainer.querySelector("adorner-decorator[data-source-element-id='" + internalId + "']");
+        if (foundDecorator) {
+            (foundDecorator as AdornerDecorator).enable();
+        }
+    }
+
     public getDecoratorFromElement(element: HTMLElement): AdornerDecorator | null {
         const internalId = element.getAttribute("data-internal-id");
         const foundDecorator = this._adornerContainer.querySelector("adorner-decorator[data-source-element-id='" + internalId + "']");
@@ -384,21 +398,6 @@ class AdornerManager extends HTMLElement {
         });
     }
 
-
-    private dblClickDecoratorHandler(owner: AdornerManager, e: MouseEvent): void {
-
-
-        const element = this.parentEditor.getSourceElementFromDecorator(e.target as HTMLElement);
-        if (element) {
-            const info = this.parentEditor.getElementInfo(element);
-            const component = this.parentEditor.getComponentInfoFromDecorator(e.target as AdornerDecorator);
-
-            $HOST_INTEROP.raiseElementDblClick(JSON.stringify(info));
-        }
-
-    }
-
-
     /**
      * Temporarily stops events listening
      */
@@ -413,6 +412,18 @@ class AdornerManager extends HTMLElement {
         this._adornerContainer.style.pointerEvents = "auto";
     }
 
+    private dblClickDecoratorHandler(owner: AdornerManager, e: MouseEvent): void {
+
+
+        const element = this.parentEditor.getSourceElementFromDecorator(e.target as HTMLElement);
+        if (element) {
+            const info = this.parentEditor.getElementInfo(element);
+            const component = this.parentEditor.getComponentInfoFromDecorator(e.target as AdornerDecorator);
+
+            $HOST_INTEROP.raiseElementDblClick(JSON.stringify(info));
+        }
+
+    }
 
     private handleMouseUp(owner: AdornerManager, e: MouseEvent): void {
 
@@ -439,9 +450,9 @@ class AdornerManager extends HTMLElement {
             }
 
         }
-        
+
         this.unSelectAll();
-        
+
         const info: ElementInfo = owner.parentEditor.getElementInfo(this._mouseDownElement);
         $HOST_INTEROP.raiseElementClick(JSON.stringify(info));
     }

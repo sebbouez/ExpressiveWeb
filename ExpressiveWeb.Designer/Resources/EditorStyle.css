@@ -27,6 +27,9 @@ adorner-decorator:hover {
     opacity: 1;
 }
 
+adorner-decorator.state-disabled {
+    opacity: 0 !important;
+}
 
 adorner-decorator.state-active {
     border-width: 1.55px;

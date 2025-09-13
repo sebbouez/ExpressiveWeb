@@ -27,6 +27,7 @@ using ExpressiveWeb.Core.Html;
 using ExpressiveWeb.Core.Kit;
 using ExpressiveWeb.Core.Log;
 using ExpressiveWeb.Core.Network;
+using ExpressiveWeb.Core.Style;
 using ExpressiveWeb.Designer.Cef;
 using ExpressiveWeb.Designer.Commands;
 using ExpressiveWeb.Designer.Exceptions;
@@ -52,7 +53,8 @@ public class HtmlEditor : Border, IDisposable
 
     private readonly List<IEditorQuickAction> _supportedQuickActions = new()
     {
-        new AppendChildQuickAction()
+        new AppendChildQuickAction(),
+        new AppendFirstChildQuickAction()
     };
 
     private TextEditor? _textEditor;
@@ -482,8 +484,7 @@ public class HtmlEditor : Border, IDisposable
             RelativePosition = relativePosition
         };
         CommandManager.ExecuteCommand(cmd);
-    } 
-    
+    }
 
     public void SelectElement(HtmlElement? element)
     {
@@ -505,6 +506,42 @@ public class HtmlEditor : Border, IDisposable
         {
             InitialElementInfo = info,
             NewCssClass = newCssClass
+        };
+        CommandManager.ExecuteCommand(cmd);
+    }
+
+    public void StartCssClassPreview(string newCssClass)
+    {
+        if (SelectedElement == null)
+        {
+            return;
+        }
+
+        InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".adornerManager.disableDecoratorFromElementInternalId"), SelectedElement.InternalId);
+        InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.startPreviewElementCssClass"), SelectedElement.InternalId, newCssClass);
+    }
+
+    public void EndCssClassPreview()
+    {
+        if (SelectedElement == null)
+        {
+            return;
+        }
+
+        InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".adornerManager.enableDecoratorFromElementInternalId"), SelectedElement.InternalId);
+        InternalCallBrowserMethod(string.Concat(JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.endPreviewElementCssClass"), SelectedElement.InternalId);
+    }
+
+    public void SetElementStyleAttribute(CssStyle style)
+    {
+        ArgumentNullException.ThrowIfNull(SelectedElement, "No element selected");
+
+        HtmlElementInfo info = SelectedElement.DataContext.Freeze();
+
+        EditElementStyleAttributeCommand cmd = new(this)
+        {
+            InitialElementInfo = info,
+            NewCssClass = style.ToString()
         };
         CommandManager.ExecuteCommand(cmd);
     }

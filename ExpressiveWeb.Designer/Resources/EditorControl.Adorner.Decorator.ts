@@ -5,8 +5,8 @@
     private _resizeObserver: ResizeObserver | null = null;
     private _inflateValue: number = 0;
 
-    private chevronRightIcon : string = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' baseProfile='full' width='10' height='10' viewBox='0 0 10.56 18.00' xml:space='preserve'><path fill='#000000' fill-opacity='1' stroke-width='0.666699' stroke-linejoin='round' d='M 2.59497,0.435019L 10.0798,7.92C 10.3999,8.23998 10.5598,8.59249 10.5598,8.9775C 10.5598,9.36251 10.3999,9.71502 10.0798,10.035L 2.59497,17.52C 2.2749,17.84 1.90747,18 1.49243,18C 1.07739,18 0.724854,17.8563 0.434814,17.5688C 0.14502,17.2812 0,16.93 0,16.515C 0,16.1 0.159912,15.7325 0.47998,15.4125L 6.91504,8.9775L 0.47998,2.54253C 0.0349121,2.16253 -0.107666,1.68377 0.0523682,1.10625C 0.212402,0.528769 0.563721,0.159994 1.1062,-9.53674e-006C 1.64868,-0.159983 2.14502,-0.0149632 2.59497,0.435019 Z '/></svg>";
-    
+    private chevronRightIcon: string = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' baseProfile='full' width='10' height='10' viewBox='0 0 10.56 18.00' xml:space='preserve'><path fill='#000000' fill-opacity='1' stroke-width='0.666699' stroke-linejoin='round' d='M 2.59497,0.435019L 10.0798,7.92C 10.3999,8.23998 10.5598,8.59249 10.5598,8.9775C 10.5598,9.36251 10.3999,9.71502 10.0798,10.035L 2.59497,17.52C 2.2749,17.84 1.90747,18 1.49243,18C 1.07739,18 0.724854,17.8563 0.434814,17.5688C 0.14502,17.2812 0,16.93 0,16.515C 0,16.1 0.159912,15.7325 0.47998,15.4125L 6.91504,8.9775L 0.47998,2.54253C 0.0349121,2.16253 -0.107666,1.68377 0.0523682,1.10625C 0.212402,0.528769 0.563721,0.159994 1.1062,-9.53674e-006C 1.64868,-0.159983 2.14502,-0.0149632 2.59497,0.435019 Z '/></svg>";
+
     constructor(manager: AdornerManager, attachedElement: HTMLElement) {
         super();
 
@@ -49,6 +49,14 @@
         }
     }
 
+    public disable(): void {
+        this.classList.add("state-disabled");
+    }
+    
+    public enable(): void {
+        this.classList.remove("state-disabled");
+    }
+
     public select(): void {
         this.classList.add("state-active");
         this.drawMarginsDecorations();
@@ -64,8 +72,8 @@
         if (component.hasContextualActions) {
             const actionsMenu = document.createElement("button");
             actionsMenu.className = "actions-menu-button";
-            actionsMenu.innerHTML=this.chevronRightIcon;
-            
+            actionsMenu.innerHTML = this.chevronRightIcon;
+
             this.appendChild(actionsMenu);
 
             actionsMenu.addEventListener("mousedown", (e): void => {
@@ -96,8 +104,8 @@
 
                 let rect = this._attachedElement.getBoundingClientRect();
 
-                this.style.width = entries[0].contentRect.width + (this._inflateValue * 2) + "px";
-                this.style.height = entries[0].contentRect.height + (this._inflateValue * 2) + "px";
+                this.style.width = rect.width + (this._inflateValue * 2) + "px";
+                this.style.height = rect.height + (this._inflateValue * 2) + "px";
                 this.style.left = (rect.left + window.scrollX - this._inflateValue) + "px";
                 this.style.top = (rect.top + window.scrollY - this._inflateValue) + "px";
             }

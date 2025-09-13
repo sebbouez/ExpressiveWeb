@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_components.xsd">
+
+    <UID>bootstrap.CardGroup</UID>
+    <Name>Card Group</Name>
+
+    <Actions>
+        <Action Header="Add card" Command="AppendChild" Params="bootstrap.Card"/>
+    </Actions>
+
+    <Allows>bootstrap.Card</Allows>
+    
+
+    <Template>
+        <![CDATA[
+        <div class="card-group">
+            <slot/>
+        </div>
+        ]]>
+    </Template>
+    
+</Component>

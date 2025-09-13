@@ -1,0 +1,276 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons1="clr-namespace:ExpressiveWeb.Presentation.Buttons;assembly=ExpressiveWeb.UI.Internal"
+             xmlns:converters1="clr-namespace:ExpressiveWeb.Presentation.Converters;assembly=ExpressiveWeb.UI.Internal"
+             xmlns:pivot1="clr-namespace:ExpressiveWeb.Presentation.Pivot;assembly=ExpressiveWeb.UI.Internal"
+             xmlns:textBox1="clr-namespace:ExpressiveWeb.Presentation.TextBox;assembly=ExpressiveWeb.UI.Internal"
+             xmlns:style="clr-namespace:ExpressiveWeb.Core.Style;assembly=ExpressiveWeb.Core"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="850"
+             x:Class="ExpressiveWeb.Panels.Styles.StylePropertyGrid"
+             x:DataType="style:CssStyle">
+
+    <UserControl.Resources>
+
+        <converters1:InvertBoolConverter x:Key="InvertBoolConverter" />
+
+    </UserControl.Resources>
+
+    <StackPanel>
+
+        <Expander Header="Background" IsExpanded="True">
+
+            <pivot1:EWTabPivot>
+                <pivot1:EWTabPivotItem Header="Solid">
+                    <Grid Margin="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Color</TextBlock>
+
+                        <ColorPicker Grid.Row="0" Grid.Column="1" x:Name="CpBackground"
+                                     ColorChanged="ColorView_OnColorChanged">
+                        </ColorPicker>
+                    </Grid>
+
+                </pivot1:EWTabPivotItem>
+                <pivot1:EWTabPivotItem Header="Gradient">
+                </pivot1:EWTabPivotItem>
+                <pivot1:EWTabPivotItem Header="Image">
+                </pivot1:EWTabPivotItem>
+                <pivot1:EWTabPivotItem Header="Preset">
+                </pivot1:EWTabPivotItem>
+            </pivot1:EWTabPivot>
+        </Expander>
+
+        <Expander Header="Border" IsExpanded="True" IsVisible="False">
+
+            <pivot1:EWTabPivot>
+                <pivot1:EWTabPivotItem Header="Custom">
+                    <StackPanel>
+                        <ToggleSwitch x:Name="SwitchGroupBorders">Group</ToggleSwitch>
+
+                        <StackPanel>
+
+                            <Grid Margin="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="8" />
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="8" />
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="8" />
+                                    <RowDefinition Height="5*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Width</TextBlock>
+
+                                <textBox1:EWUnitNumericTextBox x:Name="TbBorderAllWidth"
+                                                              Grid.Row="0" UnitText="px"
+                                                              Grid.Column="1" Value="{Binding BorderWidth}"
+                                                              Width="85"
+                                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                                              Spinned="TbBorderAllWidth_OnSpinned"
+                                                              KeyDown="TbBorderAllWidth_OnKeyDown" />
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
+                                           TextTrimming="CharacterEllipsis">
+                                    Color
+                                </TextBlock>
+
+                                <ColorPicker Grid.Row="2" Grid.Column="1" x:Name="CpBorder"
+                                             ColorChanged="CpBorder_OnColorChanged">
+                                </ColorPicker>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
+                                           TextTrimming="CharacterEllipsis">
+                                    Style
+                                </TextBlock>
+
+                                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="CbBorderAllStyle" SelectionChanged="CbBorderAllStyle_OnSelectionChanged">
+                                    <ComboBoxItem Tag="none">None</ComboBoxItem>
+                                    <ComboBoxItem Tag="solid">Solid</ComboBoxItem>
+                                    <ComboBoxItem Tag="dotted">Dotted</ComboBoxItem>
+                                    <ComboBoxItem Tag="dashed">Dashed</ComboBoxItem>
+                                    <ComboBoxItem Tag="ridge">Ridge</ComboBoxItem>
+                                    <ComboBoxItem Tag="inset">Inset</ComboBoxItem>
+                                    <ComboBoxItem Tag="outset">Outset</ComboBoxItem>
+                                    <ComboBoxItem Tag="double">Double</ComboBoxItem>
+                                </ComboBox>
+
+                                <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"
+                                           TextTrimming="CharacterEllipsis">
+                                    Corner radius
+                                </TextBlock>
+
+                                <textBox1:EWUnitNumericTextBox x:Name="TbBorderAllCornerRadius"
+                                                              Grid.Row="6" UnitText="px"
+                                                              Grid.Column="1" Value="{Binding CornerRadius}"
+                                                              Width="85"
+                                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                                              Spinned="TbBorderAllCornerRadius_OnSpinned"
+                                                              KeyDown="TbBorderAllCornerRadius_OnKeyDown"/>
+
+                            </Grid>
+
+                        </StackPanel>
+                    </StackPanel>
+                </pivot1:EWTabPivotItem>
+                <pivot1:EWTabPivotItem Header="Image"></pivot1:EWTabPivotItem>
+                <pivot1:EWTabPivotItem Header="Preset"></pivot1:EWTabPivotItem>
+            </pivot1:EWTabPivot>
+
+
+        </Expander>
+
+        <Expander Header="Margin" IsExpanded="True">
+
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="8" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="8" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">Left</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">Top</TextBlock>
+
+                <buttons1:EWLockButton x:Name="BtnLockMarginLeftRight" Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
+                                      Height="50" VerticalAlignment="Stretch">
+                </buttons1:EWLockButton>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">Right</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">Bottom</TextBlock>
+
+                <buttons1:EWLockButton x:Name="BtnLockMarginTopBottom" Grid.Column="6" Grid.Row="0" Grid.RowSpan="3"
+                                      Height="50" VerticalAlignment="Stretch">
+                </buttons1:EWLockButton>
+
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbMarginLeft" Grid.Row="0" Grid.Column="1"
+                                              Value="{Binding MarginLeft}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbMarginTop" Grid.Row="0" Grid.Column="5"
+                                              Value="{Binding MarginTop}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbMarginRight" Grid.Row="2" Grid.Column="1"
+                                              Value="{Binding MarginRight}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              IsEnabled="{Binding IsChecked, ElementName=BtnLockMarginLeftRight, Converter={StaticResource InvertBoolConverter}}"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbMarginBottom" Grid.Row="2" Grid.Column="5"
+                                              Value="{Binding MarginBottom}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              IsEnabled="{Binding IsChecked, ElementName=BtnLockMarginTopBottom, Converter={StaticResource InvertBoolConverter}}"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+            </Grid>
+
+        </Expander>
+
+        <Expander Header="Padding" IsExpanded="True">
+
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="8" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="8" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Left</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">Top</TextBlock>
+
+                <buttons1:EWLockButton x:Name="BtnLockLeftRight" Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
+                                      Height="50" VerticalAlignment="Stretch">
+                </buttons1:EWLockButton>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Right</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="4" VerticalAlignment="Center">Bottom</TextBlock>
+
+                <buttons1:EWLockButton x:Name="BtnLockTopBottom" Grid.Column="6" Grid.Row="0" Grid.RowSpan="3"
+                                      Height="50" VerticalAlignment="Stretch">
+                </buttons1:EWLockButton>
+
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbPaddingLeft" Grid.Row="0" Grid.Column="1"
+                                              Value="{Binding PaddingLeft}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbPaddingTop" Grid.Row="0" Grid.Column="5"
+                                              Value="{Binding PaddingTop}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbPaddingRight" Grid.Row="2" Grid.Column="1"
+                                              Value="{Binding PaddingRight}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              IsEnabled="{Binding IsChecked, ElementName=BtnLockLeftRight, Converter={StaticResource InvertBoolConverter}}"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+                <textBox1:EWUnitNumericTextBox x:Name="TbPaddingBottom" Grid.Row="2" Grid.Column="5"
+                                              Value="{Binding PaddingBottom}"
+                                              Width="85" UnitText="px"
+                                              Increment="1" FormatString="0" Minimum="0" Maximum="200"
+                                              IsEnabled="{Binding IsChecked, ElementName=BtnLockTopBottom, Converter={StaticResource InvertBoolConverter}}"
+                                              Spinned="TbOnSpinned"
+                                              KeyDown="TbOnKeyDown" />
+
+
+            </Grid>
+
+        </Expander>
+
+
+    </StackPanel>
+
+</UserControl>

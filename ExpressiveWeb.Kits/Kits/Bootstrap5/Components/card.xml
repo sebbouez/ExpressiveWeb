@@ -6,8 +6,31 @@
     <Name>Card</Name>
 
     <Slots>.card-body</Slots>
+
+    <Actions>
+        <Action Header="Add card header" Command="AppendFirstChild" Params="bootstrap.CardHeader"/>
+        <Action Header="Add card footer" Command="AppendChild" Params="bootstrap.CardFooter"/>
+    </Actions>
+    
     <Variants>
-        <Variant Name="Card model 1" ClassName="card1"/>
+        <Variant Name="Background Primary" ClassName="bg-primary"/>
+        <Variant Name="Background Secondary" ClassName="bg-secondary"/>
+        <Variant Name="Background Success" ClassName="bg-success"/>
+        <Variant Name="Background Danger" ClassName="bg-danger"/>
+        <Variant Name="Background Warning" ClassName="bg-warning"/>
+        <Variant Name="Background Info" ClassName="bg-info"/>
+        <Variant Name="Background Light" ClassName="bg-light"/>
+        <Variant Name="Background Dark" ClassName="bg-dark"/> 
+        
+        
+        <Variant Name="Border Primary" ClassName="border-primary"/>
+        <Variant Name="Border Secondary" ClassName="border-secondary"/>
+        <Variant Name="Border Success" ClassName="border-success"/>
+        <Variant Name="Border Danger" ClassName="border-danger"/>
+        <Variant Name="Border Warning" ClassName="border-warning"/>
+        <Variant Name="Border Info" ClassName="border-info"/>
+        <Variant Name="Border Light" ClassName="border-light"/>
+        <Variant Name="Border Dark" ClassName="border-dark"/>
     </Variants>
 
     <Features>
