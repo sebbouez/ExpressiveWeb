@@ -1,6 +1,6 @@
 // *********************************************************
 // 
-// ExpressiveWeb.Designer HTmlElementAttributeInfo.cs
+// ExpressiveWeb.Designer HtmlElementAttributeInfo.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,22 +12,21 @@
 // 
 // *********************************************************
 
-using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace ExpressiveWeb.Designer.Models;
 
-public sealed class HTmlElementAttributeInfo
+public sealed class HtmlElementAttributeInfo
 {
     [JsonPropertyName("name")]
-    public string Name
+    public string? Name
     {
         get;
         set;
     }
 
     [JsonPropertyName("value")]
-    public string Value
+    public string? Value
     {
         get;
         set;

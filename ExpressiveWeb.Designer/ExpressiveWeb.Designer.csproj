@@ -15,10 +15,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.4" />
+        <PackageReference Include="Avalonia" Version="11.3.5" />
         <PackageReference Include="CefGlue.Avalonia" Version="120.6099.211" />
         <PackageReference Include="HtmlAgilityPack" Version="1.12.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+        <PackageReference Include="System.Reactive.Linq" Version="6.0.2" />
     </ItemGroup>
 
     <ItemGroup>

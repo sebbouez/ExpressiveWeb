@@ -54,6 +54,11 @@ public sealed class HtmlElement
         internal set;
     }
 
+    public string? GetAttribute(string name)
+    {
+        return Attributes.FirstOrDefault(a => a.Name == name)?.Value;
+    }
+
     public List<HtmlElementAttribute> Attributes
     {
         get;
@@ -63,8 +68,8 @@ public sealed class HtmlElement
     internal HtmlElementInfo DataContext
     {
         get;
-        set;
-    }
+        init;
+    } = null!;
 
     public bool HasCssClass(string cssClass)
     {

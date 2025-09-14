@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:textBox="clr-namespace:ExpressiveWeb.Presentation.TextBox">
+
+
+    <ControlTheme x:Key="{x:Type textBox:EWUnitNumericTextBox}"
+                  TargetType="textBox:EWUnitNumericTextBox">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderBrush="{DynamicResource ThemeBorderBrush}"
+                        Height="30"
+                        BorderThickness="0.55"
+                        CornerRadius="4"
+                        Background="{DynamicResource ThemeControlBrush}">
+                    <DataValidationErrors>
+                        <ButtonSpinner Name="PART_Spinner"
+                                       HorizontalContentAlignment="Stretch"
+                                       VerticalContentAlignment="Stretch"
+                                       IsTabStop="False"
+                                       Padding="0"
+                                       MinWidth="0"
+                                       AllowSpin="{TemplateBinding AllowSpin}"
+                                       Background="{TemplateBinding Background}"
+                                       BorderBrush="{TemplateBinding BorderBrush}"
+                                       BorderThickness="{TemplateBinding BorderThickness}"
+                                       ButtonSpinnerLocation="{TemplateBinding ButtonSpinnerLocation}"
+                                       CornerRadius="{TemplateBinding CornerRadius}"
+                                       ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
+                           
+                            <DockPanel LastChildFill="True">
+                                
+                                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Right" Margin="0,0,6,0"
+                                           FontSize="{DynamicResource FontSizeSmall}"
+                                           Height="20"
+                                           Text="{TemplateBinding UnitText}"
+                                           TextTrimming="CharacterEllipsis"/>
+                                
+                                <TextBox Name="PART_TextBox"
+                                         MinWidth="30"
+                                         Height="20"
+                                         Margin="6,0"
+                                         Padding="{TemplateBinding Padding}"
+                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         AcceptsReturn="False"
+                                         Background="{TemplateBinding Background}"
+                                         BorderThickness="0"
+                                         IsReadOnly="{TemplateBinding IsReadOnly}"
+                                         Text="{TemplateBinding UnitText}"
+                                         TextAlignment="{TemplateBinding TextAlignment}"
+                                         TextWrapping="NoWrap"
+                                         VerticalAlignment="Center"
+                                         Watermark="{TemplateBinding Watermark}"
+                                         InnerLeftContent="{Binding InnerLeftContent, RelativeSource={RelativeSource TemplatedParent}}"
+                                         InnerRightContent="{Binding InnerRightContent, RelativeSource={RelativeSource TemplatedParent}}" />
+
+
+                            </DockPanel>
+                        </ButtonSpinner>
+                    </DataValidationErrors>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+
+</ResourceDictionary>

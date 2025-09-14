@@ -21,49 +21,49 @@ namespace ExpressiveWeb.Designer.Models;
 internal sealed class HtmlElementInfo
 {
     [JsonPropertyName("componentUid")]
-    public string ComponentUid
+    public string? ComponentUid
     {
         get;
         set;
     }
 
     [JsonPropertyName("internalId")]
-    public string InternalId
+    public string? InternalId
     {
         get;
         set;
     }
 
     [JsonPropertyName("innerHtml")]
-    public string InnerHtml
+    public string? InnerHtml
     {
         get;
         set;
     }
 
     [JsonPropertyName("innerText")]
-    public string InnerText
+    public string? InnerText
     {
         get;
         set;
     }
 
     [JsonPropertyName("tagName")]
-    public string TagName
+    public string? TagName
     {
         get;
         set;
     }
 
     [JsonPropertyName("cssClass")]
-    public string CssClass
+    public string? CssClass
     {
         get;
         set;
     }
 
     [JsonPropertyName("parentInternalId")]
-    public string ParentInternalId
+    public string? ParentInternalId
     {
         get;
         set;
@@ -84,7 +84,7 @@ internal sealed class HtmlElementInfo
     }
 
     [JsonPropertyName("attributes")]
-    public List<HTmlElementAttributeInfo> Attributes
+    public List<HtmlElementAttributeInfo> Attributes
     {
         get;
         set;

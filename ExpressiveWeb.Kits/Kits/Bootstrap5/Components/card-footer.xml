@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_components.xsd">
+
+    <UID>bootstrap.CardFooter</UID>
+    <Name>Card footer</Name>
+
+    <Features>
+        <InlineEdit/>
+    </Features>
+    
+    <Allows>text</Allows>
+
+
+    <Template>
+        <![CDATA[
+         <div class="card-footer">Footer</div>
+        ]]>
+    </Template>
+    
+</Component>

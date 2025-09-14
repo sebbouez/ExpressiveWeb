@@ -16,6 +16,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using ExpressiveWeb.Core;
 using ExpressiveWeb.Core.Kit;
@@ -29,21 +31,28 @@ namespace ExpressiveWeb.Panels.Styles;
 public partial class StylePanel : UserControl
 {
     private readonly IStyleService _styleService;
-    private bool _ignoreSelectionChanged;
 
     private HtmlElement? _currentHtmlElement;
+    private bool _ignoreSelectionChanged;
 
     public StylePanel()
     {
         InitializeComponent();
         _styleService = AppServices.ServicesFactory.GetService<IStyleService>();
-        
+
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
     }
 
     private void ApplicationSharedEventsOnSelectedElementChanged(object? sender, HtmlElement? e)
     {
+        _ignoreSelectionChanged = true;
+
+        if (_currentHtmlElement == e)
+        {
+            return;
+        }
+
         CbStylesList.IsEnabled = e != null && e.KitComponent != null;
 
         _currentHtmlElement = e;
@@ -52,12 +61,24 @@ public partial class StylePanel : UserControl
         {
             BuildStylesCombo(e);
         }
+
+        if (e == null || CbStylesList.SelectedItem is StyleItemModel {Source: StyleItemModel.StyleItemSource.Kit})
+        {
+            PgStyle.IsEnabled = false;
+            PgStyle.DataContext = null;
+        }
+        else
+        {
+            PgStyle.IsEnabled = true;
+            CssStyle st = _styleService.ParseStyleAttribute(_currentHtmlElement?.GetAttribute("style") ?? string.Empty);
+            PgStyle.DataContext = st;
+        }
+
+        _ignoreSelectionChanged = false;
     }
 
     private void BuildStylesCombo(HtmlElement element)
     {
-        _ignoreSelectionChanged = true;
-
         List<StyleItemModel> items = new();
 
         StyleItemModel defaultItem = new()
@@ -85,7 +106,7 @@ public partial class StylePanel : UserControl
                     Name = variant.Name,
                     Source = StyleItemModel.StyleItemSource.Kit,
                     SecondaryText = "Kit",
-                    CssClass = variant.CssClass,
+                    CssClass = variant.CssClass
                 };
                 items.Add(variantItem);
 
@@ -98,8 +119,31 @@ public partial class StylePanel : UserControl
 
         CbStylesList.ItemsSource = items;
         CbStylesList.SelectedItem = selectedItem;
+    }
 
-        _ignoreSelectionChanged = false;
+    private void CbStylesList_OnDropDownClosed(object? sender, EventArgs e)
+    {
+        if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
+        {
+            editorWorkspace!.Editor.EndCssClassPreview();
+        }
+    }
+
+    private void CbStylesList_OnPointerExited(object? sender, PointerEventArgs e)
+    {
+        if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
+        {
+            editorWorkspace!.Editor.EndCssClassPreview();
+        }
+    }
+
+    private void CbStylesList_OnPointerMoved(object? sender, PointerEventArgs e)
+    {
+        if (e.Source is ContentPresenter p && p.DataContext is StyleItemModel styleItemModel && AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
+        {
+            string currentElementStyle = ComputeElementCssClassName(styleItemModel);
+            editorWorkspace!.Editor.StartCssClassPreview(currentElementStyle);
+        }
     }
 
     private void CbStylesList_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -109,6 +153,19 @@ public partial class StylePanel : UserControl
             return;
         }
 
+        if (CbStylesList.SelectedItem is StyleItemModel styleItemModel)
+        {
+            string currentElementStyle = ComputeElementCssClassName(styleItemModel);
+
+            if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
+            {
+                editorWorkspace!.Editor.SetElementCssClass(currentElementStyle);
+            }
+        }
+    }
+
+    private string ComputeElementCssClassName(StyleItemModel styleItemModel)
+    {
         string currentElementStyle = _currentHtmlElement!.CssClass;
 
         foreach (StyleItemModel styleItem in CbStylesList.Items.OfType<StyleItemModel>())
@@ -121,15 +178,12 @@ public partial class StylePanel : UserControl
 
         currentElementStyle = currentElementStyle.Trim();
 
-        if (CbStylesList.SelectedItem is StyleItemModel selectedItem && selectedItem.Source == StyleItemModel.StyleItemSource.Kit)
+        if (styleItemModel.Source == StyleItemModel.StyleItemSource.Kit)
         {
-            currentElementStyle = string.Concat(currentElementStyle, " ", selectedItem.CssClass);
+            currentElementStyle = string.Concat(currentElementStyle, " ", styleItemModel.CssClass);
         }
 
-        if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
-        {
-            editorWorkspace!.Editor.SetElementCssClass(currentElementStyle);
-        }
+        return currentElementStyle;
     }
 
     private void OnLoaded(object? sender, RoutedEventArgs e)
@@ -140,5 +194,13 @@ public partial class StylePanel : UserControl
     private void OnUnloaded(object? sender, RoutedEventArgs e)
     {
         ApplicationSharedEvents.SelectedElementChanged -= ApplicationSharedEventsOnSelectedElementChanged;
+    }
+
+    private void PgStyle_OnValueApplied(object? sender, EventArgs eventArgs)
+    {
+        if (AppState.Instance.AppWindow.ApplicationWorkspaceControl.IsCurrentDocumentOfType(out EditorView? editorWorkspace))
+        {
+            editorWorkspace!.Editor.SetElementStyleAttribute(PgStyle.DataContext as CssStyle);
+        }
     }
 }

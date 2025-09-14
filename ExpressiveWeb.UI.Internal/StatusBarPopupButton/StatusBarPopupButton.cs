@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.UI.Internal BackgroundTasksManagerIndicator.cs
+// ExpressiveWeb.UI.Internal StatusBarPopupButton.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -23,21 +23,23 @@ namespace ExpressiveWeb.Presentation.StatusBarPopupButton;
 
 public class StatusBarPopupButton : TemplatedControl
 {
-    ProgressBar _progressBar;
-    TextBlock _textBlock;
-    ToggleButton _toggleButton;
-    Flyout? _flyout;
-
-    private IBackgroundTaskManager? _taskManager;
-
     public static readonly StyledProperty<object?> PopupContentProperty =
-        AvaloniaProperty.Register<StatusBarPopupButton, object?>(nameof(PopupContent), null);
+        AvaloniaProperty.Register<StatusBarPopupButton, object?>(nameof(PopupContent));
 
     public static readonly StyledProperty<string> TextProperty =
         AvaloniaProperty.Register<StatusBarPopupButton, string>(nameof(Text), string.Empty);
 
     public static readonly StyledProperty<IBrush?> IconBrushProperty =
         AvaloniaProperty.Register<StatusBarPopupButton, IBrush?>(nameof(IconBrush), Brushes.Transparent);
+
+    private Flyout? _flyout;
+    private IBackgroundTaskManager? _taskManager;
+    private ToggleButton? _toggleButton;
+
+    public StatusBarPopupButton()
+    {
+        Loaded += OnLoaded;
+    }
 
     public IBrush? IconBrush
     {
@@ -48,6 +50,18 @@ public class StatusBarPopupButton : TemplatedControl
         set
         {
             SetValue(IconBrushProperty, value);
+        }
+    }
+
+    public object? PopupContent
+    {
+        get
+        {
+            return GetValue(PopupContentProperty);
+        }
+        set
+        {
+            SetValue(PopupContentProperty, value);
         }
     }
 
@@ -63,36 +77,10 @@ public class StatusBarPopupButton : TemplatedControl
         }
     }
 
-    public object PopupContent
-    {
-        get
-        {
-            return GetValue(PopupContentProperty);
-        }
-        set
-        {
-            SetValue(PopupContentProperty, value);
-        }
-    }
-
     public void BindService(IBackgroundTaskManager service)
     {
         _taskManager = service;
         _taskManager.StatusChanged += TaskManagerOnStatusChanged;
-    }
-
-    private void TaskManagerOnStatusChanged(object? sender, BackgroundTaskManagerStatus e)
-    {
-        _toggleButton.IsVisible = e != BackgroundTaskManagerStatus.Idle;
-    }
-
-    public StatusBarPopupButton()
-    {
-        Loaded += OnLoaded;
-    }
-
-    private void OnLoaded(object? sender, RoutedEventArgs e)
-    {
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -100,15 +88,14 @@ public class StatusBarPopupButton : TemplatedControl
         base.OnApplyTemplate(e);
 
         _toggleButton = e.NameScope.Find<ToggleButton>("PART_Btn");
-        _textBlock = e.NameScope.Find<TextBlock>("PART_Text");
 
         if (_toggleButton != null)
         {
-            _flyout = (FlyoutBase.GetAttachedFlyout(_toggleButton) as Flyout);
-            _flyout.Closed -= OnClosed;
+            _flyout = FlyoutBase.GetAttachedFlyout(_toggleButton) as Flyout;
+            _flyout!.Closed -= OnClosed;
             _flyout.Closed += OnClosed;
             _flyout.Placement = PlacementMode.Custom;
-            _flyout.CustomPopupPlacementCallback = (p) =>
+            _flyout.CustomPopupPlacementCallback = p =>
             {
                 p.Offset = new Point(-p.PopupSize.Width / 2 + p.AnchorRectangle.Width / 2, -p.PopupSize.Height / 2 - p.AnchorRectangle.Height / 2);
             };
@@ -117,9 +104,26 @@ public class StatusBarPopupButton : TemplatedControl
         }
     }
 
+    private void OnClosed(object? sender, EventArgs e)
+    {
+        _toggleButton!.IsChecked = false;
+    }
+
+    private void OnLoaded(object? sender, RoutedEventArgs e)
+    {
+    }
+
+    private void TaskManagerOnStatusChanged(object? sender, BackgroundTaskManagerStatus e)
+    {
+        if (_toggleButton != null)
+        {
+            _toggleButton.IsVisible = e != BackgroundTaskManagerStatus.Idle;
+        }
+    }
+
     private void ToggleButtonOnClick(object? sender, RoutedEventArgs e)
     {
-        if (_toggleButton.IsChecked!.Value)
+        if (_toggleButton!.IsChecked!.Value)
         {
             _flyout!.ShowAt(_toggleButton);
         }
@@ -127,10 +131,5 @@ public class StatusBarPopupButton : TemplatedControl
         {
             _flyout!.Hide();
         }
-    }
-
-    private void OnClosed(object? sender, EventArgs e)
-    {
-        _toggleButton.IsChecked = false;
     }
 }

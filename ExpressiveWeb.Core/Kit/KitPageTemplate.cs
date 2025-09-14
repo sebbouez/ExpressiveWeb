@@ -16,13 +16,13 @@ namespace ExpressiveWeb.Core.Kit;
 
 public class KitPageTemplate
 {
-    public string Name
+    public string? Name
     {
         get;
         set;
     }
 
-    public string File
+    public string? File
     {
         get;
         set;

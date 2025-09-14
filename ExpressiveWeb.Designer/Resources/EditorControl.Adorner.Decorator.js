@@ -31,6 +31,12 @@ class AdornerDecorator extends HTMLElement {
             this._resizeObserver = null;
         }
     }
+    disable() {
+        this.classList.add("state-disabled");
+    }
+    enable() {
+        this.classList.remove("state-disabled");
+    }
     select() {
         this.classList.add("state-active");
         this.drawMarginsDecorations();
@@ -64,8 +70,8 @@ class AdornerDecorator extends HTMLElement {
         this.classList.add("state-text-editing");
         this._resizeObserver = new ResizeObserver(entries => {
             let rect = this._attachedElement.getBoundingClientRect();
-            this.style.width = entries[0].contentRect.width + (this._inflateValue * 2) + "px";
-            this.style.height = entries[0].contentRect.height + (this._inflateValue * 2) + "px";
+            this.style.width = rect.width + (this._inflateValue * 2) + "px";
+            this.style.height = rect.height + (this._inflateValue * 2) + "px";
             this.style.left = (rect.left + window.scrollX - this._inflateValue) + "px";
             this.style.top = (rect.top + window.scrollY - this._inflateValue) + "px";
         });

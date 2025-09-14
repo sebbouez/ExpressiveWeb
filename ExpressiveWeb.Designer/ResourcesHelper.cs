@@ -29,7 +29,6 @@ internal static class ResourcesHelper
         }
 
         sw.Stop();
-        Debug.WriteLine("ResolveResource" + sw.ElapsedMilliseconds);
         return new StreamReader(stream).ReadToEnd();
     }
 }

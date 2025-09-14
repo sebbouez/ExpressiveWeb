@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.Designer MoveElementCommand.MoveRelativePosition.cs
+// ExpressiveWeb.Designer MoveRelativePosition.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -11,8 +11,6 @@
 // THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // 
 // *********************************************************
-
-using System.Linq;
 
 namespace ExpressiveWeb.Designer.Commands;
 

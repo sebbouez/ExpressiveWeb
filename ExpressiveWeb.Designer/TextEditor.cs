@@ -44,7 +44,7 @@ internal class TextEditor
     {
         HtmlElementInfo? info = await _editor.GetElementInfoFromInternalId(_elementInfo.InternalId);
 
-        if (info != null && info.InnerText.Trim() != _elementInfo.InnerText.Trim())
+        if (info != null && info.InnerText?.Trim() != _elementInfo.InnerText?.Trim())
         {
             EditElementInnerHtmlCommand cmd = new(_editor)
             {

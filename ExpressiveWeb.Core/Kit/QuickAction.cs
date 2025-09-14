@@ -16,19 +16,19 @@ namespace ExpressiveWeb.Core.Kit;
 
 public class QuickAction
 {
-    public string Header
+    public string? Header
     {
         get;
         set;
     }
 
-    public string Command
+    public string? Command
     {
         get;
         set;
     }
 
-    public string Params
+    public string? Params
     {
         get;
         set;

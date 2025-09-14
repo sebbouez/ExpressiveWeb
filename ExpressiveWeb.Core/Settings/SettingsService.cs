@@ -22,22 +22,15 @@ public class SettingsService : ISettingsService
 {
     private readonly IEnvironmentService _environment;
 
-    public SettingsService(IEnvironmentService environment)
-    {
-        _environment = environment;
-    }
-
     public UserSettings UserSettings
     {
         get;
         private set;
     }
 
-    public void SaveSettings()
+    public SettingsService(IEnvironmentService environment)
     {
-        string userSettingsFilePath = Path.Combine(_environment.ApplicationDataFolder, "usersettings.json");
-        string json = JsonSerializer.Serialize(UserSettings);
-        FilesAccessHelper.WriteAllText(userSettingsFilePath, json);
+        _environment = environment;
     }
 
     public void LoadSettings(UserSettings? defaultSettings = null)
@@ -54,5 +47,12 @@ public class SettingsService : ISettingsService
         {
             UserSettings = defaultSettings ?? new UserSettings();
         }
+    }
+
+    public void SaveSettings()
+    {
+        string userSettingsFilePath = Path.Combine(_environment.ApplicationDataFolder, "usersettings.json");
+        string json = JsonSerializer.Serialize(UserSettings);
+        FilesAccessHelper.WriteAllText(userSettingsFilePath, json);
     }
 }

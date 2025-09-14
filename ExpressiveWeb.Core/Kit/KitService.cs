@@ -66,8 +66,11 @@ public class KitService : IKitService
 
                     try
                     {
-                        Kit kit = await LoadKit(kitName);
-                        result.Add(kit);
+                        Kit? kit = await LoadKit(kitName);
+                        if (kit != null)
+                        {
+                            result.Add(kit);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -157,11 +160,8 @@ public class KitService : IKitService
             {
                 foreach (XmlNode node in templates)
                 {
-                    KitPageTemplate? template = ReadTemplateFromXmlNode(node);
-                    if (template != null)
-                    {
-                        kit.Templates.Add(template);
-                    }
+                    KitPageTemplate template = ReadTemplateFromXmlNode(node);
+                    kit.Templates.Add(template);
                 }
             }
 
@@ -202,7 +202,7 @@ public class KitService : IKitService
         }
     }
 
-    private KitPageTemplate? ReadTemplateFromXmlNode(XmlNode node)
+    private KitPageTemplate ReadTemplateFromXmlNode(XmlNode node)
     {
         KitPageTemplate pageTemplate = new()
         {
@@ -212,10 +212,15 @@ public class KitService : IKitService
         return pageTemplate;
     }
 
-    private static bool DetectComponentConfig(KitComponent component)
+    private bool DetectComponentConfig(KitComponent component)
     {
         try
         {
+            if (string.IsNullOrEmpty(component.Template))
+            {
+                return false;
+            }
+
             HtmlDocument doc = new();
             doc.LoadHtml(component.Template);
 
@@ -232,6 +237,7 @@ public class KitService : IKitService
         }
         catch (Exception ex)
         {
+            _logService.Error(ex);
             return false;
         }
     }

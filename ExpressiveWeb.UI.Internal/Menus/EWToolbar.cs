@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.UI.Shell EWToolbar.cs
+// ExpressiveWeb.UI.Internal EWToolbar.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -21,9 +21,9 @@ namespace ExpressiveWeb.Presentation.Menus;
 
 public class EWToolbar : TemplatedControl
 {
-    private ItemsControl _mainItemsControl;
-    private ToggleButton _overflowButton;
-    private ItemsControl _overflowItemsControl;
+    private ItemsControl? _mainItemsControl;
+    private ToggleButton? _overflowButton;
+    private ItemsControl? _overflowItemsControl;
     private Flyout? _overflowPopup;
 
     public EWToolbar()
@@ -37,6 +37,12 @@ public class EWToolbar : TemplatedControl
         set;
     } = new();
 
+    protected override Size MeasureOverride(Size availableSize)
+    {
+        ReorganizeItems(availableSize);
+        return base.MeasureOverride(availableSize);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -48,11 +54,11 @@ public class EWToolbar : TemplatedControl
 
         if (_overflowButton != null)
         {
-            _overflowPopup = (FlyoutBase.GetAttachedFlyout(_overflowButton) as Flyout);
+            _overflowPopup = FlyoutBase.GetAttachedFlyout(_overflowButton) as Flyout;
 
             _overflowPopup!.Closed += OnClosed;
             _overflowPopup.Placement = PlacementMode.Custom;
-            _overflowPopup.CustomPopupPlacementCallback = (p) =>
+            _overflowPopup.CustomPopupPlacementCallback = p =>
             {
                 p.Offset = new Point(-p.PopupSize.Width / 2 + p.AnchorRectangle.Width / 2, p.PopupSize.Height / 2 + p.AnchorRectangle.Height / 2);
             };
@@ -63,7 +69,7 @@ public class EWToolbar : TemplatedControl
 
     private void OnClosed(object? sender, EventArgs e)
     {
-        _overflowButton.IsChecked = false;
+        _overflowButton!.IsChecked = false;
     }
 
     private void OnLoaded(object? sender, RoutedEventArgs e)
@@ -73,7 +79,7 @@ public class EWToolbar : TemplatedControl
 
     private void OverflowButtonOnClick(object? sender, RoutedEventArgs e)
     {
-        if (_overflowButton.IsChecked!.Value)
+        if (_overflowButton!.IsChecked!.Value)
         {
             _overflowPopup!.ShowAt(_overflowButton);
         }
@@ -83,16 +89,10 @@ public class EWToolbar : TemplatedControl
         }
     }
 
-    protected override Size MeasureOverride(Size availableSize)
-    {
-        ReorganizeItems(availableSize);
-        return base.MeasureOverride(availableSize);
-    }
-
     private void ReorganizeItems(Size availableSize)
     {
-        _mainItemsControl.Items.Clear();
-        _overflowItemsControl.Items.Clear();
+        _mainItemsControl!.Items.Clear();
+        _overflowItemsControl!.Items.Clear();
 
         double maxWidth = availableSize.Width - 30;
         double usedWidth = 0;
@@ -129,6 +129,6 @@ public class EWToolbar : TemplatedControl
             }
         }
 
-        _overflowButton.IsVisible = _overflowItemsControl.Items.Count > 0;
+        _overflowButton!.IsVisible = _overflowItemsControl.Items.Count > 0;
     }
 }

@@ -218,9 +218,14 @@ class EditorComponent {
 
         result.attributes = [];
 
-        element.getAttributeNames().forEach(name => {
-            result.attributes[name] = element.getAttribute(name);
-        });
+        for (let i = 0; i < element.attributes.length; i++) {
+            let attr = new ElementAttributeInfo();
+            attr.name = element.attributes[i].name;
+            attr.value = element.attributes[i].value;
+
+            result.attributes.push(attr);
+        }
+
 
         return result;
     }

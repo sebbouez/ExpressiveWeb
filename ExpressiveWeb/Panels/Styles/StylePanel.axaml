@@ -14,7 +14,10 @@
 
         <StackPanel>
 
-            <ComboBox x:Name="CbStylesList" SelectionChanged="CbStylesList_OnSelectionChanged">
+            <ComboBox x:Name="CbStylesList" SelectionChanged="CbStylesList_OnSelectionChanged"
+                      DropDownClosed="CbStylesList_OnDropDownClosed"
+                      PointerExited="CbStylesList_OnPointerExited"
+                      PointerMoved="CbStylesList_OnPointerMoved">
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="styles:StyleItemModel">
                         <StackPanel>
@@ -32,6 +35,8 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
+            <styles:StylePropertyGrid x:Name="PgStyle" ValueApplied="PgStyle_OnValueApplied"/>
+            
         </StackPanel>
     </Panel>
 </UserControl>

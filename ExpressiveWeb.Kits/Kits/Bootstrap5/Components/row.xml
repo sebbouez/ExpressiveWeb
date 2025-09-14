@@ -8,7 +8,25 @@
     <Actions>
         <Action Header="Add column" Command="AppendChild" Params="bootstrap.Col"/>
     </Actions>
-    
+
+    <Styles>
+        <Section Name="Horizontal content alignment">
+            <OptionsGroup>
+                <Option Name="Left" Role="HorizontalAlignmentLeft" ClassName="justify-content-start"/>
+                <Option Name="Center" Role="HorizontalAlignmentCenter" ClassName="justify-content-center"/>
+                <Option Name="Right" Role="HorizontalAlignmentRight" ClassName="justify-content-end"/>
+            </OptionsGroup>
+        </Section>
+        <Section Name="Vertical content alignment">
+            <OptionsGroup>
+                <Option Name="Top" Role="VerticalAlignmentTop" ClassName="align-items-start"/>
+                <Option Name="Center" Role="VerticalAlignmentTop" ClassName="align-items-center"/>
+                <Option Name="Bottom" Role="VerticalAlignmentTop" ClassName="align-items-end"/>
+                <Option Name="Stretch" Role="VerticalAlignmentTop" ClassName="align-items-stretch"/>
+            </OptionsGroup>
+        </Section>
+    </Styles>
+
     <Allows>bootstrap.Col</Allows>
 
 
@@ -19,5 +37,5 @@
         </div>
         ]]>
     </Template>
-    
+
 </Component>

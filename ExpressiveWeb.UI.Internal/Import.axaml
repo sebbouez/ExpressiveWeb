@@ -9,6 +9,10 @@
               
                 <MergeResourceInclude Source="/Buttons/EWSplitButton.axaml" />
                 <MergeResourceInclude Source="/Buttons/EWButton.xaml" />
+                <MergeResourceInclude Source="/Buttons/EWLockButton.xaml" />
+                
+                <MergeResourceInclude Source="/Pivot/EWTabPivot.axaml" />
+                <MergeResourceInclude Source="/TextBox/EWUnitNumericTextBox.axaml" />
                 
                 <MergeResourceInclude Source="/Menus/EWMainMenuBar.axaml" />
                 <MergeResourceInclude Source="/Menus/EWMainToolbar.axaml" />
@@ -17,6 +21,7 @@
                 <MergeResourceInclude Source="/Menus/EWMenuItem.xaml" />
                 <MergeResourceInclude Source="/Menus/FilterableContextMenu.axaml" />
                 <MergeResourceInclude Source="/Menus/EWToolbar.xaml" />
+                
             </ResourceDictionary.MergedDictionaries>
        
     

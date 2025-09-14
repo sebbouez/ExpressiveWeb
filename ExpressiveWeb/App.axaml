@@ -19,8 +19,10 @@
 
     <Application.Styles>
         
+        <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Simple/Simple.xaml" />
+        
         <StyleInclude Source="/AppStyles.axaml"/>
-        <!-- <SimpleTheme/> -->
+        <SimpleTheme/>
         <DockSimpleTheme />
         <shell:ExpressiveWebTheme />
 

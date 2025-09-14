@@ -22,6 +22,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using ExpressiveWeb.Commands;
 using ExpressiveWeb.Core;
@@ -40,6 +41,7 @@ using ExpressiveWeb.Panels.Styles;
 using ExpressiveWeb.Workspace;
 using Microsoft.Extensions.DependencyInjection;
 using SeparatorCommand = ExpressiveWeb.Core.ApplicationCommands.SeparatorCommand;
+using System.Reactive.Linq;
 
 namespace ExpressiveWeb;
 
@@ -60,6 +62,31 @@ public partial class MainWindow : Window
 
         Loaded += OnLoaded;
         Closing += OnClosing;
+        
+        
+        this.GetObservable(ActualThemeVariantProperty).Subscribe(theme =>
+        {
+            OnThemeChanged(theme);
+        });
+    }
+    
+    private void OnThemeChanged(ThemeVariant theme)
+    {
+        // Faire quelque chose quand le thème change
+        if (theme == ThemeVariant.Dark)
+        {
+            Console.WriteLine("Thème sombre activé");
+            // Actions spécifiques au thème sombre
+        }
+        else if (theme == ThemeVariant.Light)
+        {
+            Console.WriteLine("Thème clair activé");
+            // Actions spécifiques au thème clair
+        }
+        else
+        {
+            Console.WriteLine("Thème par défaut");
+        }
     }
 
     private void ApplicationSharedEventsOnProjectLoaded(object? sender, Project e)
@@ -260,6 +287,7 @@ public partial class MainWindow : Window
         ApplicationWorkspaceControl.AddPanel(_explorerControl, "Explorer", ApplicationWorkspace.PanelPosition.Left);
 
         StylePanel cc = new();
+        cc.DataContext = null;
         ApplicationWorkspaceControl.AddPanel(cc, "Style", ApplicationWorkspace.PanelPosition.Right);
 
         PagePropertiesPanel panel = new();

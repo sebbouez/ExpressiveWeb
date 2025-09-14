@@ -48,7 +48,7 @@
   <ControlTheme x:Key="SimpleExpanderToggleButtonTheme"
                 TargetType="ToggleButton">
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Background" Value="{DynamicResource ThemeWorkspace2Brush}" />
     <Setter Property="Template">
       <ControlTemplate>
         <Border Background="{TemplateBinding Background}"
@@ -125,6 +125,7 @@
         <CrossFade Duration="00:00:00.25" />
       </Setter.Value>
     </Setter>
+    <Setter Property="Padding" Value="0,8"></Setter>
     <Style Selector="^[ExpandDirection=Down]">
       <Setter Property="Template">
         <ControlTemplate>
@@ -170,8 +171,7 @@
                             HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalAlignment}"
                             Content="{TemplateBinding Header}"
-                            IsChecked="{TemplateBinding IsExpanded,
-                                                        Mode=TwoWay}"
+                            IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}"
                             Theme="{StaticResource SimpleExpanderToggleButtonRightTheme}" />
               <ContentPresenter Name="PART_ContentPresenter"
                                 Grid.Row="0"

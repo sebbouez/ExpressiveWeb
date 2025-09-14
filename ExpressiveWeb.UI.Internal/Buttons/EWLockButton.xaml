@@ -1,0 +1,76 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:ExpressiveWeb.Presentation.Buttons"
+                    x:ClassModifier="internal">
+
+
+    <ControlTheme x:Key="{x:Type controls:EWLockButton}" TargetType="controls:EWLockButton">
+
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Padding" Value="0,0" />
+        <Setter Property="FocusAdorner">
+            <FocusAdornerTemplate>
+                <Rectangle Margin="1"
+                           Stroke="Black"
+                           StrokeDashArray="1,2"
+                           StrokeThickness="1" />
+            </FocusAdornerTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+
+                <DockPanel LastChildFill="True">
+                    <Border x:Name="PART_BorderTop" DockPanel.Dock="Top"
+                            UseLayoutRounding="True"
+                            Background="Transparent"
+                            BorderBrush="{DynamicResource ThemeBorderBrush}"
+                            BorderThickness="0,1,1,0"
+                            CornerRadius="0,4,0,0"
+                            Width="8"
+                            Height="14"
+                            HorizontalAlignment="Center">
+                    </Border>
+                    
+                    <Border x:Name="PART_BorderBottom" DockPanel.Dock="Bottom"
+                            UseLayoutRounding="True"
+                            Background="Transparent"
+                            BorderBrush="{DynamicResource ThemeBorderBrush}"
+                            BorderThickness="0,0,1,1"
+                            CornerRadius="0,0,4,0"
+                            Width="8"
+                            Height="14"
+                            HorizontalAlignment="Center">
+                    </Border>
+                    
+                    
+                    
+                    <Rectangle Fill="{DynamicResource IconLockFilledOpen}"
+                               Width="12" Height="12"
+                               x:Name="PART_Icon"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,0" />
+
+                </DockPanel>
+            </ControlTemplate>
+
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#PART_Container">
+            <Setter Property="Background" Value="{DynamicResource ThemeHoverBrush}" />
+        </Style>
+        <Style Selector="^:pressed  /template/ Border#PART_Container">
+            <Setter Property="Background" Value="{DynamicResource ThemeActiveBrush}" />
+        </Style>
+
+        <Style Selector="^:checked  /template/ Rectangle#PART_Icon">
+            <Setter Property="Fill" Value="{DynamicResource IconLockFilledClosed}" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

@@ -28,7 +28,7 @@ internal class PageRequestRouter : InternalResourceRouterBase
         _htmlFilterService.UseFilter<AddEditorReferencesFilter>();
     }
 
-    internal override InternalRouterResult Execute(string path)
+    internal override InternalRouterResult? Execute(string path)
     {
         InternalRouterResult result = new();
 

@@ -73,7 +73,41 @@ class DomHelper {
             console.error('setElementInnerHtml: Element not found');
             return;
         }
+        if (element.hasAttribute('data-old-class')) {
+            element.removeAttribute('data-old-class');
+        }
         element.className = newClass;
+    }
+    startPreviewElementCssClass(elementInternalId, newClass) {
+        const element = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementInnerHtml: Element not found');
+            return;
+        }
+        const currentClass = element.getAttribute('class');
+        if (!element.hasAttribute('data-old-class')) {
+            element.setAttribute('data-old-class', currentClass);
+        }
+        element.className = newClass;
+    }
+    endPreviewElementCssClass(elementInternalId, newClass) {
+        const element = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementInnerHtml: Element not found');
+            return;
+        }
+        if (element.hasAttribute('data-old-class')) {
+            element.className = element.getAttribute('data-old-class');
+            element.removeAttribute('data-old-class');
+        }
+    }
+    setElementStyleAttribute(elementInternalId, value) {
+        const element = this.parentEditor.getElementByInternalId(elementInternalId);
+        if (!element) {
+            console.error('setElementStyleAttribute: Element not found');
+            return;
+        }
+        element.setAttribute('style', value);
     }
     setElementInnerHtml(elementInternalId, content) {
         const element = this.parentEditor.getElementByInternalId(elementInternalId);

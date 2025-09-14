@@ -63,6 +63,6 @@ public class EWButton : Button
 
     private void UpdatePseudoClasses()
     {
-        this.PseudoClasses.Set(":hasIcon", IconBrush != null);
+        PseudoClasses.Set(":hasIcon", IconBrush != null);
     }
 }

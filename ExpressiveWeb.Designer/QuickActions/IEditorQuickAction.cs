@@ -14,12 +14,20 @@
 
 namespace ExpressiveWeb.Designer.QuickActions;
 
+/// <summary>
+/// Represents a quick action that can be executed in the editor.
+/// </summary>
 public interface IEditorQuickAction
 {
     public string CommandName
     {
         get;
     }
-    
+
+    /// <summary>
+    /// Executes the quick action.
+    /// </summary>
+    /// <param name="editor">The current editor</param>
+    /// <param name="parameter">Parameter of the action</param>
     public void Execute(HtmlEditor editor, string parameter);
 }
