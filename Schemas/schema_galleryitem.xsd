@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:element name="GalleryItem">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Name" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                            The name to display in the UI.
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                
+                <xs:element name="Family" type="xs:int">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                            The family of items that will contain the item.
+                            Please have a look at the documentation to check enum values.
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                
+                <xs:element name="Template" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[
+                            The piece of HTML to paste in the editor when the user adds this Gallery Item.
+                            HTML should be contained in CDATA section.
+                            ]]>
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                    
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
