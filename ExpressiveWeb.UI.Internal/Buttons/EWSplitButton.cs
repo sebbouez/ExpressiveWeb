@@ -69,7 +69,7 @@ public class EWSplitButton : SplitButton
 
         foreach (ApplicationCommandBase command in Commands)
         {
-            var m = CommonMenuHelper.BuildMenuItem(this, command, true);
+            object m = CommonMenuHelper.BuildMenuItem(this, command, true);
             ((MenuFlyout) Flyout).Items.Add(m);
         }
     }

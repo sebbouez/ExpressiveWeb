@@ -17,7 +17,6 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Media;
 using ExpressiveWeb.Core.ApplicationCommands;
-using ExpressiveWeb.Presentation.Buttons;
 using ExpressiveWeb.Presentation.Menus;
 
 namespace ExpressiveWeb.Presentation;
@@ -44,7 +43,7 @@ internal static class CommonMenuHelper
             ? (Brush?) owner.FindResource(cmd.IconResourceName)
             : Brushes.Transparent;
 
-        result.Bind(EWToolbarButton.IsEnabledProperty, new Binding(nameof(ApplicationCommandBase.IsEnabled)));
+        result.Bind(InputElement.IsEnabledProperty, new Binding(nameof(ApplicationCommandBase.IsEnabled)));
         //result.Bind(EWButton.IsCheckedProperty, new Binding(nameof(ApplicationCommandBase.IsChecked)));
         
         result.Click += (_, _) =>
@@ -92,7 +91,7 @@ internal static class CommonMenuHelper
         //     ? (Brush?) owner.FindResource(cmd.IconResourceName)
         //     : Brushes.Transparent;
 
-        result.Bind(EWMenuItem.IsEnabledProperty, new Binding(nameof(ApplicationCommandBase.IsEnabled)));
+        result.Bind(InputElement.IsEnabledProperty, new Binding(nameof(ApplicationCommandBase.IsEnabled)));
         result.Bind(MenuItem.IsCheckedProperty, new Binding(nameof(ApplicationCommandBase.IsChecked)));
 
         // if (allowEnableStateAsVisibility && cmd is ISetEnableStateAsVisibilityCommand)

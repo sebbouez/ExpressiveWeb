@@ -20,8 +20,13 @@ public class HtmlFilterService
 {
     private readonly List<Type> _knownFilters = new();
 
-    public string Filter(string htmlContent)
+    public string Filter(string? htmlContent)
     {
+        if (string.IsNullOrEmpty(htmlContent))
+        {
+            return string.Empty;
+        }
+        
         HtmlDocument doc = new();
         doc.LoadHtml(htmlContent);
 
@@ -40,13 +45,18 @@ public class HtmlFilterService
         return doc.DocumentNode.OuterHtml;
     }
 
-    public Task<string> FilterAsync(string htmlContent)
+    public Task<string> FilterAsync(string? htmlContent)
     {
         return Task.Run(() => Filter(htmlContent));
     }
 
-    public string FilterWith<T>(string htmlContent) where T : HtmlFilterBase, new()
+    public string FilterWith<T>(string? htmlContent) where T : HtmlFilterBase, new()
     {
+        if (string.IsNullOrEmpty(htmlContent))
+        {
+            return string.Empty;
+        }
+
         HtmlDocument doc = new();
         doc.LoadHtml(htmlContent);
 

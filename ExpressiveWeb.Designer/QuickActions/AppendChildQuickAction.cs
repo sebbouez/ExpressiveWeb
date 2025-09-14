@@ -37,7 +37,17 @@ public class AppendChildQuickAction : IEditorQuickAction
 
         if (componentToAppend == null)
         {
-            throw new InvalidQuickActionParameterException("Parameter is not a valid component name.");   
+            throw new InvalidQuickActionParameterException("Parameter is not a valid component name.");
+        }
+
+        if (string.IsNullOrEmpty(componentToAppend.Template))
+        {
+            throw new InvalidQuickActionParameterException("Component has no template.");
+        }
+
+        if (string.IsNullOrEmpty(componentToAppend.HtmlTagName) || string.IsNullOrEmpty(componentToAppend.HtmlClassName))
+        {
+            throw new InvalidQuickActionParameterException("Component has no HTML tag name or class name.");       
         }
 
         HtmlFilterService svc = new();
@@ -51,7 +61,7 @@ public class AppendChildQuickAction : IEditorQuickAction
             TagName = componentToAppend.HtmlTagName,
             CssClass = componentToAppend.HtmlClassName,
             InnerHtml = filteredTemplateContent,
-            ParentInternalId = editor.SelectedElement.InternalId,
+            ParentInternalId = editor.SelectedElement!.InternalId,
             Index = 99
         };
 

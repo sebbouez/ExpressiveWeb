@@ -61,7 +61,7 @@ public class AppEnvironmentService : IEnvironmentService
     {
         get;
         init;
-    }
+    } = string.Empty;
 
     public string ExecutablePath
     {

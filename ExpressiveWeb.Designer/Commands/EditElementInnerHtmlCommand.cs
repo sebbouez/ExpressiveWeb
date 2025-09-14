@@ -40,13 +40,13 @@ internal class EditElementInnerHtmlCommand : IBusinessCommand
 
     public void Do()
     {
-        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementInnerHtml"), InitialElementInfo.InternalId, FinalElementInfo.InnerHtml);
+        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementInnerHtml"), InitialElementInfo.InternalId!, FinalElementInfo.InnerHtml??string.Empty);
         _editor.UpdateDecorators();
     }
 
     public void Undo()
     {
-        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementInnerHtml"), InitialElementInfo.InternalId, InitialElementInfo.InnerHtml);
+        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementInnerHtml"), InitialElementInfo.InternalId!, InitialElementInfo.InnerHtml??string.Empty);
         _editor.UpdateDecorators();
     }
 }

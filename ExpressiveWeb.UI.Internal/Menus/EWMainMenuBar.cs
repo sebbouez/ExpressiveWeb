@@ -22,8 +22,8 @@ namespace ExpressiveWeb.Presentation.Menus;
 
 public class EWMainMenuBar : TemplatedControl
 {
-    private Menu _mainMenu;
-    private IApplicationCommandsService _applicationCommandsService;
+    private Menu? _mainMenu;
+    private readonly IApplicationCommandsService _applicationCommandsService;
 
     public EWMainMenuBar()
     {
@@ -32,6 +32,11 @@ public class EWMainMenuBar : TemplatedControl
 
     public void AppendMenu(string header, List<ApplicationCommandBase> commands)
     {
+        if (_mainMenu == null)
+        {
+            throw new Exception("Main menu is not initialized");       
+        }
+
         EWMenuItem menuItem = new()
         {
             Header = header
@@ -39,18 +44,10 @@ public class EWMainMenuBar : TemplatedControl
 
         foreach (ApplicationCommandBase cmd in commands)
         {
-            object childMenuItem = null;
+            object? childMenuItem;
 
-            if (menuItem is EWMenuItem cx1)
-            {
-                childMenuItem = CommonMenuHelper.BuildMenuItem(this, cmd);
-                cx1.Items.Add(childMenuItem);
-            }
-            // else if (menu is CxRibbonTabItem cx2)
-            // {
-            //     menuItem = BuildToolbarButton(cmd);
-            //     cx2.Items.Add(menuItem);
-            // }
+            childMenuItem = CommonMenuHelper.BuildMenuItem(this, cmd);
+            menuItem.Items.Add(childMenuItem);
 
             _applicationCommandsService.RegisterCommand(cmd);
 

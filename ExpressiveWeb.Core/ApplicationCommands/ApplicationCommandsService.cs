@@ -16,7 +16,7 @@ namespace ExpressiveWeb.Core.ApplicationCommands;
 
 public class ApplicationCommandsService : IApplicationCommandsService
 {
-    private HashSet<ApplicationCommandBase> _commandsCache = new();
+    private readonly HashSet<ApplicationCommandBase> _commandsCache = new();
 
     public List<ApplicationCommandBase> RegisteredCommands
     {

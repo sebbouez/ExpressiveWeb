@@ -36,6 +36,11 @@ public class ProjectLoaderTests
         public string? LastParsedPath { get; private set; }
         public int ParseCalls { get; private set; }
 
+        public CssStyle ParseStyleAttribute(string style)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ExCSS.Stylesheet> ParseStyleSheet(string styleSheetFilePath)
         {
             LastParsedPath = styleSheetFilePath;

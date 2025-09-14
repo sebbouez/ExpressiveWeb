@@ -12,6 +12,7 @@
 // 
 // *********************************************************
 
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json;
 using Avalonia;
@@ -43,6 +44,9 @@ using Xilium.CefGlue.Common.Events;
 
 namespace ExpressiveWeb.Designer;
 
+[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by Javascript, no reference in C# code")]
+[SuppressMessage("Trimming", "IL2026:Members annotated with \'RequiresUnreferencedCodeAttribute\' require dynamic access otherwise can break functionality when trimming application code")]
+[SuppressMessage("AOT", "IL3050:Calling members annotated with \'RequiresDynamicCodeAttribute\' may break functionality when AOT compiling.")]
 public class HtmlEditor : Border, IDisposable
 {
     internal const string JS_GLOBAL_EDITOR_OBJ_NAME = "window.$___CURRENT_EDITOR";
@@ -63,8 +67,8 @@ public class HtmlEditor : Border, IDisposable
     {
         Kit = kit;
 
-        _logService = AppServices.ServicesFactory.GetService<ILogService>();
-        _networkService = AppServices.ServicesFactory.GetService<INetworkService>();
+        _logService = AppServices.ServicesFactory!.GetService<ILogService>()!;
+        _networkService = AppServices.ServicesFactory!.GetService<INetworkService>()!;
 
         // Set up cleanup filters when exporting HTML from editor
         HTMLFilterService.UseFilter<RemoveEditorInternalIdFilter>();
@@ -78,31 +82,16 @@ public class HtmlEditor : Border, IDisposable
         Initialized += OnInitialized;
     }
 
-    internal HtmlFilterService HTMLFilterService
-    {
-        get;
-    } = new();
-
-    public event EventHandler<object?>? SelectionChanged;
-    public event EventHandler<string>? InfoRaised;
-
     public IBusinessCommandManager CommandManager
     {
         get;
         set;
     } = new BusinessCommandManager();
 
-    internal static Kit Kit
+    internal HtmlFilterService HTMLFilterService
     {
         get;
-        private set;
-    }
-
-    public HtmlElement? SelectedElement
-    {
-        get;
-        private set;
-    }
+    } = new();
 
     public bool IsTextEditing
     {
@@ -110,6 +99,18 @@ public class HtmlEditor : Border, IDisposable
         {
             return _textEditor != null;
         }
+    }
+
+    internal static Kit Kit
+    {
+        get;
+        private set;
+    } = null!;
+
+    public HtmlElement? SelectedElement
+    {
+        get;
+        private set;
     }
 
     public void Dispose()
@@ -162,12 +163,17 @@ public class HtmlEditor : Border, IDisposable
         }
     }
 
-    private HtmlElement ConvertElementInfoToHtmlElement(HtmlElementInfo info)
+    private HtmlElement? ConvertElementInfoToHtmlElement(HtmlElementInfo info)
     {
+        if (string.IsNullOrEmpty(info.TagName) || string.IsNullOrEmpty(info.InternalId))
+        {
+            return null;
+        }
+
         HtmlElement el = new()
         {
             DataContext = info,
-            CssClass = info.CssClass,
+            CssClass = info.CssClass ?? string.Empty,
             TagName = info.TagName,
             InternalId = info.InternalId,
             Index = info.Index,
@@ -175,12 +181,12 @@ public class HtmlEditor : Border, IDisposable
             KitComponent = Kit.Components.FirstOrDefault(x => x.UID.Equals(info.ComponentUid))
         };
 
-        foreach (HTmlElementAttributeInfo infoAttribute in info.Attributes)
+        foreach (HtmlElementAttributeInfo infoAttribute in info.Attributes.Where(x => !string.IsNullOrEmpty(x.Name)))
         {
             el.Attributes.Add(new HtmlElementAttribute
             {
-                Name = infoAttribute.Name,
-                Value = infoAttribute.Value
+                Name = infoAttribute.Name!,
+                Value = infoAttribute.Value ?? string.Empty
             });
         }
 
@@ -207,8 +213,8 @@ public class HtmlEditor : Border, IDisposable
             case MoveRelativePosition.Before:
 
                 newIndex = targetElementInfo.Index;
-                if (sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
-                    && sourceElementInfo == targetElementInfo || sourceElementInfo.Index < targetElementInfo.Index)
+                if ((sourceElementInfo.ParentInternalId == targetElementInfo.ParentInternalId
+                     && sourceElementInfo == targetElementInfo) || sourceElementInfo.Index < targetElementInfo.Index)
                 {
                     newIndex--;
                 }
@@ -240,8 +246,12 @@ public class HtmlEditor : Border, IDisposable
 
     internal async Task<HtmlElementInfo?> GetElementInfoFromInternalId(string internalId)
     {
+        if (string.IsNullOrEmpty(internalId))
+        {
+            return null;
+        }
+        
         string json = await _browser.EvaluateJavaScript<string>(string.Concat("return ", JS_GLOBAL_EDITOR_OBJ_NAME, ".getJsonElementInfoFromInternalId('", internalId, "')"));
-
 
         if (string.IsNullOrEmpty(json))
         {
@@ -267,6 +277,8 @@ public class HtmlEditor : Border, IDisposable
     private void HtmlEditorCoreOnUserStylesheetChanged(object? sender, EventArgs e)
     {
     }
+
+    public event EventHandler<string>? InfoRaised;
 
     /// <summary>
     ///     Executes the given script in the browser, passing arguments in correct format
@@ -439,6 +451,8 @@ public class HtmlEditor : Border, IDisposable
         }
     }
 
+    public event EventHandler<object?>? SelectionChanged;
+
     public void ShowDevTools()
     {
         _browser.ShowDeveloperTools();
@@ -468,10 +482,10 @@ public class HtmlEditor : Border, IDisposable
     #region Public Commands
 
     /// <summary>
-    /// Changes the index of the currently selected HTML element based on the specified relative position.
+    ///     Changes the index of the currently selected HTML element based on the specified relative position.
     /// </summary>
     /// <param name="relativePosition">
-    /// The position relative in the current parent element.
+    ///     The position relative in the current parent element.
     /// </param>
     public void ChangeElementIndex(MoveRelativePosition relativePosition)
     {
@@ -497,7 +511,7 @@ public class HtmlEditor : Border, IDisposable
 
         HtmlElementInfo info = SelectedElement.DataContext.Freeze();
 
-        if (string.Equals(info.CssClass.Trim(), newCssClass.Trim(), StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(info.CssClass?.Trim(), newCssClass.Trim(), StringComparison.OrdinalIgnoreCase))
         {
             return;
         }
@@ -592,7 +606,7 @@ public class HtmlEditor : Border, IDisposable
         ArgumentNullException.ThrowIfNull(SelectedElement, "No element selected");
         HtmlElementInfo info = SelectedElement.DataContext.Freeze();
 
-        string newTagName = string.Empty;
+        string newTagName;
 
         switch (newTag)
         {
@@ -624,11 +638,11 @@ public class HtmlEditor : Border, IDisposable
                 newTagName = "blockquote";
                 break;
             default:
-                newTagName = info.TagName;
+                newTagName = info.TagName ?? string.Empty;
                 break;
         }
 
-        if (newTagName == info.TagName)
+        if (string.IsNullOrEmpty(newTagName) || newTagName == info.TagName)
         {
             return;
         }

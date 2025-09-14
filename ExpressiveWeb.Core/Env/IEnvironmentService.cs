@@ -16,23 +16,35 @@ namespace ExpressiveWeb.Core.Env;
 
 public interface IEnvironmentService
 {
-    bool IsValid
-    {
-        get;
-    }
-
+    /// <summary>
+    ///     Gets the path to the ApplicationData folder.
+    /// </summary>
     string ApplicationDataFolder
     {
         get;
         init;
     }
 
+    /// <summary>
+    ///     Indicates whether the environment is valid.
+    /// </summary>
+    bool IsValid
+    {
+        get;
+    }
+
+    /// <summary>
+    ///     Gets the path to the Kits folder.
+    /// </summary>
     string KitsFolderPath
     {
         get;
         init;
-    } 
-    
+    }
+
+    /// <summary>
+    ///     Gets the path to the Library folder.
+    /// </summary>
     string LibraryFolderPath
     {
         get;

@@ -32,7 +32,7 @@ public class OfflineResourceHandler : CefResourceHandler
     {
     }
 
-    protected override void GetResponseHeaders(CefResponse response, out long responseLength, out string redirectUrl)
+    protected override void GetResponseHeaders(CefResponse response, out long responseLength, out string? redirectUrl)
     {
         response.MimeType = "text/html";
         response.Status = 404;
@@ -50,6 +50,7 @@ public class OfflineResourceHandler : CefResourceHandler
         return true;
     }
 
+    [Obsolete("This method is deprecated. Use Open instead.")]
     protected override bool ProcessRequest(CefRequest request, CefCallback callback)
     {
         callback.Continue();

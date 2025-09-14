@@ -54,17 +54,23 @@ public class DynamicResourcesRouter
 
             sb.AppendLine("accepts: [");
 
-            foreach (string s in component.Accepts.Split(';'))
+            if (!string.IsNullOrEmpty(component.Accepts))
             {
-                GetComponentsInFamily(s, sb);
+                foreach (string s in component.Accepts.Split(';'))
+                {
+                    GetComponentsInFamily(s, sb);
+                }
             }
 
             sb.AppendLine("],");
             sb.AppendLine("denies: [");
 
-            foreach (string s in component.Denies.Split(';'))
+            if (!string.IsNullOrEmpty(component.Denies))
             {
-                sb.AppendLine($"'{s.Trim()}',");
+                foreach (string s in component.Denies.Split(';'))
+                {
+                    sb.AppendLine($"'{s.Trim()}',");
+                }
             }
 
             sb.AppendLine("],");
@@ -72,9 +78,12 @@ public class DynamicResourcesRouter
 
             sb.AppendLine("slots: [");
 
-            foreach (string s in component.Slots.Split(';'))
+            if (!string.IsNullOrEmpty(component.Slots))
             {
-                sb.AppendLine($"'{s.Trim()}',");
+                foreach (string s in component.Slots.Split(';'))
+                {
+                    sb.AppendLine($"'{s.Trim()}',");
+                }
             }
 
             sb.AppendLine("],");
@@ -150,7 +159,7 @@ public class DynamicResourcesRouter
 
     private void GetComponentsInFamily(string value, StringBuilder sb)
     {
-        List<KitComponent> foundComponents = HtmlEditor.Kit.Components.Where(c => c.Family.Equals(value, StringComparison.Ordinal)).ToList();
+        List<KitComponent> foundComponents = HtmlEditor.Kit.Components.Where(c => !string.IsNullOrEmpty(c.Family) && c.Family.Equals(value, StringComparison.Ordinal)).ToList();
 
         if (foundComponents.Count != 0)
         {

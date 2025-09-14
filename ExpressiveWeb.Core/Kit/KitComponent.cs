@@ -20,9 +20,9 @@ public class KitComponent
 {
     public string GetSelector()
     {
-        return !string.IsNullOrEmpty(HtmlClassName)
+        return (!string.IsNullOrEmpty(HtmlClassName)
             ? $"{HtmlTagName}.{HtmlClassName}"
-            : HtmlTagName;
+            : HtmlTagName) ?? string.Empty;
     }
 
     public bool HasFeature<T>()
@@ -32,58 +32,58 @@ public class KitComponent
 
     public bool Allows(string type)
     {
-        return Accepts.Split(';', StringSplitOptions.RemoveEmptyEntries).Contains(type, StringComparer.OrdinalIgnoreCase);
+        return Accepts != null && Accepts.Split(';', StringSplitOptions.RemoveEmptyEntries).Contains(type, StringComparer.OrdinalIgnoreCase);
     }
 
     public string UID
     {
         get;
         set;
-    }
+    } = null!;
 
-    public string Name
+    public string? Name
     {
         get;
         set;
     }  
     
-    public string Family
+    public string? Family
     {
         get;
         set;
     }
 
-    public string Accepts
+    public string? Accepts
     {
         get;
         set;
     }
 
-    public string Denies
+    public string? Denies
     {
         get;
         set;
     }
 
-    public string Slots
+    public string? Slots
     {
         get;
         set;
     }
 
-    public string Template
+    public string? Template
     {
         get;
         set;
     }
 
-    public string HtmlTagName
+    public string? HtmlTagName
     {
         get;
         set;
     }
 
-    public string HtmlClassName
+    public string? HtmlClassName
     {
         get;
         set;
@@ -109,13 +109,13 @@ public class KitComponent
 
 public class ComponentVariant
 {
-    public string Name
+    public string? Name
     {
         get;
         set;
     }
     
-    public string CssClass
+    public string? CssClass
     {
         get;
         set;

@@ -12,10 +12,8 @@
 // 
 // *********************************************************
 
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 
 namespace ExpressiveWeb.Presentation.MessageBox;
 
@@ -24,12 +22,7 @@ public partial class InputBoxDialog : Window
     public InputBoxDialog()
     {
         InitializeComponent();
-        Loaded+= OnLoaded;
-    }
-
-    private void OnLoaded(object? sender, RoutedEventArgs e)
-    {
-        this.TbValue.Text = Value;
+        Loaded += OnLoaded;
     }
 
     internal MessageBoxResultButton SelectedButton
@@ -44,16 +37,21 @@ public partial class InputBoxDialog : Window
         set;
     }
 
-    private void BtnOk_Click(object? sender, RoutedEventArgs e)
-    {
-        Value = this.TbValue.Text;
-        SelectedButton = MessageBoxResultButton.Ok;
-        Close(true);
-    }
-
     private void BtnCancel_Click(object? sender, RoutedEventArgs e)
     {
         SelectedButton = MessageBoxResultButton.Cancel;
         Close(true);
+    }
+
+    private void BtnOk_Click(object? sender, RoutedEventArgs e)
+    {
+        Value = TbValue.Text ?? string.Empty;
+        SelectedButton = MessageBoxResultButton.Ok;
+        Close(true);
+    }
+
+    private void OnLoaded(object? sender, RoutedEventArgs e)
+    {
+        TbValue.Text = Value;
     }
 }

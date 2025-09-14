@@ -38,19 +38,19 @@ internal class EditElementStyleAttributeCommand : IBusinessCommand
         init;
     }
 
-    private string _oldStyleValue;
+    private string? _oldStyleValue;
 
     public void Do()
     {
-        _oldStyleValue = InitialElementInfo.Attributes.FirstOrDefault(x=>x.Name.Equals("style", StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
-        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementStyleAttribute"), InitialElementInfo.InternalId, NewCssClass);
+        _oldStyleValue = InitialElementInfo.Attributes.FirstOrDefault(x => !string.IsNullOrEmpty(x.Name) && x.Name.Equals("style", StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
+        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementStyleAttribute"), InitialElementInfo.InternalId!, NewCssClass);
         _editor.UpdateDecorators();
         _editor.SelectElementByInternalId(InitialElementInfo.InternalId);
     }
 
     public void Undo()
     {
-        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementStyleAttribute"), InitialElementInfo.InternalId, _oldStyleValue);
+        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.setElementStyleAttribute"), InitialElementInfo.InternalId!, _oldStyleValue);
         _editor.UpdateDecorators();
         _editor.SelectElementByInternalId(InitialElementInfo.InternalId);
     }

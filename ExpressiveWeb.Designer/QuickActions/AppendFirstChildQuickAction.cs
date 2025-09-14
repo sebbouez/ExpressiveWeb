@@ -1,6 +1,6 @@
 ﻿// *********************************************************
 // 
-// ExpressiveWeb.Designer AppendChildQuickAction.cs
+// ExpressiveWeb.Designer AppendFirstChildQuickAction.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -37,13 +37,23 @@ public class AppendFirstChildQuickAction : IEditorQuickAction
 
         if (componentToAppend == null)
         {
-            throw new InvalidQuickActionParameterException("Parameter is not a valid component name.");   
+            throw new InvalidQuickActionParameterException("Parameter is not a valid component name.");
+        }
+
+        if (string.IsNullOrEmpty(componentToAppend.Template))
+        {
+            throw new InvalidQuickActionParameterException("Component has no template.");
+        }
+
+        if (string.IsNullOrEmpty(componentToAppend.HtmlTagName) || string.IsNullOrEmpty(componentToAppend.HtmlClassName))
+        {
+            throw new InvalidQuickActionParameterException("Component has no HTML tag name or class name.");
         }
 
         HtmlFilterService svc = new();
 
-        string filteredTemplateContent= svc.FilterWith<ComponentTemplateContentFilter>(componentToAppend.Template);
-        
+        string filteredTemplateContent = svc.FilterWith<ComponentTemplateContentFilter>(componentToAppend.Template);
+
         HtmlElementInfo info = new()
         {
             ComponentUid = componentToAppend.UID,
@@ -51,7 +61,7 @@ public class AppendFirstChildQuickAction : IEditorQuickAction
             TagName = componentToAppend.HtmlTagName,
             CssClass = componentToAppend.HtmlClassName,
             InnerHtml = filteredTemplateContent,
-            ParentInternalId = editor.SelectedElement.InternalId,
+            ParentInternalId = editor.SelectedElement!.InternalId,
             Index = 0
         };
 

@@ -1,6 +1,6 @@
 // *********************************************************
 // 
-// ExpressiveWeb.Designer IInternalResourceHandler.cs
+// ExpressiveWeb.Designer InternalResourceRouterBase.cs
 // Copyright (c) Sébastien Bouez. All rights reserved.
 // THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -12,11 +12,9 @@
 // 
 // *********************************************************
 
-using System.Linq;
-
 namespace ExpressiveWeb.Designer.Cef;
 
 internal abstract class InternalResourceRouterBase
 {
-   internal abstract InternalRouterResult Execute(string path);
+    internal abstract InternalRouterResult? Execute(string path);
 }

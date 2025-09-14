@@ -68,8 +68,8 @@ public sealed class HtmlElement
     internal HtmlElementInfo DataContext
     {
         get;
-        set;
-    }
+        init;
+    } = null!;
 
     public bool HasCssClass(string cssClass)
     {

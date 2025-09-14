@@ -46,6 +46,7 @@
         <PackageReference Include="Dock.Avalonia" Version="11.3.2.2" />
         <PackageReference Include="Dock.Avalonia.Themes.Simple" Version="11.3.2.2" />
         <PackageReference Include="Dock.Model.Avalonia" Version="11.3.2.2" />
+        <PackageReference Include="Dock.Serializer.SystemTextJson" Version="11.3.2.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.8" />
         <PackageReference Include="System.Reactive.Linq" Version="6.0.2" />

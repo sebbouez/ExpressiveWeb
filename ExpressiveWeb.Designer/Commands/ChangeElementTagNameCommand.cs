@@ -38,20 +38,20 @@ internal class ChangeElementTagNameCommand : IBusinessCommand
         init;
     }
 
-    private string _oldTagName;
+    private string? _oldTagName;
 
     public void Do()
     {
         _oldTagName = SourceElementInfo.TagName;
 
-        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.changeTagName"), SourceElementInfo.InternalId, NewTagName);
+        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.changeTagName"), SourceElementInfo.InternalId!, NewTagName);
         _editor.UpdateDecorators();
         _editor.SelectElementByInternalId(SourceElementInfo.InternalId);
     }
 
     public void Undo()
     {
-        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.changeTagName"), SourceElementInfo.InternalId, _oldTagName);
+        _editor.InternalCallBrowserMethod(string.Concat(HtmlEditor.JS_GLOBAL_EDITOR_OBJ_NAME, ".domHelper.changeTagName"), SourceElementInfo.InternalId!, _oldTagName);
         _editor.UpdateDecorators();
         _editor.SelectElementByInternalId(SourceElementInfo.InternalId);
     }
