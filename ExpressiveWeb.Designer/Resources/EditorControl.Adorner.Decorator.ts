@@ -4,8 +4,10 @@
     private _attachedElement: HTMLElement;
     private _resizeObserver: ResizeObserver | null = null;
     private _inflateValue: number = 0;
+    private _insertBar: AdornerInsertBar | null = null;
 
     private chevronRightIcon: string = "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' baseProfile='full' width='10' height='10' viewBox='0 0 10.56 18.00' xml:space='preserve'><path fill='#000000' fill-opacity='1' stroke-width='0.666699' stroke-linejoin='round' d='M 2.59497,0.435019L 10.0798,7.92C 10.3999,8.23998 10.5598,8.59249 10.5598,8.9775C 10.5598,9.36251 10.3999,9.71502 10.0798,10.035L 2.59497,17.52C 2.2749,17.84 1.90747,18 1.49243,18C 1.07739,18 0.724854,17.8563 0.434814,17.5688C 0.14502,17.2812 0,16.93 0,16.515C 0,16.1 0.159912,15.7325 0.47998,15.4125L 6.91504,8.9775L 0.47998,2.54253C 0.0349121,2.16253 -0.107666,1.68377 0.0523682,1.10625C 0.212402,0.528769 0.563721,0.159994 1.1062,-9.53674e-006C 1.64868,-0.159983 2.14502,-0.0149632 2.59497,0.435019 Z '/></svg>";
+
 
     constructor(manager: AdornerManager, attachedElement: HTMLElement) {
         super();
@@ -49,10 +51,14 @@
         }
     }
 
+    public attachInsertBar(bar: AdornerInsertBar): void {
+        this._insertBar = bar;
+    }
+
     public disable(): void {
         this.classList.add("state-disabled");
     }
-    
+
     public enable(): void {
         this.classList.remove("state-disabled");
     }
@@ -60,8 +66,41 @@
     public select(): void {
         this.classList.add("state-active");
         this.drawMarginsDecorations();
+        this.showInsertBar();
+        this.activateDeepestDecorator();
     }
 
+    private activateDeepestDecorator(): void {
+        const deepestParent: HTMLElement = this._manager.getDeepestElement(this._attachedElement);
+        if (deepestParent) {
+            const decorator: AdornerDecorator = this._manager.getDecoratorFromElement(deepestParent);
+            if (decorator) {
+                decorator.showInsertBar();
+            }
+        }
+    } 
+    
+    private deActivateDeepestDecorator(): void {
+        const deepestParent: HTMLElement = this._manager.getDeepestElement(this._attachedElement);
+        if (deepestParent) {
+            const decorator: AdornerDecorator = this._manager.getDecoratorFromElement(deepestParent);
+            if (decorator) {
+                decorator.hideInsertBar();
+            }
+        }
+    }
+
+    public showInsertBar(): void {
+        if (this._insertBar) {
+            this._insertBar.show();
+        }
+    }
+
+    private hideInsertBar(): void {
+        if (this._insertBar) {
+            this._insertBar.hide();
+        }
+    }
 
     private drawActionsMenuButton(): void {
         const component = this._manager.parentEditor.getComponentInfoFromHtmlElement(this._attachedElement);
@@ -134,7 +173,8 @@
     public unSelect(): void {
         this.classList.remove("state-active");
         this.clearMarginsDecorations();
-
+        this.hideInsertBar();
+        this.deActivateDeepestDecorator();
     }
 
     private clearEditingDecorations(): void {

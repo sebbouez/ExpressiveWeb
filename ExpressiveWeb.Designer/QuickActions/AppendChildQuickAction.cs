@@ -45,7 +45,7 @@ public class AppendChildQuickAction : IEditorQuickAction
             throw new InvalidQuickActionParameterException("Component has no template.");
         }
 
-        if (string.IsNullOrEmpty(componentToAppend.HtmlTagName) || string.IsNullOrEmpty(componentToAppend.HtmlClassName))
+        if (string.IsNullOrEmpty(componentToAppend.HtmlTagName))
         {
             throw new InvalidQuickActionParameterException("Component has no HTML tag name or class name.");       
         }

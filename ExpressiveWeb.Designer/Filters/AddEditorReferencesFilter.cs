@@ -33,6 +33,7 @@ public class AddEditorReferencesFilter : HtmlFilterBase
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.Text.js");
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.Dom.js");
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.Adorner.Decorator.js");
+        AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.Adorner.InsertBar.js");
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.Adorner.js");
         AddScript(headNode, $"{CustomSchemeHandler.LOCAL_FILE_SCHEME}://f/EditorControl.js");
     }

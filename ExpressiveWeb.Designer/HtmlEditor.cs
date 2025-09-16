@@ -13,6 +13,7 @@
 // *********************************************************
 
 using System.Diagnostics.CodeAnalysis;
+using System.Resources;
 using System.Text;
 using System.Text.Json;
 using Avalonia;
@@ -21,6 +22,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Controls.Primitives.PopupPositioning;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.Media;
 using Avalonia.Threading;
 using ExpressiveWeb.Core;
 using ExpressiveWeb.Core.Commands;
@@ -36,6 +38,7 @@ using ExpressiveWeb.Designer.Filters;
 using ExpressiveWeb.Designer.Models;
 using ExpressiveWeb.Designer.QuickActions;
 using ExpressiveWeb.Designer.Utils;
+using ExpressiveWeb.Presentation.Menus;
 using ExpressiveWeb.Presentation.MessageBox;
 using Microsoft.Extensions.DependencyInjection;
 using Xilium.CefGlue;
@@ -52,6 +55,7 @@ public class HtmlEditor : Border, IDisposable
     internal const string JS_GLOBAL_EDITOR_OBJ_NAME = "window.$___CURRENT_EDITOR";
     private readonly AvaloniaCefBrowser _browser = new();
     private readonly ContextMenu _componentActionsMenu = new();
+    private readonly ContextMenu _insertBarActionsMenu = new();
     private readonly ILogService _logService;
     private readonly INetworkService _networkService;
 
@@ -250,7 +254,7 @@ public class HtmlEditor : Border, IDisposable
         {
             return null;
         }
-        
+
         string json = await _browser.EvaluateJavaScript<string>(string.Concat("return ", JS_GLOBAL_EDITOR_OBJ_NAME, ".getJsonElementInfoFromInternalId('", internalId, "')"));
 
         if (string.IsNullOrEmpty(json))
@@ -320,6 +324,89 @@ public class HtmlEditor : Border, IDisposable
                 _componentActionsMenu.Close();
             });
         }
+    }
+
+    private void BuildInsertBarActionsMenu(HtmlElementInfo info)
+    {
+        _insertBarActionsMenu.Items.Clear();
+        _insertBarActionsMenu.Tag = info;
+
+        EWMenuItem labelItem = new()
+        {
+            Header = Localization.Resources.InsertBarMenuTitle,
+            IsEnabled = false,
+        };
+
+        _insertBarActionsMenu.Items.Add(labelItem);
+        
+        IEnumerable<IGrouping<KitGalleryFamily, KitGalleryItem>> groupedItems = Kit.GalleryItems.GroupBy(x => x.Family);
+        foreach (IGrouping<KitGalleryFamily, KitGalleryItem> group in groupedItems)
+        {
+            string? foundLocalizedString = Localization.Resources.ResourceManager.GetString($"GalleryFamily_{group.Key}");
+
+            EWMenuItem menuItem0 = new()
+            {
+                Header = foundLocalizedString ?? group.Key.ToString(),
+            };
+
+            _insertBarActionsMenu.Items.Add(menuItem0);
+            
+            foreach (var galleryItem in group.OrderBy(x => x.Name))
+            {
+                EWMenuItem menuItem = new()
+                {
+                    Header = galleryItem.Name,
+                    Tag = galleryItem
+                };
+                menuItem.Click += InsertBarMenuItemClick;
+                menuItem0.Items.Add(menuItem);
+            }
+        }
+    }
+
+    private void InsertBarMenuItemClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender == null || sender is not MenuItem menuItem || menuItem.Tag is not KitGalleryItem galleryItem)
+        {
+            return;
+        }
+
+        HtmlElementInfo info = ((HtmlElementInfo) _insertBarActionsMenu.Tag);
+
+        HtmlFragmentHelper helper = new(galleryItem.Template);
+        helper.Process(out string tagName, out string cssClass);
+
+        HtmlElementInfo info2 = info.Freeze();
+        info2.TagName = tagName;
+        info2.CssClass = cssClass;
+        info2.InternalId = Guid.NewGuid().ToString();
+        info2.Index = info.Index + 1;
+        info2.InnerHtml = galleryItem.Template;
+
+        InsertElementCommand cmd = new(this)
+        {
+            SourceElementInfo = info2
+        };
+        CommandManager.ExecuteCommand(cmd);
+    }
+
+    internal void InvokeInsertBarActionMenuOpening(HtmlElementInfo info, double x, double y)
+    {
+        Dispatcher.UIThread.Post(() =>
+        {
+            BuildInsertBarActionsMenu(info);
+
+            _insertBarActionsMenu.CustomPopupPlacementCallback = p =>
+            {
+                p.Anchor = PopupAnchor.TopLeft;
+                p.Gravity = PopupGravity.BottomRight;
+                p.Offset = new Point(x, y);
+            };
+
+            _insertBarActionsMenu.PlacementTarget = this;
+            _insertBarActionsMenu.Placement = PlacementMode.Custom;
+            _insertBarActionsMenu.Open(this);
+        });
     }
 
     internal void InvokeComponentActionMenuOpening(double x, double y)

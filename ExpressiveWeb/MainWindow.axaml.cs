@@ -42,6 +42,7 @@ using ExpressiveWeb.Workspace;
 using Microsoft.Extensions.DependencyInjection;
 using SeparatorCommand = ExpressiveWeb.Core.ApplicationCommands.SeparatorCommand;
 using System.Reactive.Linq;
+using ExpressiveWeb.Panels.Gallery;
 
 namespace ExpressiveWeb;
 
@@ -285,6 +286,9 @@ public partial class MainWindow : Window
         _explorerControl.ItemDoubleClicked += Explorer_OnItemDoubleClicked;
 
         ApplicationWorkspaceControl.AddPanel(_explorerControl, "Explorer", ApplicationWorkspace.PanelPosition.Left);
+        
+        GalleryPanel galleryPanel = new();
+        ApplicationWorkspaceControl.AddPanel(galleryPanel, "Gallery", ApplicationWorkspace.PanelPosition.Left);
 
         StylePanel cc = new();
         cc.DataContext = null;

@@ -106,6 +106,7 @@ public class KitService : IKitService
             }
 
             LoadKitComponents(kitName, result);
+            LoadKitGalleryItems(kitName, result);
 
             return result;
         });
@@ -212,6 +213,15 @@ public class KitService : IKitService
         return pageTemplate;
     }
 
+    public static void SerializeToXml(KitComponent component, string xmlFilePath)
+    {
+        XmlSerializer serializer = new(typeof(KitComponent));
+        using StreamWriter writer = new(xmlFilePath);
+        serializer.Serialize(writer, component);
+    }
+
+    #region Kit Components
+
     private bool DetectComponentConfig(KitComponent component)
     {
         try
@@ -244,9 +254,9 @@ public class KitService : IKitService
 
     private void LoadKitComponents(string kitName, Kit result)
     {
-        string componentsFolderPath = Path.Combine(_environmentService.KitsFolderPath, kitName, "components");
+        string folderPath = Path.Combine(_environmentService.KitsFolderPath, kitName, "components");
 
-        IEnumerable<string> xmlFiles = Directory.GetFiles(componentsFolderPath, "*.xml", SearchOption.AllDirectories);
+        IEnumerable<string> xmlFiles = Directory.GetFiles(folderPath, "*.xml", SearchOption.AllDirectories);
 
         foreach (string file in xmlFiles)
         {
@@ -334,7 +344,7 @@ public class KitService : IKitService
                     ComponentVariant variant = new()
                     {
                         Name = variantNode.Attributes?["Name"]?.Value ?? string.Empty,
-                        CssClass = variantNode.Attributes?["ClassName"]?.Value ?? string.Empty,
+                        CssClass = variantNode.Attributes?["ClassName"]?.Value ?? string.Empty
                     };
                     component.Variants.Add(variant);
                 }
@@ -347,10 +357,60 @@ public class KitService : IKitService
         return null;
     }
 
-    public static void SerializeToXml(KitComponent component, string xmlFilePath)
+    #endregion
+
+    #region Kit Gallery
+
+    private KitGalleryItem? ReadKitGalleryItemXml(string xmlFilePath)
     {
-        XmlSerializer serializer = new(typeof(KitComponent));
-        using StreamWriter writer = new(xmlFilePath);
-        serializer.Serialize(writer, component);
+        XmlDocument doc = new();
+        doc.Load(xmlFilePath);
+
+        KitGalleryItem galleryItem = new();
+        XmlElement? root = doc.DocumentElement;
+
+        if (root != null && root.SelectSingleNode("Name") != null)
+        {
+            galleryItem.Name = root.SelectSingleNode("Name")?.InnerText ?? string.Empty;
+            galleryItem.Template = root.SelectSingleNode("Template")?.InnerText ?? string.Empty;
+            galleryItem.Family = Enum.TryParse<KitGalleryFamily>(root.SelectSingleNode("Family")?.InnerText, out KitGalleryFamily family) ? family : KitGalleryFamily.None;
+            return galleryItem;
+        }
+
+        return null;
     }
+
+    private void LoadKitGalleryItems(string kitName, Kit result)
+    {
+        string folderPath = Path.Combine(_environmentService.KitsFolderPath, kitName, "gallery");
+
+        IEnumerable<string> xmlFiles = Directory.GetFiles(folderPath, "*.xml", SearchOption.AllDirectories);
+
+        foreach (string file in xmlFiles)
+        {
+            try
+            {
+                KitGalleryItem? galleryItem = ReadKitGalleryItemXml(file);
+
+                if (galleryItem == null)
+                {
+                    continue;
+                }
+                
+                string imageFilePath = Path.ChangeExtension(file, ".png");
+                if (File.Exists(imageFilePath))
+                {
+                    galleryItem.ImageFilePath = imageFilePath;   
+                }
+
+                result.GalleryItems.Add(galleryItem);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+
+    #endregion
 }

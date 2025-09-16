@@ -121,6 +121,15 @@
       <None Update="Kits\Bootstrap5\Components\card-deck.xml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Kits\Bootstrap5\Gallery\Hero1.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Kits\Bootstrap5\Gallery\Hero2.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Kits\Bootstrap5\Gallery\Pricing1.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>

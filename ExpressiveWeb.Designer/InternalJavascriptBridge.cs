@@ -40,6 +40,13 @@ public class InternalJavascriptBridge
     public void ComponentActionMenuOpening(double x, double y)
     {
         _editor.InvokeComponentActionMenuOpening(x, y);
+    } 
+    
+    public void InsertBarActionMenuOpening(string json, double x, double y)
+    {
+        HtmlElementInfo? sourceElementInfo = JsonSerializer.Deserialize<HtmlElementInfo?>(json);
+        
+        _editor.InvokeInsertBarActionMenuOpening(sourceElementInfo, x, y);
     }
 
     public void ContextMenuOpening(double x, double y)

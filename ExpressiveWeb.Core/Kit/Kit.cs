@@ -61,6 +61,12 @@ public class Kit
     {
         get;
         set;
+    } = new(); 
+    
+    public List<KitGalleryItem> GalleryItems
+    {
+        get;
+        set;
     } = new();
 
     public List<KitPageTemplate> Templates

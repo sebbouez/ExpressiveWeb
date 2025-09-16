@@ -37,6 +37,10 @@
         <EmbeddedResource Include="Resources\EditorControl.Adorner.Decorator.js" />
         <None Remove="Resources\EditorControl.Text.js" />
         <EmbeddedResource Include="Resources\EditorControl.Text.js" />
+        <None Remove="Resources\EditorControl.Adorner.InsertBar.js" />
+        <EmbeddedResource Include="Resources\EditorControl.Adorner.InsertBar.js">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
     
     </ItemGroup>
 

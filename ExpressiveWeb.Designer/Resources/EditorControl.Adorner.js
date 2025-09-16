@@ -20,6 +20,10 @@ class AdornerManager extends HTMLElement {
         allDecorators.forEach(decorator => {
             this._adornerContainer.removeChild(decorator);
         });
+        const allInsertBars = this._adornerContainer.querySelectorAll(".adorner-insertbar");
+        allInsertBars.forEach(insertBar => {
+            this._adornerContainer.removeChild(insertBar);
+        });
     }
     clearGuides() {
         this.clearVerticalGuide();
@@ -207,30 +211,43 @@ class AdornerManager extends HTMLElement {
             decorator.unSelect();
         });
     }
+    getDeepestElement(element) {
+        let current = element;
+        while (current && current.parentElement) {
+            if (current.parentElement.tagName.toLowerCase() === 'main') {
+                return current;
+            }
+            current = current.parentElement;
+        }
+        return null;
+    }
     updateDecorators() {
         this.clearDecorators();
-        const marginLeft = 0;
-        const marginTop = 0;
         const allVisualElements = document.querySelectorAll($EDITOR_KIT_DATA.ADORNER_DECORATORS_SELECTOR);
         const self = this;
         allVisualElements.forEach(el => {
             self.parentEditor.ensureInternalId(el);
-            let decorator0 = new AdornerDecorator(self, el);
-            if (decorator0.draggable === true) {
-                decorator0.addEventListener("dragstart", function (e) {
+            let decorator = new AdornerDecorator(self, el);
+            if (decorator.draggable === true) {
+                decorator.addEventListener("dragstart", function (e) {
                     self.startDragDecoratorHandler(self, e);
                 }, false);
             }
-            decorator0.addEventListener("drop", function (e) {
+            decorator.addEventListener("drop", function (e) {
                 self.dropDecoratorHandler(self, e);
             }, false);
-            decorator0.addEventListener("dragover", function (e) {
+            decorator.addEventListener("dragover", function (e) {
                 self.dragOverDecoratorHandler(self, e);
             }, false);
-            decorator0.addEventListener("dblclick", function (e) {
+            decorator.addEventListener("dblclick", function (e) {
                 self.dblClickDecoratorHandler(self, e);
             }, false);
-            self._adornerContainer.appendChild(decorator0);
+            self._adornerContainer.appendChild(decorator);
+            if (el.parentElement.tagName.toLowerCase() == "main") {
+                let insertBar = new AdornerInsertBar(self, el);
+                self._adornerContainer.appendChild(insertBar);
+                decorator.attachInsertBar(insertBar);
+            }
         });
     }
     discardEvents() {

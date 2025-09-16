@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<GalleryItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebbouez/ExpressiveWeb/refs/heads/main/Schemas/schema_galleryitem.xsd">
+
+    <Name>Hero 1</Name>
+    <Family>8</Family>
+    <Template>
+        <![CDATA[
+            <div class="container px-4 py-5 my-5 text-center">
+            <h1 class="container display-5 fw-bold text-body-emphasis">Lorem ipsum</h1> 
+                <div class="col col-lg-6 mx-auto">
+                <p class="lead mb-4">Lorem ipsum dolor sit amet.</p> 
+                    <div class="container d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <a class="btn btn-primary btn-lg px-4 gap-3">Primary button</a>
+                        <a class="btn btn-outline-secondary btn-lg px-4">Secondary</a>
+                    </div>
+                </div>
+            </div>
+        ]]>
+    </Template>
+
+</GalleryItem>

@@ -261,4 +261,43 @@
     <data name="DockAutoHide" xml:space="preserve">
         <value>Auto hide</value>
     </data>
+    <data name="GalleryFamily_Text" xml:space="preserve">
+        <value>Text</value>
+    </data>
+    <data name="GalleryFamily_Headings" xml:space="preserve">
+        <value>Headings</value>
+    </data>
+    <data name="GalleryFamily_Hero" xml:space="preserve">
+        <value>Hero</value>
+    </data>
+    <data name="GalleryFamily_Buttons" xml:space="preserve">
+        <value>Buttons</value>
+    </data>
+    <data name="GalleryFamily_Forms" xml:space="preserve">
+        <value>Forms</value>
+    </data>
+    <data name="GalleryFamily_Tables" xml:space="preserve">
+        <value>Tables</value>
+    </data>
+    <data name="GalleryFamily_Lists" xml:space="preserve">
+        <value>Lists</value>
+    </data>
+    <data name="GalleryFamily_Images" xml:space="preserve">
+        <value>Images</value>
+    </data>
+    <data name="GalleryFamily_Media" xml:space="preserve">
+        <value>Media</value>
+    </data>
+    <data name="GalleryFamily_Navigation" xml:space="preserve">
+        <value>Navigation</value>
+    </data>
+    <data name="GalleryFamily_Layout" xml:space="preserve">
+        <value>Layout</value>
+    </data>
+    <data name="GalleryFamily_None" xml:space="preserve">
+        <value>Generic</value>
+    </data>
+    <data name="InsertBarMenuTitle" xml:space="preserve">
+        <value>Insert at this position</value>
+    </data>
 </root>

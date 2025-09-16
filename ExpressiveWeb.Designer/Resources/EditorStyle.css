@@ -102,6 +102,28 @@ adorner-decorator > button.actions-menu-button:hover {
     border: 1px solid #000;
 }
 
+adorner-insertbar {
+    position: absolute;
+    display: none;
+    height: 2px;
+    background: #2880E6;
+}
+
+adorner-insertbar.state-active {
+    display: block;
+}
+
+adorner-insertbar > button {
+    z-index: 10;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    right: -24px;
+    top: -1px;
+    background: #cccccc;
+    border: 1px solid #656565;
+}
+
 
 .adorner-margin-decoration {
     pointer-events: none;

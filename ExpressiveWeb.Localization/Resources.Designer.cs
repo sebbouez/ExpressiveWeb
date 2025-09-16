@@ -330,6 +330,123 @@ namespace ExpressiveWeb.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buttons.
+        /// </summary>
+        public static string GalleryFamily_Buttons {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Buttons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forms.
+        /// </summary>
+        public static string GalleryFamily_Forms {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Forms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headings.
+        /// </summary>
+        public static string GalleryFamily_Headings {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Headings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hero.
+        /// </summary>
+        public static string GalleryFamily_Hero {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Hero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images.
+        /// </summary>
+        public static string GalleryFamily_Images {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout.
+        /// </summary>
+        public static string GalleryFamily_Layout {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lists.
+        /// </summary>
+        public static string GalleryFamily_Lists {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Lists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media.
+        /// </summary>
+        public static string GalleryFamily_Media {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Media", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation.
+        /// </summary>
+        public static string GalleryFamily_Navigation {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Navigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic.
+        /// </summary>
+        public static string GalleryFamily_None {
+            get {
+                return ResourceManager.GetString("GalleryFamily_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tables.
+        /// </summary>
+        public static string GalleryFamily_Tables {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Tables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        public static string GalleryFamily_Text {
+            get {
+                return ResourceManager.GetString("GalleryFamily_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert at this position.
+        /// </summary>
+        public static string InsertBarMenuTitle {
+            get {
+                return ResourceManager.GetString("InsertBarMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Online.
         /// </summary>
         public static string IsConnected {
